@@ -1,0 +1,1806 @@
+GAS LISTING /tmp/ccJdPCF8.s 			page 1
+
+
+   1              		.file	"scheduler.cpp"
+   2              		.option pic
+   3              		.option norelax
+   4              		.text
+   5              	.Ltext0:
+   6              		.align	2
+   7              		.globl	_ZN9Scheduler3getEv
+   9              	_ZN9Scheduler3getEv:
+  10              	.LFB13:
+  11              		.file 1 "src/scheduler.cpp"
+   1:src/scheduler.cpp **** //
+   2:src/scheduler.cpp **** // Created by os on 8/12/22.
+   3:src/scheduler.cpp **** //
+   4:src/scheduler.cpp **** 
+   5:src/scheduler.cpp **** #include "../h/scheduler.h"
+   6:src/scheduler.cpp **** 
+   7:src/scheduler.cpp **** int Scheduler::brojj=0;
+   8:src/scheduler.cpp **** int Scheduler::brojb=0;
+   9:src/scheduler.cpp **** 
+  10:src/scheduler.cpp **** Scheduler::struktura* Scheduler::head = nullptr;
+  11:src/scheduler.cpp **** Scheduler::struktura* Scheduler::headuspavane = nullptr;
+  12:src/scheduler.cpp **** 
+  13:src/scheduler.cpp **** Nit *Scheduler::get() {
+  12              		.loc 1 13 23
+  13              		.cfi_startproc
+  14 0000 130101FE 		addi	sp,sp,-32
+  15              		.cfi_def_cfa_offset 32
+  16 0004 233C1100 		sd	ra,24(sp)
+  17 0008 23388100 		sd	s0,16(sp)
+  18 000c 23349100 		sd	s1,8(sp)
+  19              		.cfi_offset 1, -8
+  20              		.cfi_offset 8, -16
+  21              		.cfi_offset 9, -24
+  22 0010 13040102 		addi	s0,sp,32
+  23              		.cfi_def_cfa 8, 0
+  14:src/scheduler.cpp ****     if(head==nullptr) {return nullptr;}
+  24              		.loc 1 14 5
+  25              		.loc 1 14 12 is_stmt 0
+  26 0014 17050000 		ld	a0,.LANCHOR0
+  26      03350500 
+  27              		.loc 1 14 5
+  28 001c 63080506 		beqz	a0,.L4
+  15:src/scheduler.cpp **** 
+  16:src/scheduler.cpp ****     struktura *temp = head;
+  29              		.loc 1 16 5 is_stmt 1
+  30              	.LVL0:
+  17:src/scheduler.cpp ****     Nit *t = head->t;
+  31              		.loc 1 17 5
+  32              		.loc 1 17 10 is_stmt 0
+  33 0020 83340500 		ld	s1,0(a0)
+  34              	.LVL1:
+  18:src/scheduler.cpp **** 
+  19:src/scheduler.cpp ****     head->next->prev=head->prev;
+  35              		.loc 1 19 5 is_stmt 1
+  36              		.loc 1 19 11 is_stmt 0
+  37 0024 83370501 		ld	a5,16(a0)
+  38              		.loc 1 19 28
+GAS LISTING /tmp/ccJdPCF8.s 			page 2
+
+
+  39 0028 03378501 		ld	a4,24(a0)
+  40              		.loc 1 19 21
+  41 002c 23BCE700 		sd	a4,24(a5)
+  20:src/scheduler.cpp ****     head->prev->next=head->next;
+  42              		.loc 1 20 5 is_stmt 1
+  43              		.loc 1 20 11 is_stmt 0
+  44 0030 83378501 		ld	a5,24(a0)
+  45              		.loc 1 20 28
+  46 0034 03370501 		ld	a4,16(a0)
+  47              		.loc 1 20 21
+  48 0038 23B8E700 		sd	a4,16(a5)
+  21:src/scheduler.cpp **** 
+  22:src/scheduler.cpp ****     head=temp->next;
+  49              		.loc 1 22 5 is_stmt 1
+  50              		.loc 1 22 16 is_stmt 0
+  51 003c 83370501 		ld	a5,16(a0)
+  52              		.loc 1 22 9
+  53 0040 17070000 		sd	a5,.LANCHOR0,a4
+  53      2330F700 
+  23:src/scheduler.cpp ****     if(head==temp) head=nullptr;
+  54              		.loc 1 23 5 is_stmt 1
+  55 0048 630CF502 		beq	a0,a5,.L6
+  56              	.L3:
+  24:src/scheduler.cpp **** 
+  25:src/scheduler.cpp ****     Memorija::oslobadjanje(temp);
+  57              		.loc 1 25 5
+  58              		.loc 1 25 27 is_stmt 0
+  59 004c 97000000 		call	_ZN8Memorija12oslobadjanjeEPv@plt
+  59      E7800000 
+  60              	.LVL2:
+  26:src/scheduler.cpp ****     brojj--;
+  61              		.loc 1 26 5 is_stmt 1
+  62              		.loc 1 26 10 is_stmt 0
+  63 0054 17070000 		lla	a4,.LANCHOR0
+  63      13070700 
+  64 005c 83278700 		lw	a5,8(a4)
+  65 0060 9B87F7FF 		addiw	a5,a5,-1
+  66 0064 2324F700 		sw	a5,8(a4)
+  27:src/scheduler.cpp ****     return t;
+  67              		.loc 1 27 5 is_stmt 1
+  68              	.LVL3:
+  69              	.L1:
+  28:src/scheduler.cpp **** }
+  70              		.loc 1 28 1 is_stmt 0
+  71 0068 13850400 		mv	a0,s1
+  72 006c 83308101 		ld	ra,24(sp)
+  73              		.cfi_remember_state
+  74              		.cfi_restore 1
+  75 0070 03340101 		ld	s0,16(sp)
+  76              		.cfi_restore 8
+  77              		.cfi_def_cfa 2, 32
+  78 0074 83348100 		ld	s1,8(sp)
+  79              		.cfi_restore 9
+  80 0078 13010102 		addi	sp,sp,32
+  81              		.cfi_def_cfa_offset 0
+  82 007c 67800000 		jr	ra
+  83              	.LVL4:
+GAS LISTING /tmp/ccJdPCF8.s 			page 3
+
+
+  84              	.L6:
+  85              		.cfi_restore_state
+  23:src/scheduler.cpp **** 
+  86              		.loc 1 23 20 is_stmt 1 discriminator 1
+  23:src/scheduler.cpp **** 
+  87              		.loc 1 23 24 is_stmt 0 discriminator 1
+  88 0080 97070000 		sd	zero,.LANCHOR0,a5
+  88      23B00700 
+  89 0088 6FF05FFC 		j	.L3
+  90              	.LVL5:
+  91              	.L4:
+  14:src/scheduler.cpp **** 
+  92              		.loc 1 14 31
+  93 008c 93040500 		mv	s1,a0
+  94 0090 6FF09FFD 		j	.L1
+  95              		.cfi_endproc
+  96              	.LFE13:
+  98              		.align	2
+  99              		.globl	_ZN9Scheduler3putEP3Nit
+ 101              	_ZN9Scheduler3putEP3Nit:
+ 102              	.LFB14:
+  29:src/scheduler.cpp **** 
+  30:src/scheduler.cpp **** int Scheduler::put(Nit* t) {
+ 103              		.loc 1 30 28 is_stmt 1
+ 104              		.cfi_startproc
+ 105              	.LVL6:
+ 106 0094 130101FE 		addi	sp,sp,-32
+ 107              		.cfi_def_cfa_offset 32
+ 108 0098 233C1100 		sd	ra,24(sp)
+ 109 009c 23388100 		sd	s0,16(sp)
+ 110 00a0 23349100 		sd	s1,8(sp)
+ 111              		.cfi_offset 1, -8
+ 112              		.cfi_offset 8, -16
+ 113              		.cfi_offset 9, -24
+ 114 00a4 13040102 		addi	s0,sp,32
+ 115              		.cfi_def_cfa 8, 0
+ 116 00a8 93040500 		mv	s1,a0
+  31:src/scheduler.cpp ****     struktura* novo = (struktura*)Memorija::alokacija(sizeof(struktura));
+ 117              		.loc 1 31 5
+ 118              		.loc 1 31 54 is_stmt 0
+ 119 00ac 13050002 		li	a0,32
+ 120              	.LVL7:
+ 121 00b0 97000000 		call	_ZN8Memorija9alokacijaEm@plt
+ 121      E7800000 
+ 122              	.LVL8:
+  32:src/scheduler.cpp **** 
+  33:src/scheduler.cpp ****     if(novo == nullptr) return -1;
+ 123              		.loc 1 33 5 is_stmt 1
+ 124 00b8 63040506 		beqz	a0,.L10
+  34:src/scheduler.cpp ****     novo->t=t;
+ 125              		.loc 1 34 5
+ 126              		.loc 1 34 12 is_stmt 0
+ 127 00bc 23309500 		sd	s1,0(a0)
+  35:src/scheduler.cpp **** 
+  36:src/scheduler.cpp ****     brojj++;
+ 128              		.loc 1 36 5 is_stmt 1
+ 129              		.loc 1 36 10 is_stmt 0
+GAS LISTING /tmp/ccJdPCF8.s 			page 4
+
+
+ 130 00c0 97070000 		lla	a5,.LANCHOR0
+ 130      93870700 
+ 131 00c8 03A78700 		lw	a4,8(a5)
+ 132 00cc 1B071700 		addiw	a4,a4,1
+ 133 00d0 23A4E700 		sw	a4,8(a5)
+  37:src/scheduler.cpp **** 
+  38:src/scheduler.cpp ****     if(head==nullptr){
+ 134              		.loc 1 38 5 is_stmt 1
+ 135              		.loc 1 38 12 is_stmt 0
+ 136 00d4 83B70700 		ld	a5,0(a5)
+ 137              		.loc 1 38 5
+ 138 00d8 63880702 		beqz	a5,.L12
+  39:src/scheduler.cpp ****         head = novo;
+  40:src/scheduler.cpp ****         head->next=head;
+  41:src/scheduler.cpp ****         head->prev=head;
+  42:src/scheduler.cpp ****         return 0;
+  43:src/scheduler.cpp ****     }
+  44:src/scheduler.cpp **** 
+  45:src/scheduler.cpp ****     struktura* temp = head->prev;
+ 139              		.loc 1 45 5 is_stmt 1
+ 140              		.loc 1 45 16 is_stmt 0
+ 141 00dc 03B78701 		ld	a4,24(a5)
+ 142              	.LVL9:
+  46:src/scheduler.cpp ****     temp->next=novo;
+ 143              		.loc 1 46 5 is_stmt 1
+ 144              		.loc 1 46 15 is_stmt 0
+ 145 00e0 2338A700 		sd	a0,16(a4)
+  47:src/scheduler.cpp ****     novo->prev=temp;
+ 146              		.loc 1 47 5 is_stmt 1
+ 147              		.loc 1 47 15 is_stmt 0
+ 148 00e4 233CE500 		sd	a4,24(a0)
+  48:src/scheduler.cpp ****     novo->next=head;
+ 149              		.loc 1 48 5 is_stmt 1
+ 150              		.loc 1 48 15 is_stmt 0
+ 151 00e8 2338F500 		sd	a5,16(a0)
+  49:src/scheduler.cpp ****     head->prev=novo;
+ 152              		.loc 1 49 5 is_stmt 1
+ 153              		.loc 1 49 15 is_stmt 0
+ 154 00ec 23BCA700 		sd	a0,24(a5)
+  50:src/scheduler.cpp ****     return 0;
+ 155              		.loc 1 50 5 is_stmt 1
+ 156              		.loc 1 50 12 is_stmt 0
+ 157 00f0 13050000 		li	a0,0
+ 158              	.LVL10:
+ 159              	.L8:
+  51:src/scheduler.cpp **** }
+ 160              		.loc 1 51 1
+ 161 00f4 83308101 		ld	ra,24(sp)
+ 162              		.cfi_remember_state
+ 163              		.cfi_restore 1
+ 164 00f8 03340101 		ld	s0,16(sp)
+ 165              		.cfi_restore 8
+ 166              		.cfi_def_cfa 2, 32
+ 167 00fc 83348100 		ld	s1,8(sp)
+ 168              		.cfi_restore 9
+ 169              	.LVL11:
+ 170 0100 13010102 		addi	sp,sp,32
+GAS LISTING /tmp/ccJdPCF8.s 			page 5
+
+
+ 171              		.cfi_def_cfa_offset 0
+ 172 0104 67800000 		jr	ra
+ 173              	.LVL12:
+ 174              	.L12:
+ 175              		.cfi_restore_state
+  39:src/scheduler.cpp ****         head->next=head;
+ 176              		.loc 1 39 9 is_stmt 1
+  39:src/scheduler.cpp ****         head->next=head;
+ 177              		.loc 1 39 14 is_stmt 0
+ 178 0108 97070000 		sd	a0,.LANCHOR0,a5
+ 178      23B0A700 
+  40:src/scheduler.cpp ****         head->prev=head;
+ 179              		.loc 1 40 9 is_stmt 1
+  40:src/scheduler.cpp ****         head->prev=head;
+ 180              		.loc 1 40 19 is_stmt 0
+ 181 0110 2338A500 		sd	a0,16(a0)
+  41:src/scheduler.cpp ****         return 0;
+ 182              		.loc 1 41 9 is_stmt 1
+  41:src/scheduler.cpp ****         return 0;
+ 183              		.loc 1 41 19 is_stmt 0
+ 184 0114 233CA500 		sd	a0,24(a0)
+  42:src/scheduler.cpp ****     }
+ 185              		.loc 1 42 9 is_stmt 1
+  42:src/scheduler.cpp ****     }
+ 186              		.loc 1 42 16 is_stmt 0
+ 187 0118 13050000 		li	a0,0
+ 188              	.LVL13:
+ 189 011c 6FF09FFD 		j	.L8
+ 190              	.LVL14:
+ 191              	.L10:
+  33:src/scheduler.cpp ****     novo->t=t;
+ 192              		.loc 1 33 33
+ 193 0120 1305F0FF 		li	a0,-1
+ 194              	.LVL15:
+ 195 0124 6FF01FFD 		j	.L8
+ 196              		.cfi_endproc
+ 197              	.LFE14:
+ 199              		.section	.rodata.str1.8,"aMS",@progbits,1
+ 200              		.align	3
+ 201              	.LC0:
+ 202 0000 0A2D2D2D 		.string	"\n------------------\nlista:\n"
+ 202      2D2D2D2D 
+ 202      2D2D2D2D 
+ 202      2D2D2D2D 
+ 202      2D2D2D0A 
+ 203 001c 00000000 		.align	3
+ 204              	.LC1:
+ 205 0020 52756E6E 		.string	"Running thread "
+ 205      696E6720 
+ 205      74687265 
+ 205      61642000 
+ 206              		.align	3
+ 207              	.LC2:
+ 208 0030 6E756C61 		.string	"nula elementa\n"
+ 208      20656C65 
+ 208      6D656E74 
+ 208      610A00
+GAS LISTING /tmp/ccJdPCF8.s 			page 6
+
+
+ 209 003f 00       		.align	3
+ 210              	.LC3:
+ 211 0040 6C697374 		.string	"lista uspavanih:\n"
+ 211      61207573 
+ 211      70617661 
+ 211      6E69683A 
+ 211      0A00
+ 212 0052 00000000 		.align	3
+ 212      0000
+ 213              	.LC4:
+ 214 0058 7672656D 		.string	"vreme: "
+ 214      653A2000 
+ 215              		.align	3
+ 216              	.LC5:
+ 217 0060 2D2D2D2D 		.string	"------------------\n"
+ 217      2D2D2D2D 
+ 217      2D2D2D2D 
+ 217      2D2D2D2D 
+ 217      2D2D0A00 
+ 218              		.text
+ 219              		.align	2
+ 220              		.globl	_ZN9Scheduler5PrintEv
+ 222              	_ZN9Scheduler5PrintEv:
+ 223              	.LFB15:
+  52:src/scheduler.cpp **** 
+  53:src/scheduler.cpp **** void Scheduler::Print() {
+ 224              		.loc 1 53 25 is_stmt 1
+ 225              		.cfi_startproc
+ 226 0128 130101FE 		addi	sp,sp,-32
+ 227              		.cfi_def_cfa_offset 32
+ 228 012c 233C1100 		sd	ra,24(sp)
+ 229 0130 23388100 		sd	s0,16(sp)
+ 230 0134 23349100 		sd	s1,8(sp)
+ 231              		.cfi_offset 1, -8
+ 232              		.cfi_offset 8, -16
+ 233              		.cfi_offset 9, -24
+ 234 0138 13040102 		addi	s0,sp,32
+ 235              		.cfi_def_cfa 8, 0
+  54:src/scheduler.cpp ****     print("\n------------------\nlista:\n");
+ 236              		.loc 1 54 5
+ 237              		.loc 1 54 10 is_stmt 0
+ 238 013c 17050000 		lla	a0,.LC0
+ 238      13050500 
+ 239 0144 97000000 		call	_Z5printPKc@plt
+ 239      E7800000 
+ 240              	.LVL16:
+  55:src/scheduler.cpp ****     print("Running thread ");Nit::running->stampa();
+ 241              		.loc 1 55 5 is_stmt 1
+ 242              		.loc 1 55 10 is_stmt 0
+ 243 014c 17050000 		lla	a0,.LC1
+ 243      13050500 
+ 244 0154 97000000 		call	_Z5printPKc@plt
+ 244      E7800000 
+ 245              	.LVL17:
+ 246              		.loc 1 55 30 is_stmt 1
+ 247              		.loc 1 55 50 is_stmt 0
+ 248 015c 97070000 		la	a5,_ZN3Nit7runningE
+GAS LISTING /tmp/ccJdPCF8.s 			page 7
+
+
+ 248      83B70700 
+ 249 0164 03B50700 		ld	a0,0(a5)
+ 250 0168 97000000 		call	_ZN3Nit6stampaEv@plt
+ 250      E7800000 
+ 251              	.LVL18:
+  56:src/scheduler.cpp **** 
+  57:src/scheduler.cpp ****     if(!head) {
+ 252              		.loc 1 57 5 is_stmt 1
+ 253              	.LBB2:
+ 254              		.loc 1 57 8 is_stmt 0
+ 255 0170 97040000 		ld	s1,.LANCHOR0
+ 255      83B40400 
+ 256              		.loc 1 57 5
+ 257 0178 63860400 		beqz	s1,.L22
+ 258              	.LBB3:
+  58:src/scheduler.cpp ****         print("nula elementa\n");
+  59:src/scheduler.cpp ****     }
+  60:src/scheduler.cpp ****     else {
+  61:src/scheduler.cpp ****         bool f=true;
+ 259              		.loc 1 61 14
+ 260 017c 93071000 		li	a5,1
+ 261 0180 6F00C002 		j	.L14
+ 262              	.L22:
+ 263              	.LBE3:
+  58:src/scheduler.cpp ****         print("nula elementa\n");
+ 264              		.loc 1 58 9 is_stmt 1
+  58:src/scheduler.cpp ****         print("nula elementa\n");
+ 265              		.loc 1 58 14 is_stmt 0
+ 266 0184 17050000 		lla	a0,.LC2
+ 266      13050500 
+ 267 018c 97000000 		call	_Z5printPKc@plt
+ 267      E7800000 
+ 268              	.LVL19:
+ 269 0194 6F008002 		j	.L15
+ 270              	.LVL20:
+ 271              	.L16:
+ 272              	.LBB5:
+ 273              	.LBB4:
+  62:src/scheduler.cpp ****         for (struktura *temp = head; f||temp!=head; temp = temp->next) {
+  63:src/scheduler.cpp ****             f=false;
+ 274              		.loc 1 63 13 is_stmt 1 discriminator 4
+  64:src/scheduler.cpp ****             temp->t->stampa();
+ 275              		.loc 1 64 13 discriminator 4
+ 276              		.loc 1 64 28 is_stmt 0 discriminator 4
+ 277 0198 03B50400 		ld	a0,0(s1)
+ 278 019c 97000000 		call	_ZN3Nit6stampaEv@plt
+ 278      E7800000 
+ 279              	.LVL21:
+  62:src/scheduler.cpp ****         for (struktura *temp = head; f||temp!=head; temp = temp->next) {
+ 280              		.loc 1 62 9 is_stmt 1 discriminator 4
+  62:src/scheduler.cpp ****         for (struktura *temp = head; f||temp!=head; temp = temp->next) {
+ 281              		.loc 1 62 58 is_stmt 0 discriminator 4
+ 282 01a4 83B40401 		ld	s1,16(s1)
+ 283              	.LVL22:
+  63:src/scheduler.cpp ****             temp->t->stampa();
+ 284              		.loc 1 63 14 discriminator 4
+ 285 01a8 93070000 		li	a5,0
+GAS LISTING /tmp/ccJdPCF8.s 			page 8
+
+
+ 286              	.LVL23:
+ 287              	.L14:
+  62:src/scheduler.cpp ****         for (struktura *temp = head; f||temp!=head; temp = temp->next) {
+ 288              		.loc 1 62 39 is_stmt 1 discriminator 5
+ 289 01ac E39607FE 		bnez	a5,.L16
+  62:src/scheduler.cpp ****         for (struktura *temp = head; f||temp!=head; temp = temp->next) {
+ 290              		.loc 1 62 45 is_stmt 0 discriminator 2
+ 291 01b0 97070000 		ld	a5,.LANCHOR0
+ 291      83B70700 
+ 292              	.LVL24:
+  62:src/scheduler.cpp ****         for (struktura *temp = head; f||temp!=head; temp = temp->next) {
+ 293              		.loc 1 62 39 discriminator 2
+ 294 01b8 E39097FE 		bne	a5,s1,.L16
+ 295              	.LVL25:
+ 296              	.L15:
+ 297              	.LBE4:
+ 298              	.LBE5:
+ 299              	.LBE2:
+  65:src/scheduler.cpp ****         }
+  66:src/scheduler.cpp ****         //head->prev->t->stampa();
+  67:src/scheduler.cpp ****     }
+  68:src/scheduler.cpp ****     print("lista uspavanih:\n");
+ 300              		.loc 1 68 5 is_stmt 1
+ 301              		.loc 1 68 10 is_stmt 0
+ 302 01bc 17050000 		lla	a0,.LC3
+ 302      13050500 
+ 303 01c4 97000000 		call	_Z5printPKc@plt
+ 303      E7800000 
+ 304              	.LVL26:
+  69:src/scheduler.cpp **** 
+  70:src/scheduler.cpp ****     if(!headuspavane) {
+ 305              		.loc 1 70 5 is_stmt 1
+ 306              	.LBB6:
+ 307              		.loc 1 70 8 is_stmt 0
+ 308 01cc 97040000 		ld	s1,.LANCHOR0+16
+ 308      83B40400 
+ 309              		.loc 1 70 5
+ 310 01d4 63820404 		beqz	s1,.L23
+ 311              	.L17:
+ 312              	.LVL27:
+ 313              	.LBB7:
+ 314              	.LBB8:
+  71:src/scheduler.cpp ****         print("nula elementa\n");
+  72:src/scheduler.cpp ****     }
+  73:src/scheduler.cpp ****     else {
+  74:src/scheduler.cpp ****         for (struktura *temp = headuspavane; temp->next != headuspavane; temp = temp->next) {
+ 315              		.loc 1 74 57 is_stmt 1 discriminator 3
+ 316              		.loc 1 74 52 is_stmt 0 discriminator 3
+ 317 01d8 03B70401 		ld	a4,16(s1)
+ 318              		.loc 1 74 57 discriminator 3
+ 319 01dc 97070000 		ld	a5,.LANCHOR0+16
+ 319      83B70700 
+ 320 01e4 6304F704 		beq	a4,a5,.L19
+  75:src/scheduler.cpp ****             temp->t->stampa();
+ 321              		.loc 1 75 13 is_stmt 1 discriminator 2
+ 322              		.loc 1 75 28 is_stmt 0 discriminator 2
+ 323 01e8 03B50400 		ld	a0,0(s1)
+GAS LISTING /tmp/ccJdPCF8.s 			page 9
+
+
+ 324 01ec 97000000 		call	_ZN3Nit6stampaEv@plt
+ 324      E7800000 
+ 325              	.LVL28:
+  76:src/scheduler.cpp ****             print("vreme: ");
+ 326              		.loc 1 76 13 is_stmt 1 discriminator 2
+ 327              		.loc 1 76 18 is_stmt 0 discriminator 2
+ 328 01f4 17050000 		lla	a0,.LC4
+ 328      13050500 
+ 329 01fc 97000000 		call	_Z5printPKc@plt
+ 329      E7800000 
+ 330              	.LVL29:
+  77:src/scheduler.cpp ****             //print(temp->t->getvreme());
+  78:src/scheduler.cpp ****             print(temp->vreme);
+ 331              		.loc 1 78 13 is_stmt 1 discriminator 2
+ 332              		.loc 1 78 18 is_stmt 0 discriminator 2
+ 333 0204 03A58400 		lw	a0,8(s1)
+ 334 0208 97000000 		call	_Z5printi@plt
+ 334      E7800000 
+ 335              	.LVL30:
+  74:src/scheduler.cpp ****             temp->t->stampa();
+ 336              		.loc 1 74 9 is_stmt 1 discriminator 2
+  74:src/scheduler.cpp ****             temp->t->stampa();
+ 337              		.loc 1 74 79 is_stmt 0 discriminator 2
+ 338 0210 83B40401 		ld	s1,16(s1)
+ 339              	.LVL31:
+  74:src/scheduler.cpp ****             temp->t->stampa();
+ 340              		.loc 1 74 9 discriminator 2
+ 341 0214 6FF05FFC 		j	.L17
+ 342              	.LVL32:
+ 343              	.L23:
+ 344              	.LBE8:
+ 345              	.LBE7:
+  71:src/scheduler.cpp ****     }
+ 346              		.loc 1 71 9 is_stmt 1
+  71:src/scheduler.cpp ****     }
+ 347              		.loc 1 71 14 is_stmt 0
+ 348 0218 17050000 		lla	a0,.LC2
+ 348      13050500 
+ 349 0220 97000000 		call	_Z5printPKc@plt
+ 349      E7800000 
+ 350              	.LVL33:
+ 351 0228 6F00C003 		j	.L18
+ 352              	.LVL34:
+ 353              	.L19:
+ 354              	.LBB9:
+  79:src/scheduler.cpp ****         }
+  80:src/scheduler.cpp ****         headuspavane->prev->t->stampa();
+ 355              		.loc 1 80 9 is_stmt 1
+ 356              		.loc 1 80 23 is_stmt 0
+ 357 022c 83B78701 		ld	a5,24(a5)
+ 358              		.loc 1 80 38
+ 359 0230 03B50700 		ld	a0,0(a5)
+ 360 0234 97000000 		call	_ZN3Nit6stampaEv@plt
+ 360      E7800000 
+ 361              	.LVL35:
+  81:src/scheduler.cpp ****         print("vreme: ");
+ 362              		.loc 1 81 9 is_stmt 1
+GAS LISTING /tmp/ccJdPCF8.s 			page 10
+
+
+ 363              		.loc 1 81 14 is_stmt 0
+ 364 023c 17050000 		lla	a0,.LC4
+ 364      13050500 
+ 365 0244 97000000 		call	_Z5printPKc@plt
+ 365      E7800000 
+ 366              	.LVL36:
+  82:src/scheduler.cpp ****         //print(headuspavane->prev->t->getvreme());
+  83:src/scheduler.cpp ****         print(headuspavane->prev->vreme);
+ 367              		.loc 1 83 9 is_stmt 1
+ 368              		.loc 1 83 29 is_stmt 0
+ 369 024c 97070000 		ld	a5,.LANCHOR0+16
+ 369      83B70700 
+ 370 0254 83B78701 		ld	a5,24(a5)
+ 371              		.loc 1 83 14
+ 372 0258 03A58700 		lw	a0,8(a5)
+ 373 025c 97000000 		call	_Z5printi@plt
+ 373      E7800000 
+ 374              	.LVL37:
+ 375              	.L18:
+ 376              	.LBE9:
+ 377              	.LBE6:
+  84:src/scheduler.cpp ****     }
+  85:src/scheduler.cpp ****     print("------------------\n");
+ 378              		.loc 1 85 5 is_stmt 1
+ 379              		.loc 1 85 10 is_stmt 0
+ 380 0264 17050000 		lla	a0,.LC5
+ 380      13050500 
+ 381 026c 97000000 		call	_Z5printPKc@plt
+ 381      E7800000 
+ 382              	.LVL38:
+  86:src/scheduler.cpp ****     return;
+ 383              		.loc 1 86 5 is_stmt 1
+  87:src/scheduler.cpp **** }
+ 384              		.loc 1 87 1 is_stmt 0
+ 385 0274 83308101 		ld	ra,24(sp)
+ 386              		.cfi_restore 1
+ 387 0278 03340101 		ld	s0,16(sp)
+ 388              		.cfi_restore 8
+ 389              		.cfi_def_cfa 2, 32
+ 390 027c 83348100 		ld	s1,8(sp)
+ 391              		.cfi_restore 9
+ 392 0280 13010102 		addi	sp,sp,32
+ 393              		.cfi_def_cfa_offset 0
+ 394 0284 67800000 		jr	ra
+ 395              		.cfi_endproc
+ 396              	.LFE15:
+ 398              		.align	2
+ 399              		.globl	_ZN9Scheduler13dekremntacijaEi
+ 401              	_ZN9Scheduler13dekremntacijaEi:
+ 402              	.LFB16:
+  88:src/scheduler.cpp **** 
+  89:src/scheduler.cpp **** void Scheduler::dekremntacija(int x) {
+ 403              		.loc 1 89 38 is_stmt 1
+ 404              		.cfi_startproc
+ 405              	.LVL39:
+ 406 0288 130101FE 		addi	sp,sp,-32
+ 407              		.cfi_def_cfa_offset 32
+GAS LISTING /tmp/ccJdPCF8.s 			page 11
+
+
+ 408 028c 233C1100 		sd	ra,24(sp)
+ 409 0290 23388100 		sd	s0,16(sp)
+ 410 0294 23349100 		sd	s1,8(sp)
+ 411              		.cfi_offset 1, -8
+ 412              		.cfi_offset 8, -16
+ 413              		.cfi_offset 9, -24
+ 414 0298 13040102 		addi	s0,sp,32
+ 415              		.cfi_def_cfa 8, 0
+  90:src/scheduler.cpp ****     if(headuspavane==nullptr) return;
+ 416              		.loc 1 90 5
+ 417              		.loc 1 90 20 is_stmt 0
+ 418 029c 97040000 		ld	s1,.LANCHOR0+16
+ 418      83B40400 
+ 419              		.loc 1 90 5
+ 420 02a4 638C0400 		beqz	s1,.L24
+  91:src/scheduler.cpp **** 
+  92:src/scheduler.cpp ****     headuspavane->vreme-=x;
+ 421              		.loc 1 92 5 is_stmt 1
+ 422              		.loc 1 92 24 is_stmt 0
+ 423 02a8 83A78400 		lw	a5,8(s1)
+ 424 02ac 3B85A740 		subw	a0,a5,a0
+ 425              	.LVL40:
+ 426 02b0 9B070500 		sext.w	a5,a0
+ 427 02b4 23A4A400 		sw	a0,8(s1)
+  93:src/scheduler.cpp ****     if(headuspavane->vreme<=0){
+ 428              		.loc 1 93 5 is_stmt 1
+ 429              	.LBB10:
+ 430 02b8 635CF000 		blez	a5,.L29
+ 431              	.L24:
+ 432              	.LBE10:
+  94:src/scheduler.cpp ****         //print("AAAAAAAAAAAAAAAa\n");
+  95:src/scheduler.cpp **** 
+  96:src/scheduler.cpp ****         Scheduler::struktura *temp=headuspavane;
+  97:src/scheduler.cpp ****         if(headuspavane->next==headuspavane) headuspavane=nullptr;
+  98:src/scheduler.cpp ****         else {
+  99:src/scheduler.cpp ****             Scheduler::struktura *pomoc = headuspavane->next;
+ 100:src/scheduler.cpp ****             headuspavane->prev->next = headuspavane->next;
+ 101:src/scheduler.cpp ****             headuspavane->next->prev = headuspavane->prev;
+ 102:src/scheduler.cpp ****             headuspavane = pomoc;
+ 103:src/scheduler.cpp ****         }
+ 104:src/scheduler.cpp **** 
+ 105:src/scheduler.cpp ****         temp->t->finished=false;
+ 106:src/scheduler.cpp ****         Scheduler::put(temp->t);
+ 107:src/scheduler.cpp ****         brojb--;
+ 108:src/scheduler.cpp ****         Memorija::oslobadjanje(temp);
+ 109:src/scheduler.cpp ****     }
+ 110:src/scheduler.cpp **** 
+ 111:src/scheduler.cpp **** }
+ 433              		.loc 1 111 1 is_stmt 0
+ 434 02bc 83308101 		ld	ra,24(sp)
+ 435              		.cfi_remember_state
+ 436              		.cfi_restore 1
+ 437 02c0 03340101 		ld	s0,16(sp)
+ 438              		.cfi_restore 8
+ 439              		.cfi_def_cfa 2, 32
+ 440 02c4 83348100 		ld	s1,8(sp)
+ 441              		.cfi_restore 9
+GAS LISTING /tmp/ccJdPCF8.s 			page 12
+
+
+ 442 02c8 13010102 		addi	sp,sp,32
+ 443              		.cfi_def_cfa_offset 0
+ 444 02cc 67800000 		jr	ra
+ 445              	.L29:
+ 446              		.cfi_restore_state
+ 447              	.LBB16:
+ 448              	.LBB11:
+  96:src/scheduler.cpp ****         if(headuspavane->next==headuspavane) headuspavane=nullptr;
+ 449              		.loc 1 96 9 is_stmt 1
+ 450              	.LVL41:
+  97:src/scheduler.cpp ****         else {
+ 451              		.loc 1 97 9
+ 452              	.LBB12:
+  97:src/scheduler.cpp ****         else {
+ 453              		.loc 1 97 26 is_stmt 0
+ 454 02d0 83B70401 		ld	a5,16(s1)
+  97:src/scheduler.cpp ****         else {
+ 455              		.loc 1 97 9
+ 456 02d4 638CF404 		beq	s1,a5,.L30
+ 457              	.LBB13:
+  99:src/scheduler.cpp ****             headuspavane->prev->next = headuspavane->next;
+ 458              		.loc 1 99 13 is_stmt 1
+ 459              	.LVL42:
+ 100:src/scheduler.cpp ****             headuspavane->next->prev = headuspavane->prev;
+ 460              		.loc 1 100 13
+ 100:src/scheduler.cpp ****             headuspavane->next->prev = headuspavane->prev;
+ 461              		.loc 1 100 27 is_stmt 0
+ 462 02d8 03B78401 		ld	a4,24(s1)
+ 100:src/scheduler.cpp ****             headuspavane->next->prev = headuspavane->prev;
+ 463              		.loc 1 100 38
+ 464 02dc 2338F700 		sd	a5,16(a4)
+ 101:src/scheduler.cpp ****             headuspavane = pomoc;
+ 465              		.loc 1 101 13 is_stmt 1
+ 101:src/scheduler.cpp ****             headuspavane = pomoc;
+ 466              		.loc 1 101 27 is_stmt 0
+ 467 02e0 03B70401 		ld	a4,16(s1)
+ 101:src/scheduler.cpp ****             headuspavane = pomoc;
+ 468              		.loc 1 101 54
+ 469 02e4 83B68401 		ld	a3,24(s1)
+ 101:src/scheduler.cpp ****             headuspavane = pomoc;
+ 470              		.loc 1 101 38
+ 471 02e8 233CD700 		sd	a3,24(a4)
+ 102:src/scheduler.cpp ****         }
+ 472              		.loc 1 102 13 is_stmt 1
+ 102:src/scheduler.cpp ****         }
+ 473              		.loc 1 102 26 is_stmt 0
+ 474 02ec 17070000 		sd	a5,.LANCHOR0+16,a4
+ 474      2330F700 
+ 475              	.LVL43:
+ 476              	.L27:
+ 477              	.LBE13:
+ 478              	.LBE12:
+ 105:src/scheduler.cpp ****         Scheduler::put(temp->t);
+ 479              		.loc 1 105 9 is_stmt 1
+ 105:src/scheduler.cpp ****         Scheduler::put(temp->t);
+ 480              		.loc 1 105 15 is_stmt 0
+ 481 02f4 83B70400 		ld	a5,0(s1)
+GAS LISTING /tmp/ccJdPCF8.s 			page 13
+
+
+ 105:src/scheduler.cpp ****         Scheduler::put(temp->t);
+ 482              		.loc 1 105 26
+ 483 02f8 23840700 		sb	zero,8(a5)
+ 106:src/scheduler.cpp ****         brojb--;
+ 484              		.loc 1 106 9 is_stmt 1
+ 106:src/scheduler.cpp ****         brojb--;
+ 485              		.loc 1 106 23 is_stmt 0
+ 486 02fc 03B50400 		ld	a0,0(s1)
+ 487 0300 97000000 		call	_ZN9Scheduler3putEP3Nit
+ 487      E7800000 
+ 488              	.LVL44:
+ 107:src/scheduler.cpp ****         Memorija::oslobadjanje(temp);
+ 489              		.loc 1 107 9 is_stmt 1
+ 107:src/scheduler.cpp ****         Memorija::oslobadjanje(temp);
+ 490              		.loc 1 107 14 is_stmt 0
+ 491 0308 17070000 		lla	a4,.LANCHOR0
+ 491      13070700 
+ 492 0310 83278701 		lw	a5,24(a4)
+ 493 0314 9B87F7FF 		addiw	a5,a5,-1
+ 494 0318 232CF700 		sw	a5,24(a4)
+ 108:src/scheduler.cpp ****     }
+ 495              		.loc 1 108 9 is_stmt 1
+ 108:src/scheduler.cpp ****     }
+ 496              		.loc 1 108 31 is_stmt 0
+ 497 031c 13850400 		mv	a0,s1
+ 498 0320 97000000 		call	_ZN8Memorija12oslobadjanjeEPv@plt
+ 498      E7800000 
+ 499              	.LVL45:
+ 500              	.LBE11:
+ 501 0328 6FF05FF9 		j	.L24
+ 502              	.L30:
+ 503              	.LBB15:
+ 504              	.LBB14:
+  97:src/scheduler.cpp ****         else {
+ 505              		.loc 1 97 46 is_stmt 1 discriminator 1
+  97:src/scheduler.cpp ****         else {
+ 506              		.loc 1 97 58 is_stmt 0 discriminator 1
+ 507 032c 97070000 		sd	zero,.LANCHOR0+16,a5
+ 507      23B00700 
+ 508 0334 6FF01FFC 		j	.L27
+ 509              	.LBE14:
+ 510              	.LBE15:
+ 511              	.LBE16:
+ 512              		.cfi_endproc
+ 513              	.LFE16:
+ 515              		.align	2
+ 516              		.globl	_ZN9Scheduler11threadsleepEi
+ 518              	_ZN9Scheduler11threadsleepEi:
+ 519              	.LFB17:
+ 112:src/scheduler.cpp **** 
+ 113:src/scheduler.cpp **** void Scheduler::threadsleep(int vreme) {
+ 520              		.loc 1 113 40 is_stmt 1
+ 521              		.cfi_startproc
+ 522              	.LVL46:
+ 114:src/scheduler.cpp ****     if(vreme==0) return;
+ 523              		.loc 1 114 5
+ 524 0338 630C0512 		beqz	a0,.L43
+GAS LISTING /tmp/ccJdPCF8.s 			page 14
+
+
+ 113:src/scheduler.cpp ****     if(vreme==0) return;
+ 525              		.loc 1 113 40 is_stmt 0
+ 526 033c 130101FE 		addi	sp,sp,-32
+ 527              		.cfi_def_cfa_offset 32
+ 528 0340 233C1100 		sd	ra,24(sp)
+ 529 0344 23388100 		sd	s0,16(sp)
+ 530 0348 23349100 		sd	s1,8(sp)
+ 531              		.cfi_offset 1, -8
+ 532              		.cfi_offset 8, -16
+ 533              		.cfi_offset 9, -24
+ 534 034c 13040102 		addi	s0,sp,32
+ 535              		.cfi_def_cfa 8, 0
+ 536 0350 93040500 		mv	s1,a0
+ 115:src/scheduler.cpp ****     if(vreme%DEFAULT_TIME_SLICE) vreme+=DEFAULT_TIME_SLICE-vreme%DEFAULT_TIME_SLICE;
+ 537              		.loc 1 115 5 is_stmt 1
+ 538 0354 93771500 		andi	a5,a0,1
+ 539 0358 63860700 		beqz	a5,.L33
+ 540              		.loc 1 115 34 discriminator 1
+ 541              		.loc 1 115 39 is_stmt 0 discriminator 1
+ 542 035c 9374E5FF 		andi	s1,a0,-2
+ 543 0360 9B842400 		addiw	s1,s1,2
+ 544              	.LVL47:
+ 545              	.L33:
+ 116:src/scheduler.cpp **** 
+ 117:src/scheduler.cpp ****     struktura* novo = (struktura*)Memorija::alokacija(sizeof(struktura));
+ 546              		.loc 1 117 5 is_stmt 1
+ 547              		.loc 1 117 54 is_stmt 0
+ 548 0364 13050002 		li	a0,32
+ 549 0368 97000000 		call	_ZN8Memorija9alokacijaEm@plt
+ 549      E7800000 
+ 550              	.LVL48:
+ 118:src/scheduler.cpp **** 
+ 119:src/scheduler.cpp ****     if(novo == nullptr) return;
+ 551              		.loc 1 119 5 is_stmt 1
+ 552 0370 6306050E 		beqz	a0,.L31
+ 120:src/scheduler.cpp ****     novo->t=Nit::running;
+ 553              		.loc 1 120 5
+ 554              		.loc 1 120 12 is_stmt 0
+ 555 0374 97070000 		la	a5,_ZN3Nit7runningE
+ 555      83B70700 
+ 556 037c 83B50700 		ld	a1,0(a5)
+ 557 0380 2330B500 		sd	a1,0(a0)
+ 121:src/scheduler.cpp ****     novo->vreme=vreme;
+ 558              		.loc 1 121 5 is_stmt 1
+ 559              		.loc 1 121 16 is_stmt 0
+ 560 0384 23249500 		sw	s1,8(a0)
+ 122:src/scheduler.cpp **** 
+ 123:src/scheduler.cpp ****     if(headuspavane==nullptr){
+ 561              		.loc 1 123 5 is_stmt 1
+ 562              	.LBB17:
+ 563              		.loc 1 123 20 is_stmt 0
+ 564 0388 97070000 		ld	a5,.LANCHOR0+16
+ 564      83B70700 
+ 565              		.loc 1 123 5
+ 566 0390 63880700 		beqz	a5,.L46
+ 567              	.LBB18:
+ 124:src/scheduler.cpp ****         headuspavane = novo;
+GAS LISTING /tmp/ccJdPCF8.s 			page 15
+
+
+ 125:src/scheduler.cpp ****         headuspavane->next=headuspavane;
+ 126:src/scheduler.cpp ****         headuspavane->prev=headuspavane;
+ 127:src/scheduler.cpp ****     }
+ 128:src/scheduler.cpp ****     // ovde u else treba optimizacija ali me briga sad za to
+ 129:src/scheduler.cpp ****     // ovo za sad radi najnormlanije dodavanje cvora na kraj liste, svaki cvor treba da se dekremen
+ 130:src/scheduler.cpp ****     else {
+ 131:src/scheduler.cpp ****         bool flag=true;
+ 132:src/scheduler.cpp ****         bool flag1=false;
+ 568              		.loc 1 132 14
+ 569 0394 13060000 		li	a2,0
+ 131:src/scheduler.cpp ****         bool flag1=false;
+ 570              		.loc 1 131 14
+ 571 0398 13071000 		li	a4,1
+ 572 039c 6F008003 		j	.L34
+ 573              	.L46:
+ 574              	.LBE18:
+ 124:src/scheduler.cpp ****         headuspavane = novo;
+ 575              		.loc 1 124 9 is_stmt 1
+ 124:src/scheduler.cpp ****         headuspavane = novo;
+ 576              		.loc 1 124 22 is_stmt 0
+ 577 03a0 97070000 		sd	a0,.LANCHOR0+16,a5
+ 577      23B0A700 
+ 125:src/scheduler.cpp ****         headuspavane->prev=headuspavane;
+ 578              		.loc 1 125 9 is_stmt 1
+ 125:src/scheduler.cpp ****         headuspavane->prev=headuspavane;
+ 579              		.loc 1 125 27 is_stmt 0
+ 580 03a8 2338A500 		sd	a0,16(a0)
+ 126:src/scheduler.cpp ****     }
+ 581              		.loc 1 126 9 is_stmt 1
+ 126:src/scheduler.cpp ****     }
+ 582              		.loc 1 126 27 is_stmt 0
+ 583 03ac 233CA500 		sd	a0,24(a0)
+ 584 03b0 6F008008 		j	.L35
+ 585              	.LVL49:
+ 586              	.L47:
+ 587              	.LBB22:
+ 588              	.LBB19:
+ 133:src/scheduler.cpp ****         for(struktura *temp = headuspavane; flag || temp!=headuspavane;temp=temp->next){
+ 134:src/scheduler.cpp ****             //print(temp->vreme);
+ 135:src/scheduler.cpp ****             //print(novo->vreme);
+ 136:src/scheduler.cpp ****             flag=false;
+ 137:src/scheduler.cpp ****             if(temp->vreme > novo->vreme){
+ 138:src/scheduler.cpp ****                 temp->vreme-=novo->vreme;
+ 139:src/scheduler.cpp **** 
+ 140:src/scheduler.cpp ****                 novo->next=temp;
+ 141:src/scheduler.cpp ****                 novo->prev=temp->prev;
+ 142:src/scheduler.cpp ****                 temp->prev->next=novo;
+ 143:src/scheduler.cpp ****                 temp->prev=novo;
+ 144:src/scheduler.cpp **** 
+ 145:src/scheduler.cpp ****                 if(temp==headuspavane) headuspavane=novo;
+ 589              		.loc 1 145 40 is_stmt 1 discriminator 1
+ 590              		.loc 1 145 52 is_stmt 0 discriminator 1
+ 591 03b4 17070000 		sd	a0,.LANCHOR0+16,a4
+ 591      2330A700 
+ 146:src/scheduler.cpp ****                 flag1=true;
+ 592              		.loc 1 146 22 discriminator 1
+ 593 03bc 13061000 		li	a2,1
+GAS LISTING /tmp/ccJdPCF8.s 			page 16
+
+
+ 594              	.LVL50:
+ 595 03c0 6F00C000 		j	.L39
+ 596              	.LVL51:
+ 597              	.L38:
+ 147:src/scheduler.cpp ****             }
+ 148:src/scheduler.cpp ****             else{
+ 149:src/scheduler.cpp ****                 novo->vreme-=temp->vreme;
+ 598              		.loc 1 149 17 is_stmt 1
+ 599              		.loc 1 149 28 is_stmt 0
+ 600 03c4 3B07D740 		subw	a4,a4,a3
+ 601 03c8 2324E500 		sw	a4,8(a0)
+ 602              	.LVL52:
+ 603              	.L39:
+ 133:src/scheduler.cpp ****             //print(temp->vreme);
+ 604              		.loc 1 133 9 is_stmt 1 discriminator 3
+ 133:src/scheduler.cpp ****             //print(temp->vreme);
+ 605              		.loc 1 133 76 is_stmt 0 discriminator 3
+ 606 03cc 83B70701 		ld	a5,16(a5)
+ 607              	.LVL53:
+ 136:src/scheduler.cpp ****             if(temp->vreme > novo->vreme){
+ 608              		.loc 1 136 17 discriminator 3
+ 609 03d0 13070000 		li	a4,0
+ 610              	.LVL54:
+ 611              	.L34:
+ 133:src/scheduler.cpp ****             //print(temp->vreme);
+ 612              		.loc 1 133 50 is_stmt 1 discriminator 1
+ 613 03d4 63180700 		bnez	a4,.L36
+ 133:src/scheduler.cpp ****             //print(temp->vreme);
+ 614              		.loc 1 133 57 is_stmt 0 discriminator 2
+ 615 03d8 17070000 		ld	a4,.LANCHOR0+16
+ 615      03370700 
+ 616              	.LVL55:
+ 133:src/scheduler.cpp ****             //print(temp->vreme);
+ 617              		.loc 1 133 50 discriminator 2
+ 618 03e0 6300F704 		beq	a4,a5,.L37
+ 619              	.L36:
+ 136:src/scheduler.cpp ****             if(temp->vreme > novo->vreme){
+ 620              		.loc 1 136 13 is_stmt 1
+ 621              	.LVL56:
+ 137:src/scheduler.cpp ****                 temp->vreme-=novo->vreme;
+ 622              		.loc 1 137 13
+ 137:src/scheduler.cpp ****                 temp->vreme-=novo->vreme;
+ 623              		.loc 1 137 22 is_stmt 0
+ 624 03e4 83A68700 		lw	a3,8(a5)
+ 137:src/scheduler.cpp ****                 temp->vreme-=novo->vreme;
+ 625              		.loc 1 137 36
+ 626 03e8 03278500 		lw	a4,8(a0)
+ 137:src/scheduler.cpp ****                 temp->vreme-=novo->vreme;
+ 627              		.loc 1 137 13
+ 628 03ec E35CD7FC 		ble	a3,a4,.L38
+ 138:src/scheduler.cpp **** 
+ 629              		.loc 1 138 17 is_stmt 1
+ 138:src/scheduler.cpp **** 
+ 630              		.loc 1 138 28 is_stmt 0
+ 631 03f0 3B87E640 		subw	a4,a3,a4
+ 632 03f4 23A4E700 		sw	a4,8(a5)
+ 140:src/scheduler.cpp ****                 novo->prev=temp->prev;
+GAS LISTING /tmp/ccJdPCF8.s 			page 17
+
+
+ 633              		.loc 1 140 17 is_stmt 1
+ 140:src/scheduler.cpp ****                 novo->prev=temp->prev;
+ 634              		.loc 1 140 27 is_stmt 0
+ 635 03f8 2338F500 		sd	a5,16(a0)
+ 141:src/scheduler.cpp ****                 temp->prev->next=novo;
+ 636              		.loc 1 141 17 is_stmt 1
+ 141:src/scheduler.cpp ****                 temp->prev->next=novo;
+ 637              		.loc 1 141 34 is_stmt 0
+ 638 03fc 03B78701 		ld	a4,24(a5)
+ 141:src/scheduler.cpp ****                 temp->prev->next=novo;
+ 639              		.loc 1 141 27
+ 640 0400 233CE500 		sd	a4,24(a0)
+ 142:src/scheduler.cpp ****                 temp->prev=novo;
+ 641              		.loc 1 142 17 is_stmt 1
+ 142:src/scheduler.cpp ****                 temp->prev=novo;
+ 642              		.loc 1 142 33 is_stmt 0
+ 643 0404 2338A700 		sd	a0,16(a4)
+ 143:src/scheduler.cpp **** 
+ 644              		.loc 1 143 17 is_stmt 1
+ 143:src/scheduler.cpp **** 
+ 645              		.loc 1 143 27 is_stmt 0
+ 646 0408 23BCA700 		sd	a0,24(a5)
+ 145:src/scheduler.cpp ****                 flag1=true;
+ 647              		.loc 1 145 17 is_stmt 1
+ 145:src/scheduler.cpp ****                 flag1=true;
+ 648              		.loc 1 145 24 is_stmt 0
+ 649 040c 17070000 		ld	a4,.LANCHOR0+16
+ 649      03370700 
+ 145:src/scheduler.cpp ****                 flag1=true;
+ 650              		.loc 1 145 17
+ 651 0414 E300F7FA 		beq	a4,a5,.L47
+ 146:src/scheduler.cpp ****             }
+ 652              		.loc 1 146 22
+ 653 0418 13061000 		li	a2,1
+ 654              	.LVL57:
+ 655 041c 6FF01FFB 		j	.L39
+ 656              	.LVL58:
+ 657              	.L37:
+ 658              	.LBE19:
+ 150:src/scheduler.cpp ****             }
+ 151:src/scheduler.cpp ****         }
+ 152:src/scheduler.cpp ****         if(!flag1) {
+ 659              		.loc 1 152 9 is_stmt 1
+ 660              	.LBB20:
+ 661 0420 631C0600 		bnez	a2,.L35
+ 662              	.LBB21:
+ 153:src/scheduler.cpp ****             struktura *temp = headuspavane->prev;
+ 663              		.loc 1 153 13
+ 664              		.loc 1 153 24 is_stmt 0
+ 665 0424 83378701 		ld	a5,24(a4)
+ 666              	.LVL59:
+ 154:src/scheduler.cpp ****             temp->next = novo;
+ 667              		.loc 1 154 13 is_stmt 1
+ 668              		.loc 1 154 24 is_stmt 0
+ 669 0428 23B8A700 		sd	a0,16(a5)
+ 155:src/scheduler.cpp ****             novo->prev = temp;
+ 670              		.loc 1 155 13 is_stmt 1
+GAS LISTING /tmp/ccJdPCF8.s 			page 18
+
+
+ 671              		.loc 1 155 24 is_stmt 0
+ 672 042c 233CF500 		sd	a5,24(a0)
+ 156:src/scheduler.cpp ****             novo->next = headuspavane;
+ 673              		.loc 1 156 13 is_stmt 1
+ 674              		.loc 1 156 24 is_stmt 0
+ 675 0430 2338E500 		sd	a4,16(a0)
+ 157:src/scheduler.cpp ****             headuspavane->prev = novo;
+ 676              		.loc 1 157 13 is_stmt 1
+ 677              		.loc 1 157 32 is_stmt 0
+ 678 0434 233CA700 		sd	a0,24(a4)
+ 679              	.LVL60:
+ 680              	.L35:
+ 681              	.LBE21:
+ 682              	.LBE20:
+ 683              	.LBE22:
+ 684              	.LBE17:
+ 158:src/scheduler.cpp ****         }
+ 159:src/scheduler.cpp ****     }
+ 160:src/scheduler.cpp **** 
+ 161:src/scheduler.cpp **** 
+ 162:src/scheduler.cpp ****     brojb++;
+ 685              		.loc 1 162 5 is_stmt 1
+ 686              		.loc 1 162 10 is_stmt 0
+ 687 0438 17070000 		lla	a4,.LANCHOR0
+ 687      13070700 
+ 688 0440 83278701 		lw	a5,24(a4)
+ 689 0444 9B871700 		addiw	a5,a5,1
+ 690 0448 232CF700 		sw	a5,24(a4)
+ 163:src/scheduler.cpp **** 
+ 164:src/scheduler.cpp ****     Nit::running->finished=true;
+ 691              		.loc 1 164 5 is_stmt 1
+ 692              		.loc 1 164 27 is_stmt 0
+ 693 044c 93071000 		li	a5,1
+ 694 0450 2384F500 		sb	a5,8(a1)
+ 165:src/scheduler.cpp ****     Nit::yeild();
+ 695              		.loc 1 165 5 is_stmt 1
+ 696              		.loc 1 165 15 is_stmt 0
+ 697 0454 97000000 		call	_ZN3Nit5yeildEv@plt
+ 697      E7800000 
+ 698              	.LVL61:
+ 699              	.L31:
+ 166:src/scheduler.cpp **** }
+ 700              		.loc 1 166 1
+ 701 045c 83308101 		ld	ra,24(sp)
+ 702              		.cfi_restore 1
+ 703 0460 03340101 		ld	s0,16(sp)
+ 704              		.cfi_restore 8
+ 705              		.cfi_def_cfa 2, 32
+ 706 0464 83348100 		ld	s1,8(sp)
+ 707              		.cfi_restore 9
+ 708              	.LVL62:
+ 709 0468 13010102 		addi	sp,sp,32
+ 710              		.cfi_def_cfa_offset 0
+ 711 046c 67800000 		jr	ra
+ 712              	.LVL63:
+ 713              	.L43:
+ 714 0470 67800000 		ret
+GAS LISTING /tmp/ccJdPCF8.s 			page 19
+
+
+ 715              		.cfi_endproc
+ 716              	.LFE17:
+ 718              		.align	2
+ 719              		.globl	_ZN9Scheduler7imanitiEv
+ 721              	_ZN9Scheduler7imanitiEv:
+ 722              	.LFB18:
+ 167:src/scheduler.cpp **** 
+ 168:src/scheduler.cpp **** bool Scheduler::imaniti() {
+ 723              		.loc 1 168 27 is_stmt 1
+ 724              		.cfi_startproc
+ 725 0474 130101FF 		addi	sp,sp,-16
+ 726              		.cfi_def_cfa_offset 16
+ 727 0478 23348100 		sd	s0,8(sp)
+ 728              		.cfi_offset 8, -8
+ 729 047c 13040101 		addi	s0,sp,16
+ 730              		.cfi_def_cfa 8, 0
+ 169:src/scheduler.cpp ****     return brojj>0 || brojb>0;
+ 731              		.loc 1 169 5
+ 732              		.loc 1 169 17 is_stmt 0
+ 733 0480 97070000 		lw	a5,.LANCHOR0+8
+ 733      83A70700 
+ 734              		.loc 1 169 20
+ 735 0488 635AF000 		blez	a5,.L53
+ 736 048c 13051000 		li	a0,1
+ 737              	.L49:
+ 170:src/scheduler.cpp **** }
+ 738              		.loc 1 170 1 discriminator 6
+ 739 0490 03348100 		ld	s0,8(sp)
+ 740              		.cfi_remember_state
+ 741              		.cfi_restore 8
+ 742              		.cfi_def_cfa 2, 16
+ 743 0494 13010101 		addi	sp,sp,16
+ 744              		.cfi_def_cfa_offset 0
+ 745 0498 67800000 		jr	ra
+ 746              	.L53:
+ 747              		.cfi_restore_state
+ 169:src/scheduler.cpp ****     return brojj>0 || brojb>0;
+ 748              		.loc 1 169 28 discriminator 2
+ 749 049c 97070000 		lw	a5,.LANCHOR0+24
+ 749      83A70700 
+ 169:src/scheduler.cpp ****     return brojj>0 || brojb>0;
+ 750              		.loc 1 169 20 discriminator 2
+ 751 04a4 6356F000 		blez	a5,.L51
+ 169:src/scheduler.cpp ****     return brojj>0 || brojb>0;
+ 752              		.loc 1 169 20
+ 753 04a8 13051000 		li	a0,1
+ 754 04ac 6FF05FFE 		j	.L49
+ 755              	.L51:
+ 756 04b0 13050000 		li	a0,0
+ 757 04b4 6FF0DFFD 		j	.L49
+ 758              		.cfi_endproc
+ 759              	.LFE18:
+ 761              		.globl	_ZN9Scheduler12headuspavaneE
+ 762              		.globl	_ZN9Scheduler4headE
+ 763              		.globl	_ZN9Scheduler5brojbE
+ 764              		.globl	_ZN9Scheduler5brojjE
+ 765              		.bss
+GAS LISTING /tmp/ccJdPCF8.s 			page 20
+
+
+ 766              		.align	3
+ 767              		.set	.LANCHOR0,. + 0
+ 770              	_ZN9Scheduler4headE:
+ 771 0000 00000000 		.zero	8
+ 771      00000000 
+ 774              	_ZN9Scheduler5brojjE:
+ 775 0008 00000000 		.zero	4
+ 776 000c 00000000 		.zero	4
+ 779              	_ZN9Scheduler12headuspavaneE:
+ 780 0010 00000000 		.zero	8
+ 780      00000000 
+ 783              	_ZN9Scheduler5brojbE:
+ 784 0018 00000000 		.zero	4
+ 785              		.text
+ 786              	.Letext0:
+ 787              		.file 2 "src/../h/../h/../lib/hw.h"
+ 788              		.file 3 "src/../h/../h/../h/memorija.h"
+ 789              		.file 4 "src/../h/../h/thread.h"
+ 790              		.file 5 "src/../h/scheduler.h"
+ 791              		.file 6 "src/../h/../h/../h/print.h"
+ 792              		.file 7 "<built-in>"
+GAS LISTING /tmp/ccJdPCF8.s 			page 21
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 scheduler.cpp
+     /tmp/ccJdPCF8.s:9      .text:0000000000000000 _ZN9Scheduler3getEv
+     /tmp/ccJdPCF8.s:13     .text:0000000000000000 .L0 
+     /tmp/ccJdPCF8.s:14     .text:0000000000000000 .L0 
+     /tmp/ccJdPCF8.s:15     .text:0000000000000004 .L0 
+     /tmp/ccJdPCF8.s:19     .text:0000000000000010 .L0 
+     /tmp/ccJdPCF8.s:20     .text:0000000000000010 .L0 
+     /tmp/ccJdPCF8.s:21     .text:0000000000000010 .L0 
+     /tmp/ccJdPCF8.s:23     .text:0000000000000014 .L0 
+     /tmp/ccJdPCF8.s:25     .text:0000000000000014 .L0 
+     /tmp/ccJdPCF8.s:26     .text:0000000000000014 .L0 
+     /tmp/ccJdPCF8.s:28     .text:000000000000001c .L0 
+     /tmp/ccJdPCF8.s:31     .text:0000000000000020 .L0 
+     /tmp/ccJdPCF8.s:32     .text:0000000000000020 .L0 
+     /tmp/ccJdPCF8.s:33     .text:0000000000000020 .L0 
+     /tmp/ccJdPCF8.s:36     .text:0000000000000024 .L0 
+     /tmp/ccJdPCF8.s:37     .text:0000000000000024 .L0 
+     /tmp/ccJdPCF8.s:39     .text:0000000000000028 .L0 
+     /tmp/ccJdPCF8.s:41     .text:000000000000002c .L0 
+     /tmp/ccJdPCF8.s:43     .text:0000000000000030 .L0 
+     /tmp/ccJdPCF8.s:44     .text:0000000000000030 .L0 
+     /tmp/ccJdPCF8.s:46     .text:0000000000000034 .L0 
+     /tmp/ccJdPCF8.s:48     .text:0000000000000038 .L0 
+     /tmp/ccJdPCF8.s:50     .text:000000000000003c .L0 
+     /tmp/ccJdPCF8.s:51     .text:000000000000003c .L0 
+     /tmp/ccJdPCF8.s:53     .text:0000000000000040 .L0 
+     /tmp/ccJdPCF8.s:55     .text:0000000000000048 .L0 
+     /tmp/ccJdPCF8.s:58     .text:000000000000004c .L0 
+     /tmp/ccJdPCF8.s:59     .text:000000000000004c .L0 
+     /tmp/ccJdPCF8.s:62     .text:0000000000000054 .L0 
+     /tmp/ccJdPCF8.s:63     .text:0000000000000054 .L0 
+     /tmp/ccJdPCF8.s:70     .text:0000000000000068 .L0 
+     /tmp/ccJdPCF8.s:71     .text:0000000000000068 .L0 
+     /tmp/ccJdPCF8.s:73     .text:0000000000000070 .L0 
+     /tmp/ccJdPCF8.s:74     .text:0000000000000070 .L0 
+     /tmp/ccJdPCF8.s:76     .text:0000000000000074 .L0 
+     /tmp/ccJdPCF8.s:77     .text:0000000000000074 .L0 
+     /tmp/ccJdPCF8.s:79     .text:0000000000000078 .L0 
+     /tmp/ccJdPCF8.s:81     .text:000000000000007c .L0 
+     /tmp/ccJdPCF8.s:85     .text:0000000000000080 .L0 
+     /tmp/ccJdPCF8.s:87     .text:0000000000000080 .L0 
+     /tmp/ccJdPCF8.s:88     .text:0000000000000080 .L0 
+     /tmp/ccJdPCF8.s:93     .text:000000000000008c .L0 
+     /tmp/ccJdPCF8.s:95     .text:0000000000000094 .L0 
+     /tmp/ccJdPCF8.s:101    .text:0000000000000094 _ZN9Scheduler3putEP3Nit
+     /tmp/ccJdPCF8.s:104    .text:0000000000000094 .L0 
+     /tmp/ccJdPCF8.s:106    .text:0000000000000094 .L0 
+     /tmp/ccJdPCF8.s:107    .text:0000000000000098 .L0 
+     /tmp/ccJdPCF8.s:111    .text:00000000000000a4 .L0 
+     /tmp/ccJdPCF8.s:112    .text:00000000000000a4 .L0 
+     /tmp/ccJdPCF8.s:113    .text:00000000000000a4 .L0 
+     /tmp/ccJdPCF8.s:115    .text:00000000000000a8 .L0 
+     /tmp/ccJdPCF8.s:118    .text:00000000000000ac .L0 
+     /tmp/ccJdPCF8.s:119    .text:00000000000000ac .L0 
+     /tmp/ccJdPCF8.s:124    .text:00000000000000b8 .L0 
+     /tmp/ccJdPCF8.s:126    .text:00000000000000bc .L0 
+GAS LISTING /tmp/ccJdPCF8.s 			page 22
+
+
+     /tmp/ccJdPCF8.s:127    .text:00000000000000bc .L0 
+     /tmp/ccJdPCF8.s:129    .text:00000000000000c0 .L0 
+     /tmp/ccJdPCF8.s:130    .text:00000000000000c0 .L0 
+     /tmp/ccJdPCF8.s:135    .text:00000000000000d4 .L0 
+     /tmp/ccJdPCF8.s:136    .text:00000000000000d4 .L0 
+     /tmp/ccJdPCF8.s:138    .text:00000000000000d8 .L0 
+     /tmp/ccJdPCF8.s:140    .text:00000000000000dc .L0 
+     /tmp/ccJdPCF8.s:141    .text:00000000000000dc .L0 
+     /tmp/ccJdPCF8.s:144    .text:00000000000000e0 .L0 
+     /tmp/ccJdPCF8.s:145    .text:00000000000000e0 .L0 
+     /tmp/ccJdPCF8.s:147    .text:00000000000000e4 .L0 
+     /tmp/ccJdPCF8.s:148    .text:00000000000000e4 .L0 
+     /tmp/ccJdPCF8.s:150    .text:00000000000000e8 .L0 
+     /tmp/ccJdPCF8.s:151    .text:00000000000000e8 .L0 
+     /tmp/ccJdPCF8.s:153    .text:00000000000000ec .L0 
+     /tmp/ccJdPCF8.s:154    .text:00000000000000ec .L0 
+     /tmp/ccJdPCF8.s:156    .text:00000000000000f0 .L0 
+     /tmp/ccJdPCF8.s:157    .text:00000000000000f0 .L0 
+     /tmp/ccJdPCF8.s:161    .text:00000000000000f4 .L0 
+     /tmp/ccJdPCF8.s:162    .text:00000000000000f8 .L0 
+     /tmp/ccJdPCF8.s:163    .text:00000000000000f8 .L0 
+     /tmp/ccJdPCF8.s:165    .text:00000000000000fc .L0 
+     /tmp/ccJdPCF8.s:166    .text:00000000000000fc .L0 
+     /tmp/ccJdPCF8.s:168    .text:0000000000000100 .L0 
+     /tmp/ccJdPCF8.s:171    .text:0000000000000104 .L0 
+     /tmp/ccJdPCF8.s:175    .text:0000000000000108 .L0 
+     /tmp/ccJdPCF8.s:177    .text:0000000000000108 .L0 
+     /tmp/ccJdPCF8.s:178    .text:0000000000000108 .L0 
+     /tmp/ccJdPCF8.s:180    .text:0000000000000110 .L0 
+     /tmp/ccJdPCF8.s:181    .text:0000000000000110 .L0 
+     /tmp/ccJdPCF8.s:183    .text:0000000000000114 .L0 
+     /tmp/ccJdPCF8.s:184    .text:0000000000000114 .L0 
+     /tmp/ccJdPCF8.s:186    .text:0000000000000118 .L0 
+     /tmp/ccJdPCF8.s:187    .text:0000000000000118 .L0 
+     /tmp/ccJdPCF8.s:193    .text:0000000000000120 .L0 
+     /tmp/ccJdPCF8.s:196    .text:0000000000000128 .L0 
+     /tmp/ccJdPCF8.s:222    .text:0000000000000128 _ZN9Scheduler5PrintEv
+     /tmp/ccJdPCF8.s:225    .text:0000000000000128 .L0 
+     /tmp/ccJdPCF8.s:226    .text:0000000000000128 .L0 
+     /tmp/ccJdPCF8.s:227    .text:000000000000012c .L0 
+     /tmp/ccJdPCF8.s:231    .text:0000000000000138 .L0 
+     /tmp/ccJdPCF8.s:232    .text:0000000000000138 .L0 
+     /tmp/ccJdPCF8.s:233    .text:0000000000000138 .L0 
+     /tmp/ccJdPCF8.s:235    .text:000000000000013c .L0 
+     /tmp/ccJdPCF8.s:237    .text:000000000000013c .L0 
+     /tmp/ccJdPCF8.s:238    .text:000000000000013c .L0 
+     /tmp/ccJdPCF8.s:242    .text:000000000000014c .L0 
+     /tmp/ccJdPCF8.s:243    .text:000000000000014c .L0 
+     /tmp/ccJdPCF8.s:247    .text:000000000000015c .L0 
+     /tmp/ccJdPCF8.s:248    .text:000000000000015c .L0 
+     /tmp/ccJdPCF8.s:254    .text:0000000000000170 .L0 
+     /tmp/ccJdPCF8.s:255    .text:0000000000000170 .L0 
+     /tmp/ccJdPCF8.s:257    .text:0000000000000178 .L0 
+     /tmp/ccJdPCF8.s:260    .text:000000000000017c .L0 
+     /tmp/ccJdPCF8.s:265    .text:0000000000000184 .L0 
+     /tmp/ccJdPCF8.s:266    .text:0000000000000184 .L0 
+     /tmp/ccJdPCF8.s:275    .text:0000000000000198 .L0 
+GAS LISTING /tmp/ccJdPCF8.s 			page 23
+
+
+     /tmp/ccJdPCF8.s:276    .text:0000000000000198 .L0 
+     /tmp/ccJdPCF8.s:277    .text:0000000000000198 .L0 
+     /tmp/ccJdPCF8.s:281    .text:00000000000001a4 .L0 
+     /tmp/ccJdPCF8.s:282    .text:00000000000001a4 .L0 
+     /tmp/ccJdPCF8.s:285    .text:00000000000001a8 .L0 
+     /tmp/ccJdPCF8.s:289    .text:00000000000001ac .L0 
+     /tmp/ccJdPCF8.s:291    .text:00000000000001b0 .L0 
+     /tmp/ccJdPCF8.s:294    .text:00000000000001b8 .L0 
+     /tmp/ccJdPCF8.s:301    .text:00000000000001bc .L0 
+     /tmp/ccJdPCF8.s:302    .text:00000000000001bc .L0 
+     /tmp/ccJdPCF8.s:307    .text:00000000000001cc .L0 
+     /tmp/ccJdPCF8.s:308    .text:00000000000001cc .L0 
+     /tmp/ccJdPCF8.s:310    .text:00000000000001d4 .L0 
+     /tmp/ccJdPCF8.s:316    .text:00000000000001d8 .L0 
+     /tmp/ccJdPCF8.s:317    .text:00000000000001d8 .L0 
+     /tmp/ccJdPCF8.s:319    .text:00000000000001dc .L0 
+     /tmp/ccJdPCF8.s:322    .text:00000000000001e8 .L0 
+     /tmp/ccJdPCF8.s:323    .text:00000000000001e8 .L0 
+     /tmp/ccJdPCF8.s:327    .text:00000000000001f4 .L0 
+     /tmp/ccJdPCF8.s:328    .text:00000000000001f4 .L0 
+     /tmp/ccJdPCF8.s:332    .text:0000000000000204 .L0 
+     /tmp/ccJdPCF8.s:333    .text:0000000000000204 .L0 
+     /tmp/ccJdPCF8.s:337    .text:0000000000000210 .L0 
+     /tmp/ccJdPCF8.s:338    .text:0000000000000210 .L0 
+     /tmp/ccJdPCF8.s:341    .text:0000000000000214 .L0 
+     /tmp/ccJdPCF8.s:347    .text:0000000000000218 .L0 
+     /tmp/ccJdPCF8.s:348    .text:0000000000000218 .L0 
+     /tmp/ccJdPCF8.s:356    .text:000000000000022c .L0 
+     /tmp/ccJdPCF8.s:357    .text:000000000000022c .L0 
+     /tmp/ccJdPCF8.s:359    .text:0000000000000230 .L0 
+     /tmp/ccJdPCF8.s:363    .text:000000000000023c .L0 
+     /tmp/ccJdPCF8.s:364    .text:000000000000023c .L0 
+     /tmp/ccJdPCF8.s:368    .text:000000000000024c .L0 
+     /tmp/ccJdPCF8.s:369    .text:000000000000024c .L0 
+     /tmp/ccJdPCF8.s:372    .text:0000000000000258 .L0 
+     /tmp/ccJdPCF8.s:379    .text:0000000000000264 .L0 
+     /tmp/ccJdPCF8.s:380    .text:0000000000000264 .L0 
+     /tmp/ccJdPCF8.s:384    .text:0000000000000274 .L0 
+     /tmp/ccJdPCF8.s:385    .text:0000000000000274 .L0 
+     /tmp/ccJdPCF8.s:386    .text:0000000000000278 .L0 
+     /tmp/ccJdPCF8.s:388    .text:000000000000027c .L0 
+     /tmp/ccJdPCF8.s:389    .text:000000000000027c .L0 
+     /tmp/ccJdPCF8.s:391    .text:0000000000000280 .L0 
+     /tmp/ccJdPCF8.s:393    .text:0000000000000284 .L0 
+     /tmp/ccJdPCF8.s:395    .text:0000000000000288 .L0 
+     /tmp/ccJdPCF8.s:401    .text:0000000000000288 _ZN9Scheduler13dekremntacijaEi
+     /tmp/ccJdPCF8.s:404    .text:0000000000000288 .L0 
+     /tmp/ccJdPCF8.s:406    .text:0000000000000288 .L0 
+     /tmp/ccJdPCF8.s:407    .text:000000000000028c .L0 
+     /tmp/ccJdPCF8.s:411    .text:0000000000000298 .L0 
+     /tmp/ccJdPCF8.s:412    .text:0000000000000298 .L0 
+     /tmp/ccJdPCF8.s:413    .text:0000000000000298 .L0 
+     /tmp/ccJdPCF8.s:415    .text:000000000000029c .L0 
+     /tmp/ccJdPCF8.s:417    .text:000000000000029c .L0 
+     /tmp/ccJdPCF8.s:418    .text:000000000000029c .L0 
+     /tmp/ccJdPCF8.s:420    .text:00000000000002a4 .L0 
+     /tmp/ccJdPCF8.s:422    .text:00000000000002a8 .L0 
+GAS LISTING /tmp/ccJdPCF8.s 			page 24
+
+
+     /tmp/ccJdPCF8.s:423    .text:00000000000002a8 .L0 
+     /tmp/ccJdPCF8.s:430    .text:00000000000002b8 .L0 
+     /tmp/ccJdPCF8.s:434    .text:00000000000002bc .L0 
+     /tmp/ccJdPCF8.s:435    .text:00000000000002c0 .L0 
+     /tmp/ccJdPCF8.s:436    .text:00000000000002c0 .L0 
+     /tmp/ccJdPCF8.s:438    .text:00000000000002c4 .L0 
+     /tmp/ccJdPCF8.s:439    .text:00000000000002c4 .L0 
+     /tmp/ccJdPCF8.s:441    .text:00000000000002c8 .L0 
+     /tmp/ccJdPCF8.s:443    .text:00000000000002cc .L0 
+     /tmp/ccJdPCF8.s:446    .text:00000000000002d0 .L0 
+     /tmp/ccJdPCF8.s:451    .text:00000000000002d0 .L0 
+     /tmp/ccJdPCF8.s:453    .text:00000000000002d0 .L0 
+     /tmp/ccJdPCF8.s:454    .text:00000000000002d0 .L0 
+     /tmp/ccJdPCF8.s:456    .text:00000000000002d4 .L0 
+     /tmp/ccJdPCF8.s:460    .text:00000000000002d8 .L0 
+     /tmp/ccJdPCF8.s:461    .text:00000000000002d8 .L0 
+     /tmp/ccJdPCF8.s:462    .text:00000000000002d8 .L0 
+     /tmp/ccJdPCF8.s:464    .text:00000000000002dc .L0 
+     /tmp/ccJdPCF8.s:466    .text:00000000000002e0 .L0 
+     /tmp/ccJdPCF8.s:467    .text:00000000000002e0 .L0 
+     /tmp/ccJdPCF8.s:469    .text:00000000000002e4 .L0 
+     /tmp/ccJdPCF8.s:471    .text:00000000000002e8 .L0 
+     /tmp/ccJdPCF8.s:473    .text:00000000000002ec .L0 
+     /tmp/ccJdPCF8.s:474    .text:00000000000002ec .L0 
+     /tmp/ccJdPCF8.s:480    .text:00000000000002f4 .L0 
+     /tmp/ccJdPCF8.s:481    .text:00000000000002f4 .L0 
+     /tmp/ccJdPCF8.s:483    .text:00000000000002f8 .L0 
+     /tmp/ccJdPCF8.s:485    .text:00000000000002fc .L0 
+     /tmp/ccJdPCF8.s:486    .text:00000000000002fc .L0 
+     /tmp/ccJdPCF8.s:490    .text:0000000000000308 .L0 
+     /tmp/ccJdPCF8.s:491    .text:0000000000000308 .L0 
+     /tmp/ccJdPCF8.s:496    .text:000000000000031c .L0 
+     /tmp/ccJdPCF8.s:497    .text:000000000000031c .L0 
+     /tmp/ccJdPCF8.s:506    .text:000000000000032c .L0 
+     /tmp/ccJdPCF8.s:507    .text:000000000000032c .L0 
+     /tmp/ccJdPCF8.s:512    .text:0000000000000338 .L0 
+     /tmp/ccJdPCF8.s:518    .text:0000000000000338 _ZN9Scheduler11threadsleepEi
+     /tmp/ccJdPCF8.s:521    .text:0000000000000338 .L0 
+     /tmp/ccJdPCF8.s:523    .text:0000000000000338 .L0 
+     /tmp/ccJdPCF8.s:524    .text:0000000000000338 .L0 
+     /tmp/ccJdPCF8.s:526    .text:000000000000033c .L0 
+     /tmp/ccJdPCF8.s:527    .text:0000000000000340 .L0 
+     /tmp/ccJdPCF8.s:531    .text:000000000000034c .L0 
+     /tmp/ccJdPCF8.s:532    .text:000000000000034c .L0 
+     /tmp/ccJdPCF8.s:533    .text:000000000000034c .L0 
+     /tmp/ccJdPCF8.s:535    .text:0000000000000350 .L0 
+     /tmp/ccJdPCF8.s:538    .text:0000000000000354 .L0 
+     /tmp/ccJdPCF8.s:541    .text:000000000000035c .L0 
+     /tmp/ccJdPCF8.s:542    .text:000000000000035c .L0 
+     /tmp/ccJdPCF8.s:547    .text:0000000000000364 .L0 
+     /tmp/ccJdPCF8.s:548    .text:0000000000000364 .L0 
+     /tmp/ccJdPCF8.s:552    .text:0000000000000370 .L0 
+     /tmp/ccJdPCF8.s:554    .text:0000000000000374 .L0 
+     /tmp/ccJdPCF8.s:555    .text:0000000000000374 .L0 
+     /tmp/ccJdPCF8.s:559    .text:0000000000000384 .L0 
+     /tmp/ccJdPCF8.s:560    .text:0000000000000384 .L0 
+     /tmp/ccJdPCF8.s:563    .text:0000000000000388 .L0 
+GAS LISTING /tmp/ccJdPCF8.s 			page 25
+
+
+     /tmp/ccJdPCF8.s:564    .text:0000000000000388 .L0 
+     /tmp/ccJdPCF8.s:566    .text:0000000000000390 .L0 
+     /tmp/ccJdPCF8.s:569    .text:0000000000000394 .L0 
+     /tmp/ccJdPCF8.s:571    .text:0000000000000398 .L0 
+     /tmp/ccJdPCF8.s:576    .text:00000000000003a0 .L0 
+     /tmp/ccJdPCF8.s:577    .text:00000000000003a0 .L0 
+     /tmp/ccJdPCF8.s:579    .text:00000000000003a8 .L0 
+     /tmp/ccJdPCF8.s:580    .text:00000000000003a8 .L0 
+     /tmp/ccJdPCF8.s:582    .text:00000000000003ac .L0 
+     /tmp/ccJdPCF8.s:583    .text:00000000000003ac .L0 
+     /tmp/ccJdPCF8.s:590    .text:00000000000003b4 .L0 
+     /tmp/ccJdPCF8.s:591    .text:00000000000003b4 .L0 
+     /tmp/ccJdPCF8.s:593    .text:00000000000003bc .L0 
+     /tmp/ccJdPCF8.s:599    .text:00000000000003c4 .L0 
+     /tmp/ccJdPCF8.s:600    .text:00000000000003c4 .L0 
+     /tmp/ccJdPCF8.s:605    .text:00000000000003cc .L0 
+     /tmp/ccJdPCF8.s:606    .text:00000000000003cc .L0 
+     /tmp/ccJdPCF8.s:609    .text:00000000000003d0 .L0 
+     /tmp/ccJdPCF8.s:613    .text:00000000000003d4 .L0 
+     /tmp/ccJdPCF8.s:615    .text:00000000000003d8 .L0 
+     /tmp/ccJdPCF8.s:618    .text:00000000000003e0 .L0 
+     /tmp/ccJdPCF8.s:622    .text:00000000000003e4 .L0 
+     /tmp/ccJdPCF8.s:623    .text:00000000000003e4 .L0 
+     /tmp/ccJdPCF8.s:624    .text:00000000000003e4 .L0 
+     /tmp/ccJdPCF8.s:626    .text:00000000000003e8 .L0 
+     /tmp/ccJdPCF8.s:628    .text:00000000000003ec .L0 
+     /tmp/ccJdPCF8.s:630    .text:00000000000003f0 .L0 
+     /tmp/ccJdPCF8.s:631    .text:00000000000003f0 .L0 
+     /tmp/ccJdPCF8.s:634    .text:00000000000003f8 .L0 
+     /tmp/ccJdPCF8.s:635    .text:00000000000003f8 .L0 
+     /tmp/ccJdPCF8.s:637    .text:00000000000003fc .L0 
+     /tmp/ccJdPCF8.s:638    .text:00000000000003fc .L0 
+     /tmp/ccJdPCF8.s:640    .text:0000000000000400 .L0 
+     /tmp/ccJdPCF8.s:642    .text:0000000000000404 .L0 
+     /tmp/ccJdPCF8.s:643    .text:0000000000000404 .L0 
+     /tmp/ccJdPCF8.s:645    .text:0000000000000408 .L0 
+     /tmp/ccJdPCF8.s:646    .text:0000000000000408 .L0 
+     /tmp/ccJdPCF8.s:648    .text:000000000000040c .L0 
+     /tmp/ccJdPCF8.s:649    .text:000000000000040c .L0 
+     /tmp/ccJdPCF8.s:651    .text:0000000000000414 .L0 
+     /tmp/ccJdPCF8.s:653    .text:0000000000000418 .L0 
+     /tmp/ccJdPCF8.s:661    .text:0000000000000420 .L0 
+     /tmp/ccJdPCF8.s:664    .text:0000000000000424 .L0 
+     /tmp/ccJdPCF8.s:665    .text:0000000000000424 .L0 
+     /tmp/ccJdPCF8.s:668    .text:0000000000000428 .L0 
+     /tmp/ccJdPCF8.s:669    .text:0000000000000428 .L0 
+     /tmp/ccJdPCF8.s:671    .text:000000000000042c .L0 
+     /tmp/ccJdPCF8.s:672    .text:000000000000042c .L0 
+     /tmp/ccJdPCF8.s:674    .text:0000000000000430 .L0 
+     /tmp/ccJdPCF8.s:675    .text:0000000000000430 .L0 
+     /tmp/ccJdPCF8.s:677    .text:0000000000000434 .L0 
+     /tmp/ccJdPCF8.s:678    .text:0000000000000434 .L0 
+     /tmp/ccJdPCF8.s:686    .text:0000000000000438 .L0 
+     /tmp/ccJdPCF8.s:687    .text:0000000000000438 .L0 
+     /tmp/ccJdPCF8.s:692    .text:000000000000044c .L0 
+     /tmp/ccJdPCF8.s:693    .text:000000000000044c .L0 
+     /tmp/ccJdPCF8.s:696    .text:0000000000000454 .L0 
+GAS LISTING /tmp/ccJdPCF8.s 			page 26
+
+
+     /tmp/ccJdPCF8.s:697    .text:0000000000000454 .L0 
+     /tmp/ccJdPCF8.s:701    .text:000000000000045c .L0 
+     /tmp/ccJdPCF8.s:702    .text:0000000000000460 .L0 
+     /tmp/ccJdPCF8.s:704    .text:0000000000000464 .L0 
+     /tmp/ccJdPCF8.s:705    .text:0000000000000464 .L0 
+     /tmp/ccJdPCF8.s:707    .text:0000000000000468 .L0 
+     /tmp/ccJdPCF8.s:710    .text:000000000000046c .L0 
+     /tmp/ccJdPCF8.s:715    .text:0000000000000474 .L0 
+     /tmp/ccJdPCF8.s:721    .text:0000000000000474 _ZN9Scheduler7imanitiEv
+     /tmp/ccJdPCF8.s:724    .text:0000000000000474 .L0 
+     /tmp/ccJdPCF8.s:725    .text:0000000000000474 .L0 
+     /tmp/ccJdPCF8.s:726    .text:0000000000000478 .L0 
+     /tmp/ccJdPCF8.s:728    .text:000000000000047c .L0 
+     /tmp/ccJdPCF8.s:730    .text:0000000000000480 .L0 
+     /tmp/ccJdPCF8.s:732    .text:0000000000000480 .L0 
+     /tmp/ccJdPCF8.s:733    .text:0000000000000480 .L0 
+     /tmp/ccJdPCF8.s:735    .text:0000000000000488 .L0 
+     /tmp/ccJdPCF8.s:739    .text:0000000000000490 .L0 
+     /tmp/ccJdPCF8.s:740    .text:0000000000000494 .L0 
+     /tmp/ccJdPCF8.s:741    .text:0000000000000494 .L0 
+     /tmp/ccJdPCF8.s:742    .text:0000000000000494 .L0 
+     /tmp/ccJdPCF8.s:744    .text:0000000000000498 .L0 
+     /tmp/ccJdPCF8.s:747    .text:000000000000049c .L0 
+     /tmp/ccJdPCF8.s:749    .text:000000000000049c .L0 
+     /tmp/ccJdPCF8.s:751    .text:00000000000004a4 .L0 
+     /tmp/ccJdPCF8.s:753    .text:00000000000004a8 .L0 
+     /tmp/ccJdPCF8.s:758    .text:00000000000004b8 .L0 
+     /tmp/ccJdPCF8.s:779    .bss:0000000000000010 _ZN9Scheduler12headuspavaneE
+     /tmp/ccJdPCF8.s:770    .bss:0000000000000000 _ZN9Scheduler4headE
+     /tmp/ccJdPCF8.s:783    .bss:0000000000000018 _ZN9Scheduler5brojbE
+     /tmp/ccJdPCF8.s:774    .bss:0000000000000008 _ZN9Scheduler5brojjE
+     /tmp/ccJdPCF8.s:767    .bss:0000000000000000 .LANCHOR0
+     /tmp/ccJdPCF8.s:793    .text:00000000000004b8 .L0 
+     /tmp/ccJdPCF8.s:26     .text:0000000000000014 .L0 
+     /tmp/ccJdPCF8.s:53     .text:0000000000000040 .L0 
+     /tmp/ccJdPCF8.s:63     .text:0000000000000054 .L0 
+     /tmp/ccJdPCF8.s:88     .text:0000000000000080 .L0 
+     /tmp/ccJdPCF8.s:130    .text:00000000000000c0 .L0 
+     /tmp/ccJdPCF8.s:178    .text:0000000000000108 .L0 
+     /tmp/ccJdPCF8.s:201    .rodata.str1.8:0000000000000000 .LC0
+     /tmp/ccJdPCF8.s:238    .text:000000000000013c .L0 
+     /tmp/ccJdPCF8.s:204    .rodata.str1.8:0000000000000020 .LC1
+     /tmp/ccJdPCF8.s:243    .text:000000000000014c .L0 
+     /tmp/ccJdPCF8.s:248    .text:000000000000015c .L0 
+     /tmp/ccJdPCF8.s:255    .text:0000000000000170 .L0 
+     /tmp/ccJdPCF8.s:207    .rodata.str1.8:0000000000000030 .LC2
+     /tmp/ccJdPCF8.s:266    .text:0000000000000184 .L0 
+     /tmp/ccJdPCF8.s:291    .text:00000000000001b0 .L0 
+     /tmp/ccJdPCF8.s:210    .rodata.str1.8:0000000000000040 .LC3
+     /tmp/ccJdPCF8.s:302    .text:00000000000001bc .L0 
+     /tmp/ccJdPCF8.s:308    .text:00000000000001cc .L0 
+     /tmp/ccJdPCF8.s:319    .text:00000000000001dc .L0 
+     /tmp/ccJdPCF8.s:213    .rodata.str1.8:0000000000000058 .LC4
+     /tmp/ccJdPCF8.s:328    .text:00000000000001f4 .L0 
+     /tmp/ccJdPCF8.s:348    .text:0000000000000218 .L0 
+     /tmp/ccJdPCF8.s:364    .text:000000000000023c .L0 
+     /tmp/ccJdPCF8.s:369    .text:000000000000024c .L0 
+GAS LISTING /tmp/ccJdPCF8.s 			page 27
+
+
+     /tmp/ccJdPCF8.s:216    .rodata.str1.8:0000000000000060 .LC5
+     /tmp/ccJdPCF8.s:380    .text:0000000000000264 .L0 
+     /tmp/ccJdPCF8.s:418    .text:000000000000029c .L0 
+     /tmp/ccJdPCF8.s:474    .text:00000000000002ec .L0 
+     /tmp/ccJdPCF8.s:491    .text:0000000000000308 .L0 
+     /tmp/ccJdPCF8.s:507    .text:000000000000032c .L0 
+     /tmp/ccJdPCF8.s:555    .text:0000000000000374 .L0 
+     /tmp/ccJdPCF8.s:564    .text:0000000000000388 .L0 
+     /tmp/ccJdPCF8.s:577    .text:00000000000003a0 .L0 
+     /tmp/ccJdPCF8.s:591    .text:00000000000003b4 .L0 
+     /tmp/ccJdPCF8.s:615    .text:00000000000003d8 .L0 
+     /tmp/ccJdPCF8.s:649    .text:000000000000040c .L0 
+     /tmp/ccJdPCF8.s:687    .text:0000000000000438 .L0 
+     /tmp/ccJdPCF8.s:733    .text:0000000000000480 .L0 
+     /tmp/ccJdPCF8.s:749    .text:000000000000049c .L0 
+     /tmp/ccJdPCF8.s:91     .text:000000000000008c .L4
+     /tmp/ccJdPCF8.s:84     .text:0000000000000080 .L6
+     /tmp/ccJdPCF8.s:56     .text:000000000000004c .L3
+     /tmp/ccJdPCF8.s:69     .text:0000000000000068 .L1
+     /tmp/ccJdPCF8.s:191    .text:0000000000000120 .L10
+     /tmp/ccJdPCF8.s:174    .text:0000000000000108 .L12
+     /tmp/ccJdPCF8.s:159    .text:00000000000000f4 .L8
+     /tmp/ccJdPCF8.s:262    .text:0000000000000184 .L22
+     /tmp/ccJdPCF8.s:287    .text:00000000000001ac .L14
+     /tmp/ccJdPCF8.s:296    .text:00000000000001bc .L15
+     /tmp/ccJdPCF8.s:271    .text:0000000000000198 .L16
+     /tmp/ccJdPCF8.s:343    .text:0000000000000218 .L23
+     /tmp/ccJdPCF8.s:353    .text:000000000000022c .L19
+     /tmp/ccJdPCF8.s:311    .text:00000000000001d8 .L17
+     /tmp/ccJdPCF8.s:375    .text:0000000000000264 .L18
+     /tmp/ccJdPCF8.s:431    .text:00000000000002bc .L24
+     /tmp/ccJdPCF8.s:445    .text:00000000000002d0 .L29
+     /tmp/ccJdPCF8.s:502    .text:000000000000032c .L30
+     /tmp/ccJdPCF8.s:476    .text:00000000000002f4 .L27
+     /tmp/ccJdPCF8.s:713    .text:0000000000000470 .L43
+     /tmp/ccJdPCF8.s:545    .text:0000000000000364 .L33
+     /tmp/ccJdPCF8.s:699    .text:000000000000045c .L31
+     /tmp/ccJdPCF8.s:573    .text:00000000000003a0 .L46
+     /tmp/ccJdPCF8.s:611    .text:00000000000003d4 .L34
+     /tmp/ccJdPCF8.s:680    .text:0000000000000438 .L35
+     /tmp/ccJdPCF8.s:603    .text:00000000000003cc .L39
+     /tmp/ccJdPCF8.s:619    .text:00000000000003e4 .L36
+     /tmp/ccJdPCF8.s:657    .text:0000000000000420 .L37
+     /tmp/ccJdPCF8.s:597    .text:00000000000003c4 .L38
+     /tmp/ccJdPCF8.s:586    .text:00000000000003b4 .L47
+     /tmp/ccJdPCF8.s:746    .text:000000000000049c .L53
+     /tmp/ccJdPCF8.s:755    .text:00000000000004b0 .L51
+     /tmp/ccJdPCF8.s:737    .text:0000000000000490 .L49
+     /tmp/ccJdPCF8.s:1845   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccJdPCF8.s:3149   .debug_str:0000000000000467 .LASF87
+     /tmp/ccJdPCF8.s:3169   .debug_str:00000000000005a6 .LASF88
+     /tmp/ccJdPCF8.s:3015   .debug_str:00000000000000b0 .LASF89
+     /tmp/ccJdPCF8.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccJdPCF8.s:786    .text:00000000000004b8 .Letext0
+     /tmp/ccJdPCF8.s:2989   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccJdPCF8.s:3101   .debug_str:00000000000002f9 .LASF0
+     /tmp/ccJdPCF8.s:3113   .debug_str:0000000000000359 .LASF1
+GAS LISTING /tmp/ccJdPCF8.s 			page 28
+
+
+     /tmp/ccJdPCF8.s:3085   .debug_str:0000000000000282 .LASF2
+     /tmp/ccJdPCF8.s:3067   .debug_str:00000000000001fd .LASF4
+     /tmp/ccJdPCF8.s:3135   .debug_str:0000000000000414 .LASF3
+     /tmp/ccJdPCF8.s:3011   .debug_str:000000000000009c .LASF5
+     /tmp/ccJdPCF8.s:3115   .debug_str:000000000000036c .LASF6
+     /tmp/ccJdPCF8.s:3099   .debug_str:00000000000002e6 .LASF7
+     /tmp/ccJdPCF8.s:3157   .debug_str:0000000000000558 .LASF8
+     /tmp/ccJdPCF8.s:3057   .debug_str:00000000000001bd .LASF9
+     /tmp/ccJdPCF8.s:3121   .debug_str:0000000000000392 .LASF10
+     /tmp/ccJdPCF8.s:3153   .debug_str:0000000000000531 .LASF11
+     /tmp/ccJdPCF8.s:3079   .debug_str:0000000000000253 .LASF12
+     /tmp/ccJdPCF8.s:2997   .debug_str:0000000000000031 .LASF13
+     /tmp/ccJdPCF8.s:3023   .debug_str:00000000000000f1 .LASF14
+     /tmp/ccJdPCF8.s:3131   .debug_str:00000000000003f7 .LASF15
+     /tmp/ccJdPCF8.s:3027   .debug_str:0000000000000106 .LASF16
+     /tmp/ccJdPCF8.s:3025   .debug_str:00000000000000fd .LASF24
+     /tmp/ccJdPCF8.s:3091   .debug_str:00000000000002ac .LASF61
+     /tmp/ccJdPCF8.s:3177   .debug_str:00000000000005d6 .LASF17
+     /tmp/ccJdPCF8.s:3167   .debug_str:00000000000005a1 .LASF18
+     /tmp/ccJdPCF8.s:3143   .debug_str:000000000000044f .LASF19
+     /tmp/ccJdPCF8.s:3037   .debug_str:0000000000000151 .LASF20
+     /tmp/ccJdPCF8.s:2995   .debug_str:0000000000000013 .LASF22
+     /tmp/ccJdPCF8.s:3165   .debug_str:0000000000000597 .LASF21
+     /tmp/ccJdPCF8.s:3107   .debug_str:000000000000031e .LASF23
+     /tmp/ccJdPCF8.s:3051   .debug_str:0000000000000188 .LASF32
+     /tmp/ccJdPCF8.s:3095   .debug_str:00000000000002bc .LASF34
+     /tmp/ccJdPCF8.s:3103   .debug_str:0000000000000306 .LASF49
+     /tmp/ccJdPCF8.s:3029   .debug_str:000000000000011c .LASF51
+     /tmp/ccJdPCF8.s:3031   .debug_str:000000000000013b .LASF25
+     /tmp/ccJdPCF8.s:3133   .debug_str:000000000000040d .LASF26
+     /tmp/ccJdPCF8.s:3049   .debug_str:0000000000000181 .LASF27
+     /tmp/ccJdPCF8.s:3001   .debug_str:0000000000000061 .LASF90
+     /tmp/ccJdPCF8.s:3125   .debug_str:00000000000003b6 .LASF91
+     /tmp/ccJdPCF8.s:2993   .debug_str:000000000000000c .LASF28
+     /tmp/ccJdPCF8.s:3019   .debug_str:00000000000000d8 .LASF29
+     /tmp/ccJdPCF8.s:3173   .debug_str:00000000000005bd .LASF30
+     /tmp/ccJdPCF8.s:2999   .debug_str:0000000000000041 .LASF31
+     /tmp/ccJdPCF8.s:3073   .debug_str:0000000000000225 .LASF92
+     /tmp/ccJdPCF8.s:3105   .debug_str:0000000000000315 .LASF33
+     /tmp/ccJdPCF8.s:3083   .debug_str:000000000000026f .LASF35
+     /tmp/ccJdPCF8.s:3035   .debug_str:000000000000014b .LASF36
+     /tmp/ccJdPCF8.s:3005   .debug_str:000000000000006f .LASF37
+     /tmp/ccJdPCF8.s:3071   .debug_str:000000000000021c .LASF38
+     /tmp/ccJdPCF8.s:3041   .debug_str:0000000000000164 .LASF39
+     /tmp/ccJdPCF8.s:3081   .debug_str:0000000000000263 .LASF62
+     /tmp/ccJdPCF8.s:3017   .debug_str:00000000000000cb .LASF40
+     /tmp/ccJdPCF8.s:3147   .debug_str:000000000000045b .LASF41
+     /tmp/ccJdPCF8.s:3053   .debug_str:000000000000018e .LASF42
+     /tmp/ccJdPCF8.s:3061   .debug_str:00000000000001d0 .LASF43
+     /tmp/ccJdPCF8.s:3137   .debug_str:0000000000000426 .LASF44
+     /tmp/ccJdPCF8.s:3065   .debug_str:00000000000001f0 .LASF46
+     /tmp/ccJdPCF8.s:3139   .debug_str:0000000000000436 .LASF45
+     /tmp/ccJdPCF8.s:3175   .debug_str:00000000000005c9 .LASF47
+     /tmp/ccJdPCF8.s:3033   .debug_str:0000000000000140 .LASF48
+     /tmp/ccJdPCF8.s:3159   .debug_str:0000000000000568 .LASF93
+     /tmp/ccJdPCF8.s:3087   .debug_str:0000000000000290 .LASF50
+     /tmp/ccJdPCF8.s:3163   .debug_str:0000000000000587 .LASF52
+GAS LISTING /tmp/ccJdPCF8.s 			page 29
+
+
+     /tmp/ccJdPCF8.s:3145   .debug_str:0000000000000454 .LASF53
+     /tmp/ccJdPCF8.s:3129   .debug_str:00000000000003e6 .LASF54
+     /tmp/ccJdPCF8.s:3161   .debug_str:000000000000057c .LASF55
+     /tmp/ccJdPCF8.s:3119   .debug_str:0000000000000389 .LASF56
+     /tmp/ccJdPCF8.s:3171   .debug_str:00000000000005b8 .LASF57
+     /tmp/ccJdPCF8.s:3045   .debug_str:0000000000000171 .LASF58
+     /tmp/ccJdPCF8.s:3003   .debug_str:000000000000006a .LASF59
+     /tmp/ccJdPCF8.s:3117   .debug_str:000000000000037f .LASF60
+     /tmp/ccJdPCF8.s:3069   .debug_str:0000000000000204 .LASF63
+     /tmp/ccJdPCF8.s:3063   .debug_str:00000000000001dc .LASF94
+     /tmp/ccJdPCF8.s:3109   .debug_str:0000000000000337 .LASF64
+     /tmp/ccJdPCF8.s:3055   .debug_str:000000000000019e .LASF65
+     /tmp/ccJdPCF8.s:2991   .debug_str:0000000000000000 .LASF66
+     /tmp/ccJdPCF8.s:3075   .debug_str:000000000000022a .LASF67
+     /tmp/ccJdPCF8.s:3089   .debug_str:0000000000000296 .LASF68
+     /tmp/ccJdPCF8.s:3179   .debug_str:00000000000005db .LASF69
+     /tmp/ccJdPCF8.s:3007   .debug_str:000000000000007f .LASF71
+     /tmp/ccJdPCF8.s:3021   .debug_str:00000000000000e9 .LASF70
+     /tmp/ccJdPCF8.s:3155   .debug_str:0000000000000540 .LASF72
+     /tmp/ccJdPCF8.s:3141   .debug_str:0000000000000449 .LASF73
+     /tmp/ccJdPCF8.s:3151   .debug_str:000000000000052b .LASF74
+     /tmp/ccJdPCF8.s:3013   .debug_str:00000000000000a3 .LASF75
+     /tmp/ccJdPCF8.s:3123   .debug_str:00000000000003a1 .LASF76
+     /tmp/ccJdPCF8.s:3097   .debug_str:00000000000002d1 .LASF77
+     /tmp/ccJdPCF8.s:3111   .debug_str:0000000000000345 .LASF78
+     /tmp/ccJdPCF8.s:3127   .debug_str:00000000000003c9 .LASF79
+     /tmp/ccJdPCF8.s:722    .text:0000000000000474 .LFB18
+     /tmp/ccJdPCF8.s:759    .text:00000000000004b8 .LFE18
+     /tmp/ccJdPCF8.s:519    .text:0000000000000338 .LFB17
+     /tmp/ccJdPCF8.s:716    .text:0000000000000474 .LFE17
+     /tmp/ccJdPCF8.s:2766   .debug_loc:0000000000000000 .LLST10
+     /tmp/ccJdPCF8.s:3043   .debug_str:000000000000016c .LASF80
+     /tmp/ccJdPCF8.s:2781   .debug_loc:0000000000000049 .LLST11
+     /tmp/ccJdPCF8.s:2969   .debug_ranges:0000000000000000 .Ldebug_ranges0
+     /tmp/ccJdPCF8.s:3059   .debug_str:00000000000001cb .LASF81
+     /tmp/ccJdPCF8.s:2788   .debug_loc:000000000000006c .LLST12
+     /tmp/ccJdPCF8.s:3039   .debug_str:000000000000015e .LASF82
+     /tmp/ccJdPCF8.s:2805   .debug_loc:00000000000000b7 .LLST13
+     /tmp/ccJdPCF8.s:588    .text:00000000000003b4 .LBB19
+     /tmp/ccJdPCF8.s:658    .text:0000000000000420 .LBE19
+     /tmp/ccJdPCF8.s:3009   .debug_str:0000000000000097 .LASF83
+     /tmp/ccJdPCF8.s:2820   .debug_loc:0000000000000100 .LLST14
+     /tmp/ccJdPCF8.s:662    .text:0000000000000424 .LBB21
+     /tmp/ccJdPCF8.s:681    .text:0000000000000438 .LBE21
+     /tmp/ccJdPCF8.s:2827   .debug_loc:0000000000000123 .LLST15
+     /tmp/ccJdPCF8.s:550    .text:0000000000000370 .LVL48
+     /tmp/ccJdPCF8.s:698    .text:000000000000045c .LVL61
+     /tmp/ccJdPCF8.s:402    .text:0000000000000288 .LFB16
+     /tmp/ccJdPCF8.s:513    .text:0000000000000338 .LFE16
+     /tmp/ccJdPCF8.s:2834   .debug_loc:0000000000000146 .LLST8
+     /tmp/ccJdPCF8.s:457    .text:00000000000002d8 .LBB13
+     /tmp/ccJdPCF8.s:477    .text:00000000000002f4 .LBE13
+     /tmp/ccJdPCF8.s:2848   .debug_loc:000000000000017f .LLST9
+     /tmp/ccJdPCF8.s:488    .text:0000000000000308 .LVL44
+     /tmp/ccJdPCF8.s:499    .text:0000000000000328 .LVL45
+     /tmp/ccJdPCF8.s:223    .text:0000000000000128 .LFB15
+     /tmp/ccJdPCF8.s:396    .text:0000000000000288 .LFE15
+GAS LISTING /tmp/ccJdPCF8.s 			page 30
+
+
+     /tmp/ccJdPCF8.s:2855   .debug_loc:00000000000001a2 .LLST5
+     /tmp/ccJdPCF8.s:273    .text:0000000000000198 .LBB4
+     /tmp/ccJdPCF8.s:297    .text:00000000000001bc .LBE4
+     /tmp/ccJdPCF8.s:2867   .debug_loc:00000000000001d9 .LLST6
+     /tmp/ccJdPCF8.s:279    .text:00000000000001a4 .LVL21
+     /tmp/ccJdPCF8.s:314    .text:00000000000001d8 .LBB8
+     /tmp/ccJdPCF8.s:344    .text:0000000000000218 .LBE8
+     /tmp/ccJdPCF8.s:2874   .debug_loc:00000000000001fc .LLST7
+     /tmp/ccJdPCF8.s:325    .text:00000000000001f4 .LVL28
+     /tmp/ccJdPCF8.s:330    .text:0000000000000204 .LVL29
+     /tmp/ccJdPCF8.s:335    .text:0000000000000210 .LVL30
+     /tmp/ccJdPCF8.s:240    .text:000000000000014c .LVL16
+     /tmp/ccJdPCF8.s:245    .text:000000000000015c .LVL17
+     /tmp/ccJdPCF8.s:251    .text:0000000000000170 .LVL18
+     /tmp/ccJdPCF8.s:268    .text:0000000000000194 .LVL19
+     /tmp/ccJdPCF8.s:304    .text:00000000000001cc .LVL26
+     /tmp/ccJdPCF8.s:350    .text:0000000000000228 .LVL33
+     /tmp/ccJdPCF8.s:361    .text:000000000000023c .LVL35
+     /tmp/ccJdPCF8.s:366    .text:000000000000024c .LVL36
+     /tmp/ccJdPCF8.s:374    .text:0000000000000264 .LVL37
+     /tmp/ccJdPCF8.s:382    .text:0000000000000274 .LVL38
+     /tmp/ccJdPCF8.s:102    .text:0000000000000094 .LFB14
+     /tmp/ccJdPCF8.s:197    .text:0000000000000128 .LFE14
+     /tmp/ccJdPCF8.s:2885   .debug_loc:0000000000000232 .LLST2
+     /tmp/ccJdPCF8.s:2907   .debug_loc:0000000000000291 .LLST3
+     /tmp/ccJdPCF8.s:2927   .debug_loc:00000000000002f5 .LLST4
+     /tmp/ccJdPCF8.s:122    .text:00000000000000b8 .LVL8
+     /tmp/ccJdPCF8.s:10     .text:0000000000000000 .LFB13
+     /tmp/ccJdPCF8.s:96     .text:0000000000000094 .LFE13
+     /tmp/ccJdPCF8.s:2934   .debug_loc:0000000000000318 .LLST0
+     /tmp/ccJdPCF8.s:2945   .debug_loc:000000000000034e .LLST1
+     /tmp/ccJdPCF8.s:60     .text:0000000000000054 .LVL2
+     /tmp/ccJdPCF8.s:3077   .debug_str:0000000000000247 .LASF84
+     /tmp/ccJdPCF8.s:3093   .debug_str:00000000000002b6 .LASF86
+     /tmp/ccJdPCF8.s:3047   .debug_str:0000000000000177 .LASF85
+     /tmp/ccJdPCF8.s:522    .text:0000000000000338 .LVL46
+     /tmp/ccJdPCF8.s:544    .text:0000000000000364 .LVL47
+     /tmp/ccJdPCF8.s:708    .text:0000000000000468 .LVL62
+     /tmp/ccJdPCF8.s:712    .text:0000000000000470 .LVL63
+     /tmp/ccJdPCF8.s:585    .text:00000000000003b4 .LVL49
+     /tmp/ccJdPCF8.s:610    .text:00000000000003d4 .LVL54
+     /tmp/ccJdPCF8.s:616    .text:00000000000003e0 .LVL55
+     /tmp/ccJdPCF8.s:621    .text:00000000000003e4 .LVL56
+     /tmp/ccJdPCF8.s:656    .text:0000000000000420 .LVL58
+     /tmp/ccJdPCF8.s:594    .text:00000000000003c0 .LVL50
+     /tmp/ccJdPCF8.s:596    .text:00000000000003c4 .LVL51
+     /tmp/ccJdPCF8.s:654    .text:000000000000041c .LVL57
+     /tmp/ccJdPCF8.s:679    .text:0000000000000438 .LVL60
+     /tmp/ccJdPCF8.s:666    .text:0000000000000428 .LVL59
+     /tmp/ccJdPCF8.s:405    .text:0000000000000288 .LVL39
+     /tmp/ccJdPCF8.s:425    .text:00000000000002b0 .LVL40
+     /tmp/ccJdPCF8.s:459    .text:00000000000002d8 .LVL42
+     /tmp/ccJdPCF8.s:475    .text:00000000000002f4 .LVL43
+     /tmp/ccJdPCF8.s:270    .text:0000000000000198 .LVL20
+     /tmp/ccJdPCF8.s:286    .text:00000000000001ac .LVL23
+     /tmp/ccJdPCF8.s:292    .text:00000000000001b8 .LVL24
+     /tmp/ccJdPCF8.s:295    .text:00000000000001bc .LVL25
+GAS LISTING /tmp/ccJdPCF8.s 			page 31
+
+
+     /tmp/ccJdPCF8.s:312    .text:00000000000001d8 .LVL27
+     /tmp/ccJdPCF8.s:342    .text:0000000000000218 .LVL32
+     /tmp/ccJdPCF8.s:352    .text:000000000000022c .LVL34
+     /tmp/ccJdPCF8.s:105    .text:0000000000000094 .LVL6
+     /tmp/ccJdPCF8.s:120    .text:00000000000000b0 .LVL7
+     /tmp/ccJdPCF8.s:169    .text:0000000000000100 .LVL11
+     /tmp/ccJdPCF8.s:173    .text:0000000000000108 .LVL12
+     /tmp/ccJdPCF8.s:158    .text:00000000000000f4 .LVL10
+     /tmp/ccJdPCF8.s:188    .text:000000000000011c .LVL13
+     /tmp/ccJdPCF8.s:190    .text:0000000000000120 .LVL14
+     /tmp/ccJdPCF8.s:194    .text:0000000000000124 .LVL15
+     /tmp/ccJdPCF8.s:142    .text:00000000000000e0 .LVL9
+     /tmp/ccJdPCF8.s:30     .text:0000000000000020 .LVL0
+     /tmp/ccJdPCF8.s:83     .text:0000000000000080 .LVL4
+     /tmp/ccJdPCF8.s:90     .text:000000000000008c .LVL5
+     /tmp/ccJdPCF8.s:34     .text:0000000000000024 .LVL1
+     /tmp/ccJdPCF8.s:68     .text:0000000000000068 .LVL3
+     /tmp/ccJdPCF8.s:794    .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/ccJdPCF8.s:258    .text:000000000000017c .LBB3
+     /tmp/ccJdPCF8.s:263    .text:0000000000000184 .LBE3
+     /tmp/ccJdPCF8.s:272    .text:0000000000000198 .LBB5
+     /tmp/ccJdPCF8.s:298    .text:00000000000001bc .LBE5
+     /tmp/ccJdPCF8.s:448    .text:00000000000002d0 .LBB11
+     /tmp/ccJdPCF8.s:500    .text:0000000000000328 .LBE11
+     /tmp/ccJdPCF8.s:503    .text:000000000000032c .LBB15
+     /tmp/ccJdPCF8.s:510    .text:0000000000000338 .LBE15
+     /tmp/ccJdPCF8.s:567    .text:0000000000000394 .LBB18
+     /tmp/ccJdPCF8.s:574    .text:00000000000003a0 .LBE18
+     /tmp/ccJdPCF8.s:587    .text:00000000000003b4 .LBB22
+     /tmp/ccJdPCF8.s:683    .text:0000000000000438 .LBE22
+
+UNDEFINED SYMBOLS
+_ZN8Memorija12oslobadjanjeEPv
+_ZN8Memorija9alokacijaEm
+_Z5printPKc
+_ZN3Nit7runningE
+_ZN3Nit6stampaEv
+_Z5printi
+_ZN3Nit5yeildEv

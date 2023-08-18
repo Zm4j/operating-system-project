@@ -1,0 +1,1001 @@
+GAS LISTING /tmp/ccY4LixC.s 			page 1
+
+
+   1              		.file	"konzola.cpp"
+   2              		.option pic
+   3              		.option norelax
+   4              		.text
+   5              	.Ltext0:
+   6              		.align	2
+   7              		.globl	_ZN7Konzola7putulazEi
+   9              	_ZN7Konzola7putulazEi:
+  10              	.LFB19:
+  11              		.file 1 "src/konzola.cpp"
+   1:src/konzola.cpp **** //
+   2:src/konzola.cpp **** // Created by os on 9/14/22.
+   3:src/konzola.cpp **** //
+   4:src/konzola.cpp **** 
+   5:src/konzola.cpp **** #include "../h/konzola.h"
+   6:src/konzola.cpp **** 
+   7:src/konzola.cpp **** Bafer* Konzola::baferizlaz = nullptr;
+   8:src/konzola.cpp **** Bafer* Konzola::baferulaz = nullptr;
+   9:src/konzola.cpp **** 
+  10:src/konzola.cpp **** int Konzola::kapacitet=1024;
+  11:src/konzola.cpp **** 
+  12:src/konzola.cpp **** void Konzola::putulaz(int val) {
+  12              		.loc 1 12 32
+  13              		.cfi_startproc
+  14              	.LVL0:
+  15 0000 130101F9 		addi	sp,sp,-112
+  16              		.cfi_def_cfa_offset 112
+  17 0004 23341106 		sd	ra,104(sp)
+  18 0008 23308106 		sd	s0,96(sp)
+  19 000c 233C9104 		sd	s1,88(sp)
+  20 0010 23382105 		sd	s2,80(sp)
+  21 0014 23343105 		sd	s3,72(sp)
+  22              		.cfi_offset 1, -8
+  23              		.cfi_offset 8, -16
+  24              		.cfi_offset 9, -24
+  25              		.cfi_offset 18, -32
+  26              		.cfi_offset 19, -40
+  27 0018 13040107 		addi	s0,sp,112
+  28              		.cfi_def_cfa 8, 0
+  29 001c 93040500 		mv	s1,a0
+  13:src/konzola.cpp ****     if(baferulaz==nullptr) {
+  30              		.loc 1 13 5
+  31              		.loc 1 13 17 is_stmt 0
+  32 0020 97070000 		ld	a5,.LANCHOR0
+  32      83B70700 
+  33              		.loc 1 13 5
+  34 0028 638A0702 		beqz	a5,.L4
+  35              	.LVL1:
+  36              	.L2:
+  14:src/konzola.cpp ****         baferulaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+  15:src/konzola.cpp ****         *baferulaz=Bafer(kapacitet);
+  16:src/konzola.cpp ****     }
+  17:src/konzola.cpp ****     baferulaz->put(val);
+  37              		.loc 1 17 5 is_stmt 1
+  38              		.loc 1 17 19 is_stmt 0
+  39 002c 93850400 		mv	a1,s1
+  40 0030 17050000 		ld	a0,.LANCHOR0
+GAS LISTING /tmp/ccY4LixC.s 			page 2
+
+
+  40      03350500 
+  41 0038 97000000 		call	_ZN5Bafer3putEi@plt
+  41      E7800000 
+  42              	.LVL2:
+  18:src/konzola.cpp **** }
+  43              		.loc 1 18 1
+  44 0040 83308106 		ld	ra,104(sp)
+  45              		.cfi_remember_state
+  46              		.cfi_restore 1
+  47 0044 03340106 		ld	s0,96(sp)
+  48              		.cfi_restore 8
+  49              		.cfi_def_cfa 2, 112
+  50 0048 83348105 		ld	s1,88(sp)
+  51              		.cfi_restore 9
+  52 004c 03390105 		ld	s2,80(sp)
+  53              		.cfi_restore 18
+  54 0050 83398104 		ld	s3,72(sp)
+  55              		.cfi_restore 19
+  56 0054 13010107 		addi	sp,sp,112
+  57              		.cfi_def_cfa_offset 0
+  58 0058 67800000 		jr	ra
+  59              	.LVL3:
+  60              	.L4:
+  61              		.cfi_restore_state
+  14:src/konzola.cpp ****         baferulaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+  62              		.loc 1 14 9 is_stmt 1
+  14:src/konzola.cpp ****         baferulaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+  63              		.loc 1 14 48 is_stmt 0
+  64 005c 17090000 		lla	s2,.LANCHOR1
+  64      13090900 
+  65 0064 83270900 		lw	a5,0(s2)
+  14:src/konzola.cpp ****         baferulaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+  66              		.loc 1 14 47
+  67 0068 13953700 		slli	a0,a5,3
+  68              	.LVL4:
+  69 006c 3305F540 		sub	a0,a0,a5
+  70 0070 13153500 		slli	a0,a0,3
+  71 0074 97000000 		call	_ZN8Memorija9alokacijaEm@plt
+  71      E7800000 
+  72              	.LVL5:
+  14:src/konzola.cpp ****         baferulaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+  73              		.loc 1 14 18
+  74 007c 97090000 		lla	s3,.LANCHOR0
+  74      93890900 
+  75 0084 23B0A900 		sd	a0,0(s3)
+  15:src/konzola.cpp ****     }
+  76              		.loc 1 15 9 is_stmt 1
+  15:src/konzola.cpp ****     }
+  77              		.loc 1 15 20 is_stmt 0
+  78 0088 83250900 		lw	a1,0(s2)
+  79 008c 130984F9 		addi	s2,s0,-104
+  80 0090 13050900 		mv	a0,s2
+  81 0094 97000000 		call	_ZN5BaferC1Ei@plt
+  81      E7800000 
+  82              	.LVL6:
+  15:src/konzola.cpp ****     }
+  83              		.loc 1 15 19
+GAS LISTING /tmp/ccY4LixC.s 			page 3
+
+
+  84 009c 83B70900 		ld	a5,0(s3)
+  85 00a0 033804FA 		ld	a6,-96(s0)
+  86 00a4 033584FA 		ld	a0,-88(s0)
+  87 00a8 833504FB 		ld	a1,-80(s0)
+  88 00ac 033684FB 		ld	a2,-72(s0)
+  89 00b0 833604FC 		ld	a3,-64(s0)
+  90 00b4 033784FC 		ld	a4,-56(s0)
+  91 00b8 833884F9 		ld	a7,-104(s0)
+  92 00bc 23B01701 		sd	a7,0(a5)
+  93 00c0 23B40701 		sd	a6,8(a5)
+  94 00c4 23B8A700 		sd	a0,16(a5)
+  95 00c8 23BCB700 		sd	a1,24(a5)
+  96 00cc 23B0C702 		sd	a2,32(a5)
+  97 00d0 23B4D702 		sd	a3,40(a5)
+  98 00d4 23B8E702 		sd	a4,48(a5)
+  15:src/konzola.cpp ****     }
+  99              		.loc 1 15 20
+ 100 00d8 13050900 		mv	a0,s2
+ 101 00dc 97000000 		call	_ZN5BaferD1Ev@plt
+ 101      E7800000 
+ 102              	.LVL7:
+ 103 00e4 6FF09FF4 		j	.L2
+ 104              		.cfi_endproc
+ 105              	.LFE19:
+ 107              		.align	2
+ 108              		.globl	_ZN7Konzola7getulazEv
+ 110              	_ZN7Konzola7getulazEv:
+ 111              	.LFB20:
+  19:src/konzola.cpp **** 
+  20:src/konzola.cpp **** int Konzola::getulaz() {
+ 112              		.loc 1 20 24 is_stmt 1
+ 113              		.cfi_startproc
+ 114 00e8 130101FA 		addi	sp,sp,-96
+ 115              		.cfi_def_cfa_offset 96
+ 116 00ec 233C1104 		sd	ra,88(sp)
+ 117 00f0 23388104 		sd	s0,80(sp)
+ 118 00f4 23349104 		sd	s1,72(sp)
+ 119 00f8 23302105 		sd	s2,64(sp)
+ 120              		.cfi_offset 1, -8
+ 121              		.cfi_offset 8, -16
+ 122              		.cfi_offset 9, -24
+ 123              		.cfi_offset 18, -32
+ 124 00fc 13040106 		addi	s0,sp,96
+ 125              		.cfi_def_cfa 8, 0
+  21:src/konzola.cpp ****     if(baferulaz==nullptr) {
+ 126              		.loc 1 21 5
+ 127              		.loc 1 21 17 is_stmt 0
+ 128 0100 97070000 		ld	a5,.LANCHOR0
+ 128      83B70700 
+ 129              		.loc 1 21 5
+ 130 0108 63860702 		beqz	a5,.L8
+ 131              	.L6:
+  22:src/konzola.cpp ****         baferulaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+  23:src/konzola.cpp ****         *baferulaz=Bafer(kapacitet);
+  24:src/konzola.cpp ****     }
+  25:src/konzola.cpp ****     return baferulaz->get();
+ 132              		.loc 1 25 5 is_stmt 1
+GAS LISTING /tmp/ccY4LixC.s 			page 4
+
+
+ 133              		.loc 1 25 26 is_stmt 0
+ 134 010c 17050000 		ld	a0,.LANCHOR0
+ 134      03350500 
+ 135 0114 97000000 		call	_ZN5Bafer3getEv@plt
+ 135      E7800000 
+ 136              	.LVL8:
+  26:src/konzola.cpp **** }
+ 137              		.loc 1 26 1
+ 138 011c 83308105 		ld	ra,88(sp)
+ 139              		.cfi_remember_state
+ 140              		.cfi_restore 1
+ 141 0120 03340105 		ld	s0,80(sp)
+ 142              		.cfi_restore 8
+ 143              		.cfi_def_cfa 2, 96
+ 144 0124 83348104 		ld	s1,72(sp)
+ 145              		.cfi_restore 9
+ 146 0128 03390104 		ld	s2,64(sp)
+ 147              		.cfi_restore 18
+ 148 012c 13010106 		addi	sp,sp,96
+ 149              		.cfi_def_cfa_offset 0
+ 150 0130 67800000 		jr	ra
+ 151              	.L8:
+ 152              		.cfi_restore_state
+  22:src/konzola.cpp ****         baferulaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 153              		.loc 1 22 9 is_stmt 1
+  22:src/konzola.cpp ****         baferulaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 154              		.loc 1 22 48 is_stmt 0
+ 155 0134 97040000 		lla	s1,.LANCHOR1
+ 155      93840400 
+ 156 013c 83A70400 		lw	a5,0(s1)
+  22:src/konzola.cpp ****         baferulaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 157              		.loc 1 22 47
+ 158 0140 13953700 		slli	a0,a5,3
+ 159 0144 3305F540 		sub	a0,a0,a5
+ 160 0148 13153500 		slli	a0,a0,3
+ 161 014c 97000000 		call	_ZN8Memorija9alokacijaEm@plt
+ 161      E7800000 
+ 162              	.LVL9:
+  22:src/konzola.cpp ****         baferulaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 163              		.loc 1 22 18
+ 164 0154 17090000 		lla	s2,.LANCHOR0
+ 164      13090900 
+ 165 015c 2330A900 		sd	a0,0(s2)
+  23:src/konzola.cpp ****     }
+ 166              		.loc 1 23 9 is_stmt 1
+  23:src/konzola.cpp ****     }
+ 167              		.loc 1 23 20 is_stmt 0
+ 168 0160 83A50400 		lw	a1,0(s1)
+ 169 0164 930484FA 		addi	s1,s0,-88
+ 170 0168 13850400 		mv	a0,s1
+ 171 016c 97000000 		call	_ZN5BaferC1Ei@plt
+ 171      E7800000 
+ 172              	.LVL10:
+  23:src/konzola.cpp ****     }
+ 173              		.loc 1 23 19
+ 174 0174 83370900 		ld	a5,0(s2)
+ 175 0178 033804FB 		ld	a6,-80(s0)
+GAS LISTING /tmp/ccY4LixC.s 			page 5
+
+
+ 176 017c 033584FB 		ld	a0,-72(s0)
+ 177 0180 833504FC 		ld	a1,-64(s0)
+ 178 0184 033684FC 		ld	a2,-56(s0)
+ 179 0188 833604FD 		ld	a3,-48(s0)
+ 180 018c 033784FD 		ld	a4,-40(s0)
+ 181 0190 833884FA 		ld	a7,-88(s0)
+ 182 0194 23B01701 		sd	a7,0(a5)
+ 183 0198 23B40701 		sd	a6,8(a5)
+ 184 019c 23B8A700 		sd	a0,16(a5)
+ 185 01a0 23BCB700 		sd	a1,24(a5)
+ 186 01a4 23B0C702 		sd	a2,32(a5)
+ 187 01a8 23B4D702 		sd	a3,40(a5)
+ 188 01ac 23B8E702 		sd	a4,48(a5)
+  23:src/konzola.cpp ****     }
+ 189              		.loc 1 23 20
+ 190 01b0 13850400 		mv	a0,s1
+ 191 01b4 97000000 		call	_ZN5BaferD1Ev@plt
+ 191      E7800000 
+ 192              	.LVL11:
+ 193 01bc 6FF01FF5 		j	.L6
+ 194              		.cfi_endproc
+ 195              	.LFE20:
+ 197              		.align	2
+ 198              		.globl	_ZN7Konzola8putizlazEi
+ 200              	_ZN7Konzola8putizlazEi:
+ 201              	.LFB21:
+  27:src/konzola.cpp **** 
+  28:src/konzola.cpp **** void Konzola::putizlaz(int val) {
+ 202              		.loc 1 28 33 is_stmt 1
+ 203              		.cfi_startproc
+ 204              	.LVL12:
+ 205 01c0 130101F9 		addi	sp,sp,-112
+ 206              		.cfi_def_cfa_offset 112
+ 207 01c4 23341106 		sd	ra,104(sp)
+ 208 01c8 23308106 		sd	s0,96(sp)
+ 209 01cc 233C9104 		sd	s1,88(sp)
+ 210 01d0 23382105 		sd	s2,80(sp)
+ 211 01d4 23343105 		sd	s3,72(sp)
+ 212              		.cfi_offset 1, -8
+ 213              		.cfi_offset 8, -16
+ 214              		.cfi_offset 9, -24
+ 215              		.cfi_offset 18, -32
+ 216              		.cfi_offset 19, -40
+ 217 01d8 13040107 		addi	s0,sp,112
+ 218              		.cfi_def_cfa 8, 0
+ 219 01dc 93040500 		mv	s1,a0
+  29:src/konzola.cpp ****     if(baferizlaz==nullptr) {
+ 220              		.loc 1 29 5
+ 221              		.loc 1 29 18 is_stmt 0
+ 222 01e0 97070000 		ld	a5,.LANCHOR0+8
+ 222      83B70700 
+ 223              		.loc 1 29 5
+ 224 01e8 638A0702 		beqz	a5,.L12
+ 225              	.LVL13:
+ 226              	.L10:
+  30:src/konzola.cpp ****         baferizlaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+  31:src/konzola.cpp ****         *baferizlaz=Bafer(kapacitet);
+GAS LISTING /tmp/ccY4LixC.s 			page 6
+
+
+  32:src/konzola.cpp ****     }
+  33:src/konzola.cpp ****     baferizlaz->put(val);
+ 227              		.loc 1 33 5 is_stmt 1
+ 228              		.loc 1 33 20 is_stmt 0
+ 229 01ec 93850400 		mv	a1,s1
+ 230 01f0 17050000 		ld	a0,.LANCHOR0+8
+ 230      03350500 
+ 231 01f8 97000000 		call	_ZN5Bafer3putEi@plt
+ 231      E7800000 
+ 232              	.LVL14:
+  34:src/konzola.cpp **** }
+ 233              		.loc 1 34 1
+ 234 0200 83308106 		ld	ra,104(sp)
+ 235              		.cfi_remember_state
+ 236              		.cfi_restore 1
+ 237 0204 03340106 		ld	s0,96(sp)
+ 238              		.cfi_restore 8
+ 239              		.cfi_def_cfa 2, 112
+ 240 0208 83348105 		ld	s1,88(sp)
+ 241              		.cfi_restore 9
+ 242 020c 03390105 		ld	s2,80(sp)
+ 243              		.cfi_restore 18
+ 244 0210 83398104 		ld	s3,72(sp)
+ 245              		.cfi_restore 19
+ 246 0214 13010107 		addi	sp,sp,112
+ 247              		.cfi_def_cfa_offset 0
+ 248 0218 67800000 		jr	ra
+ 249              	.LVL15:
+ 250              	.L12:
+ 251              		.cfi_restore_state
+  30:src/konzola.cpp ****         baferizlaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 252              		.loc 1 30 9 is_stmt 1
+  30:src/konzola.cpp ****         baferizlaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 253              		.loc 1 30 49 is_stmt 0
+ 254 021c 17090000 		lla	s2,.LANCHOR1
+ 254      13090900 
+ 255 0224 83270900 		lw	a5,0(s2)
+  30:src/konzola.cpp ****         baferizlaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 256              		.loc 1 30 48
+ 257 0228 13953700 		slli	a0,a5,3
+ 258              	.LVL16:
+ 259 022c 3305F540 		sub	a0,a0,a5
+ 260 0230 13153500 		slli	a0,a0,3
+ 261 0234 97000000 		call	_ZN8Memorija9alokacijaEm@plt
+ 261      E7800000 
+ 262              	.LVL17:
+  30:src/konzola.cpp ****         baferizlaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 263              		.loc 1 30 19
+ 264 023c 97090000 		lla	s3,.LANCHOR0
+ 264      93890900 
+ 265 0244 23B4A900 		sd	a0,8(s3)
+  31:src/konzola.cpp ****     }
+ 266              		.loc 1 31 9 is_stmt 1
+  31:src/konzola.cpp ****     }
+ 267              		.loc 1 31 21 is_stmt 0
+ 268 0248 83250900 		lw	a1,0(s2)
+ 269 024c 130984F9 		addi	s2,s0,-104
+GAS LISTING /tmp/ccY4LixC.s 			page 7
+
+
+ 270 0250 13050900 		mv	a0,s2
+ 271 0254 97000000 		call	_ZN5BaferC1Ei@plt
+ 271      E7800000 
+ 272              	.LVL18:
+  31:src/konzola.cpp ****     }
+ 273              		.loc 1 31 20
+ 274 025c 83B78900 		ld	a5,8(s3)
+ 275 0260 033804FA 		ld	a6,-96(s0)
+ 276 0264 033584FA 		ld	a0,-88(s0)
+ 277 0268 833504FB 		ld	a1,-80(s0)
+ 278 026c 033684FB 		ld	a2,-72(s0)
+ 279 0270 833604FC 		ld	a3,-64(s0)
+ 280 0274 033784FC 		ld	a4,-56(s0)
+ 281 0278 833884F9 		ld	a7,-104(s0)
+ 282 027c 23B01701 		sd	a7,0(a5)
+ 283 0280 23B40701 		sd	a6,8(a5)
+ 284 0284 23B8A700 		sd	a0,16(a5)
+ 285 0288 23BCB700 		sd	a1,24(a5)
+ 286 028c 23B0C702 		sd	a2,32(a5)
+ 287 0290 23B4D702 		sd	a3,40(a5)
+ 288 0294 23B8E702 		sd	a4,48(a5)
+  31:src/konzola.cpp ****     }
+ 289              		.loc 1 31 21
+ 290 0298 13050900 		mv	a0,s2
+ 291 029c 97000000 		call	_ZN5BaferD1Ev@plt
+ 291      E7800000 
+ 292              	.LVL19:
+ 293 02a4 6FF09FF4 		j	.L10
+ 294              		.cfi_endproc
+ 295              	.LFE21:
+ 297              		.align	2
+ 298              		.globl	_ZN7Konzola8getizlazEv
+ 300              	_ZN7Konzola8getizlazEv:
+ 301              	.LFB22:
+  35:src/konzola.cpp **** 
+  36:src/konzola.cpp **** int Konzola::getizlaz() {
+ 302              		.loc 1 36 25 is_stmt 1
+ 303              		.cfi_startproc
+ 304 02a8 130101FA 		addi	sp,sp,-96
+ 305              		.cfi_def_cfa_offset 96
+ 306 02ac 233C1104 		sd	ra,88(sp)
+ 307 02b0 23388104 		sd	s0,80(sp)
+ 308 02b4 23349104 		sd	s1,72(sp)
+ 309 02b8 23302105 		sd	s2,64(sp)
+ 310              		.cfi_offset 1, -8
+ 311              		.cfi_offset 8, -16
+ 312              		.cfi_offset 9, -24
+ 313              		.cfi_offset 18, -32
+ 314 02bc 13040106 		addi	s0,sp,96
+ 315              		.cfi_def_cfa 8, 0
+  37:src/konzola.cpp ****     if(baferizlaz==nullptr) {
+ 316              		.loc 1 37 5
+ 317              		.loc 1 37 18 is_stmt 0
+ 318 02c0 97070000 		ld	a5,.LANCHOR0+8
+ 318      83B70700 
+ 319              		.loc 1 37 5
+ 320 02c8 63860702 		beqz	a5,.L16
+GAS LISTING /tmp/ccY4LixC.s 			page 8
+
+
+ 321              	.L14:
+  38:src/konzola.cpp ****         baferizlaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+  39:src/konzola.cpp ****         *baferizlaz=Bafer(kapacitet);
+  40:src/konzola.cpp ****     }
+  41:src/konzola.cpp ****     return baferizlaz->get();
+ 322              		.loc 1 41 5 is_stmt 1
+ 323              		.loc 1 41 27 is_stmt 0
+ 324 02cc 17050000 		ld	a0,.LANCHOR0+8
+ 324      03350500 
+ 325 02d4 97000000 		call	_ZN5Bafer3getEv@plt
+ 325      E7800000 
+ 326              	.LVL20:
+  42:src/konzola.cpp **** }
+ 327              		.loc 1 42 1
+ 328 02dc 83308105 		ld	ra,88(sp)
+ 329              		.cfi_remember_state
+ 330              		.cfi_restore 1
+ 331 02e0 03340105 		ld	s0,80(sp)
+ 332              		.cfi_restore 8
+ 333              		.cfi_def_cfa 2, 96
+ 334 02e4 83348104 		ld	s1,72(sp)
+ 335              		.cfi_restore 9
+ 336 02e8 03390104 		ld	s2,64(sp)
+ 337              		.cfi_restore 18
+ 338 02ec 13010106 		addi	sp,sp,96
+ 339              		.cfi_def_cfa_offset 0
+ 340 02f0 67800000 		jr	ra
+ 341              	.L16:
+ 342              		.cfi_restore_state
+  38:src/konzola.cpp ****         baferizlaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 343              		.loc 1 38 9 is_stmt 1
+  38:src/konzola.cpp ****         baferizlaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 344              		.loc 1 38 49 is_stmt 0
+ 345 02f4 97040000 		lla	s1,.LANCHOR1
+ 345      93840400 
+ 346 02fc 83A70400 		lw	a5,0(s1)
+  38:src/konzola.cpp ****         baferizlaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 347              		.loc 1 38 48
+ 348 0300 13953700 		slli	a0,a5,3
+ 349 0304 3305F540 		sub	a0,a0,a5
+ 350 0308 13153500 		slli	a0,a0,3
+ 351 030c 97000000 		call	_ZN8Memorija9alokacijaEm@plt
+ 351      E7800000 
+ 352              	.LVL21:
+  38:src/konzola.cpp ****         baferizlaz=(Bafer*) Memorija::alokacija(kapacitet*sizeof(Bafer));
+ 353              		.loc 1 38 19
+ 354 0314 17090000 		lla	s2,.LANCHOR0
+ 354      13090900 
+ 355 031c 2334A900 		sd	a0,8(s2)
+  39:src/konzola.cpp ****     }
+ 356              		.loc 1 39 9 is_stmt 1
+  39:src/konzola.cpp ****     }
+ 357              		.loc 1 39 21 is_stmt 0
+ 358 0320 83A50400 		lw	a1,0(s1)
+ 359 0324 930484FA 		addi	s1,s0,-88
+ 360 0328 13850400 		mv	a0,s1
+ 361 032c 97000000 		call	_ZN5BaferC1Ei@plt
+GAS LISTING /tmp/ccY4LixC.s 			page 9
+
+
+ 361      E7800000 
+ 362              	.LVL22:
+  39:src/konzola.cpp ****     }
+ 363              		.loc 1 39 20
+ 364 0334 83378900 		ld	a5,8(s2)
+ 365 0338 033804FB 		ld	a6,-80(s0)
+ 366 033c 033584FB 		ld	a0,-72(s0)
+ 367 0340 833504FC 		ld	a1,-64(s0)
+ 368 0344 033684FC 		ld	a2,-56(s0)
+ 369 0348 833604FD 		ld	a3,-48(s0)
+ 370 034c 033784FD 		ld	a4,-40(s0)
+ 371 0350 833884FA 		ld	a7,-88(s0)
+ 372 0354 23B01701 		sd	a7,0(a5)
+ 373 0358 23B40701 		sd	a6,8(a5)
+ 374 035c 23B8A700 		sd	a0,16(a5)
+ 375 0360 23BCB700 		sd	a1,24(a5)
+ 376 0364 23B0C702 		sd	a2,32(a5)
+ 377 0368 23B4D702 		sd	a3,40(a5)
+ 378 036c 23B8E702 		sd	a4,48(a5)
+  39:src/konzola.cpp ****     }
+ 379              		.loc 1 39 21
+ 380 0370 13850400 		mv	a0,s1
+ 381 0374 97000000 		call	_ZN5BaferD1Ev@plt
+ 381      E7800000 
+ 382              	.LVL23:
+ 383 037c 6FF01FF5 		j	.L14
+ 384              		.cfi_endproc
+ 385              	.LFE22:
+ 387              		.align	2
+ 388              		.globl	_ZN7Konzola8getcntbiEv
+ 390              	_ZN7Konzola8getcntbiEv:
+ 391              	.LFB23:
+  43:src/konzola.cpp **** 
+  44:src/konzola.cpp **** int Konzola::getcntbi() {
+ 392              		.loc 1 44 25 is_stmt 1
+ 393              		.cfi_startproc
+ 394 0380 130101FF 		addi	sp,sp,-16
+ 395              		.cfi_def_cfa_offset 16
+ 396 0384 23341100 		sd	ra,8(sp)
+ 397 0388 23308100 		sd	s0,0(sp)
+ 398              		.cfi_offset 1, -8
+ 399              		.cfi_offset 8, -16
+ 400 038c 13040101 		addi	s0,sp,16
+ 401              		.cfi_def_cfa 8, 0
+  45:src/konzola.cpp ****     return baferizlaz->getCnt();
+ 402              		.loc 1 45 5
+ 403              		.loc 1 45 30 is_stmt 0
+ 404 0390 17050000 		ld	a0,.LANCHOR0+8
+ 404      03350500 
+ 405 0398 97000000 		call	_ZN5Bafer6getCntEv@plt
+ 405      E7800000 
+ 406              	.LVL24:
+  46:src/konzola.cpp **** }
+ 407              		.loc 1 46 1
+ 408 03a0 83308100 		ld	ra,8(sp)
+ 409              		.cfi_restore 1
+ 410 03a4 03340100 		ld	s0,0(sp)
+GAS LISTING /tmp/ccY4LixC.s 			page 10
+
+
+ 411              		.cfi_restore 8
+ 412              		.cfi_def_cfa 2, 16
+ 413 03a8 13010101 		addi	sp,sp,16
+ 414              		.cfi_def_cfa_offset 0
+ 415 03ac 67800000 		jr	ra
+ 416              		.cfi_endproc
+ 417              	.LFE23:
+ 419              		.align	2
+ 420              		.globl	_ZN7Konzola8getcntbuEv
+ 422              	_ZN7Konzola8getcntbuEv:
+ 423              	.LFB24:
+  47:src/konzola.cpp **** 
+  48:src/konzola.cpp **** int Konzola::getcntbu() {
+ 424              		.loc 1 48 25 is_stmt 1
+ 425              		.cfi_startproc
+ 426 03b0 130101FF 		addi	sp,sp,-16
+ 427              		.cfi_def_cfa_offset 16
+ 428 03b4 23341100 		sd	ra,8(sp)
+ 429 03b8 23308100 		sd	s0,0(sp)
+ 430              		.cfi_offset 1, -8
+ 431              		.cfi_offset 8, -16
+ 432 03bc 13040101 		addi	s0,sp,16
+ 433              		.cfi_def_cfa 8, 0
+  49:src/konzola.cpp ****     return baferulaz->getCnt();
+ 434              		.loc 1 49 5
+ 435              		.loc 1 49 29 is_stmt 0
+ 436 03c0 17050000 		ld	a0,.LANCHOR0
+ 436      03350500 
+ 437 03c8 97000000 		call	_ZN5Bafer6getCntEv@plt
+ 437      E7800000 
+ 438              	.LVL25:
+  50:src/konzola.cpp **** }
+ 439              		.loc 1 50 1
+ 440 03d0 83308100 		ld	ra,8(sp)
+ 441              		.cfi_restore 1
+ 442 03d4 03340100 		ld	s0,0(sp)
+ 443              		.cfi_restore 8
+ 444              		.cfi_def_cfa 2, 16
+ 445 03d8 13010101 		addi	sp,sp,16
+ 446              		.cfi_def_cfa_offset 0
+ 447 03dc 67800000 		jr	ra
+ 448              		.cfi_endproc
+ 449              	.LFE24:
+ 451              		.globl	_ZN7Konzola9kapacitetE
+ 452              		.globl	_ZN7Konzola9baferulazE
+ 453              		.globl	_ZN7Konzola10baferizlazE
+ 454              		.data
+ 455              		.align	2
+ 456              		.set	.LANCHOR1,. + 0
+ 459              	_ZN7Konzola9kapacitetE:
+ 460 0000 00040000 		.word	1024
+ 461              		.bss
+ 462              		.align	3
+ 463              		.set	.LANCHOR0,. + 0
+ 466              	_ZN7Konzola9baferulazE:
+ 467 0000 00000000 		.zero	8
+ 467      00000000 
+GAS LISTING /tmp/ccY4LixC.s 			page 11
+
+
+ 470              	_ZN7Konzola10baferizlazE:
+ 471 0008 00000000 		.zero	8
+ 471      00000000 
+ 472              		.text
+ 473              	.Letext0:
+ 474              		.file 2 "src/../h/../lib/hw.h"
+ 475              		.file 3 "src/../h/../h/memorija.h"
+ 476              		.file 4 "src/../h/thread.h"
+ 477              		.file 5 "src/../h/semafor.h"
+ 478              		.file 6 "src/../h/Bafer.h"
+ 479              		.file 7 "src/../h/konzola.h"
+ 480              		.file 8 "<built-in>"
+GAS LISTING /tmp/ccY4LixC.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 konzola.cpp
+     /tmp/ccY4LixC.s:9      .text:0000000000000000 _ZN7Konzola7putulazEi
+     /tmp/ccY4LixC.s:13     .text:0000000000000000 .L0 
+     /tmp/ccY4LixC.s:15     .text:0000000000000000 .L0 
+     /tmp/ccY4LixC.s:16     .text:0000000000000004 .L0 
+     /tmp/ccY4LixC.s:22     .text:0000000000000018 .L0 
+     /tmp/ccY4LixC.s:23     .text:0000000000000018 .L0 
+     /tmp/ccY4LixC.s:24     .text:0000000000000018 .L0 
+     /tmp/ccY4LixC.s:25     .text:0000000000000018 .L0 
+     /tmp/ccY4LixC.s:26     .text:0000000000000018 .L0 
+     /tmp/ccY4LixC.s:28     .text:000000000000001c .L0 
+     /tmp/ccY4LixC.s:31     .text:0000000000000020 .L0 
+     /tmp/ccY4LixC.s:32     .text:0000000000000020 .L0 
+     /tmp/ccY4LixC.s:34     .text:0000000000000028 .L0 
+     /tmp/ccY4LixC.s:38     .text:000000000000002c .L0 
+     /tmp/ccY4LixC.s:39     .text:000000000000002c .L0 
+     /tmp/ccY4LixC.s:44     .text:0000000000000040 .L0 
+     /tmp/ccY4LixC.s:45     .text:0000000000000044 .L0 
+     /tmp/ccY4LixC.s:46     .text:0000000000000044 .L0 
+     /tmp/ccY4LixC.s:48     .text:0000000000000048 .L0 
+     /tmp/ccY4LixC.s:49     .text:0000000000000048 .L0 
+     /tmp/ccY4LixC.s:51     .text:000000000000004c .L0 
+     /tmp/ccY4LixC.s:53     .text:0000000000000050 .L0 
+     /tmp/ccY4LixC.s:55     .text:0000000000000054 .L0 
+     /tmp/ccY4LixC.s:57     .text:0000000000000058 .L0 
+     /tmp/ccY4LixC.s:61     .text:000000000000005c .L0 
+     /tmp/ccY4LixC.s:63     .text:000000000000005c .L0 
+     /tmp/ccY4LixC.s:64     .text:000000000000005c .L0 
+     /tmp/ccY4LixC.s:67     .text:0000000000000068 .L0 
+     /tmp/ccY4LixC.s:74     .text:000000000000007c .L0 
+     /tmp/ccY4LixC.s:77     .text:0000000000000088 .L0 
+     /tmp/ccY4LixC.s:78     .text:0000000000000088 .L0 
+     /tmp/ccY4LixC.s:84     .text:000000000000009c .L0 
+     /tmp/ccY4LixC.s:100    .text:00000000000000d8 .L0 
+     /tmp/ccY4LixC.s:104    .text:00000000000000e8 .L0 
+     /tmp/ccY4LixC.s:110    .text:00000000000000e8 _ZN7Konzola7getulazEv
+     /tmp/ccY4LixC.s:113    .text:00000000000000e8 .L0 
+     /tmp/ccY4LixC.s:114    .text:00000000000000e8 .L0 
+     /tmp/ccY4LixC.s:115    .text:00000000000000ec .L0 
+     /tmp/ccY4LixC.s:120    .text:00000000000000fc .L0 
+     /tmp/ccY4LixC.s:121    .text:00000000000000fc .L0 
+     /tmp/ccY4LixC.s:122    .text:00000000000000fc .L0 
+     /tmp/ccY4LixC.s:123    .text:00000000000000fc .L0 
+     /tmp/ccY4LixC.s:125    .text:0000000000000100 .L0 
+     /tmp/ccY4LixC.s:127    .text:0000000000000100 .L0 
+     /tmp/ccY4LixC.s:128    .text:0000000000000100 .L0 
+     /tmp/ccY4LixC.s:130    .text:0000000000000108 .L0 
+     /tmp/ccY4LixC.s:133    .text:000000000000010c .L0 
+     /tmp/ccY4LixC.s:134    .text:000000000000010c .L0 
+     /tmp/ccY4LixC.s:138    .text:000000000000011c .L0 
+     /tmp/ccY4LixC.s:139    .text:0000000000000120 .L0 
+     /tmp/ccY4LixC.s:140    .text:0000000000000120 .L0 
+     /tmp/ccY4LixC.s:142    .text:0000000000000124 .L0 
+     /tmp/ccY4LixC.s:143    .text:0000000000000124 .L0 
+     /tmp/ccY4LixC.s:145    .text:0000000000000128 .L0 
+     /tmp/ccY4LixC.s:147    .text:000000000000012c .L0 
+GAS LISTING /tmp/ccY4LixC.s 			page 13
+
+
+     /tmp/ccY4LixC.s:149    .text:0000000000000130 .L0 
+     /tmp/ccY4LixC.s:152    .text:0000000000000134 .L0 
+     /tmp/ccY4LixC.s:154    .text:0000000000000134 .L0 
+     /tmp/ccY4LixC.s:155    .text:0000000000000134 .L0 
+     /tmp/ccY4LixC.s:158    .text:0000000000000140 .L0 
+     /tmp/ccY4LixC.s:164    .text:0000000000000154 .L0 
+     /tmp/ccY4LixC.s:167    .text:0000000000000160 .L0 
+     /tmp/ccY4LixC.s:168    .text:0000000000000160 .L0 
+     /tmp/ccY4LixC.s:174    .text:0000000000000174 .L0 
+     /tmp/ccY4LixC.s:190    .text:00000000000001b0 .L0 
+     /tmp/ccY4LixC.s:194    .text:00000000000001c0 .L0 
+     /tmp/ccY4LixC.s:200    .text:00000000000001c0 _ZN7Konzola8putizlazEi
+     /tmp/ccY4LixC.s:203    .text:00000000000001c0 .L0 
+     /tmp/ccY4LixC.s:205    .text:00000000000001c0 .L0 
+     /tmp/ccY4LixC.s:206    .text:00000000000001c4 .L0 
+     /tmp/ccY4LixC.s:212    .text:00000000000001d8 .L0 
+     /tmp/ccY4LixC.s:213    .text:00000000000001d8 .L0 
+     /tmp/ccY4LixC.s:214    .text:00000000000001d8 .L0 
+     /tmp/ccY4LixC.s:215    .text:00000000000001d8 .L0 
+     /tmp/ccY4LixC.s:216    .text:00000000000001d8 .L0 
+     /tmp/ccY4LixC.s:218    .text:00000000000001dc .L0 
+     /tmp/ccY4LixC.s:221    .text:00000000000001e0 .L0 
+     /tmp/ccY4LixC.s:222    .text:00000000000001e0 .L0 
+     /tmp/ccY4LixC.s:224    .text:00000000000001e8 .L0 
+     /tmp/ccY4LixC.s:228    .text:00000000000001ec .L0 
+     /tmp/ccY4LixC.s:229    .text:00000000000001ec .L0 
+     /tmp/ccY4LixC.s:234    .text:0000000000000200 .L0 
+     /tmp/ccY4LixC.s:235    .text:0000000000000204 .L0 
+     /tmp/ccY4LixC.s:236    .text:0000000000000204 .L0 
+     /tmp/ccY4LixC.s:238    .text:0000000000000208 .L0 
+     /tmp/ccY4LixC.s:239    .text:0000000000000208 .L0 
+     /tmp/ccY4LixC.s:241    .text:000000000000020c .L0 
+     /tmp/ccY4LixC.s:243    .text:0000000000000210 .L0 
+     /tmp/ccY4LixC.s:245    .text:0000000000000214 .L0 
+     /tmp/ccY4LixC.s:247    .text:0000000000000218 .L0 
+     /tmp/ccY4LixC.s:251    .text:000000000000021c .L0 
+     /tmp/ccY4LixC.s:253    .text:000000000000021c .L0 
+     /tmp/ccY4LixC.s:254    .text:000000000000021c .L0 
+     /tmp/ccY4LixC.s:257    .text:0000000000000228 .L0 
+     /tmp/ccY4LixC.s:264    .text:000000000000023c .L0 
+     /tmp/ccY4LixC.s:267    .text:0000000000000248 .L0 
+     /tmp/ccY4LixC.s:268    .text:0000000000000248 .L0 
+     /tmp/ccY4LixC.s:274    .text:000000000000025c .L0 
+     /tmp/ccY4LixC.s:290    .text:0000000000000298 .L0 
+     /tmp/ccY4LixC.s:294    .text:00000000000002a8 .L0 
+     /tmp/ccY4LixC.s:300    .text:00000000000002a8 _ZN7Konzola8getizlazEv
+     /tmp/ccY4LixC.s:303    .text:00000000000002a8 .L0 
+     /tmp/ccY4LixC.s:304    .text:00000000000002a8 .L0 
+     /tmp/ccY4LixC.s:305    .text:00000000000002ac .L0 
+     /tmp/ccY4LixC.s:310    .text:00000000000002bc .L0 
+     /tmp/ccY4LixC.s:311    .text:00000000000002bc .L0 
+     /tmp/ccY4LixC.s:312    .text:00000000000002bc .L0 
+     /tmp/ccY4LixC.s:313    .text:00000000000002bc .L0 
+     /tmp/ccY4LixC.s:315    .text:00000000000002c0 .L0 
+     /tmp/ccY4LixC.s:317    .text:00000000000002c0 .L0 
+     /tmp/ccY4LixC.s:318    .text:00000000000002c0 .L0 
+     /tmp/ccY4LixC.s:320    .text:00000000000002c8 .L0 
+GAS LISTING /tmp/ccY4LixC.s 			page 14
+
+
+     /tmp/ccY4LixC.s:323    .text:00000000000002cc .L0 
+     /tmp/ccY4LixC.s:324    .text:00000000000002cc .L0 
+     /tmp/ccY4LixC.s:328    .text:00000000000002dc .L0 
+     /tmp/ccY4LixC.s:329    .text:00000000000002e0 .L0 
+     /tmp/ccY4LixC.s:330    .text:00000000000002e0 .L0 
+     /tmp/ccY4LixC.s:332    .text:00000000000002e4 .L0 
+     /tmp/ccY4LixC.s:333    .text:00000000000002e4 .L0 
+     /tmp/ccY4LixC.s:335    .text:00000000000002e8 .L0 
+     /tmp/ccY4LixC.s:337    .text:00000000000002ec .L0 
+     /tmp/ccY4LixC.s:339    .text:00000000000002f0 .L0 
+     /tmp/ccY4LixC.s:342    .text:00000000000002f4 .L0 
+     /tmp/ccY4LixC.s:344    .text:00000000000002f4 .L0 
+     /tmp/ccY4LixC.s:345    .text:00000000000002f4 .L0 
+     /tmp/ccY4LixC.s:348    .text:0000000000000300 .L0 
+     /tmp/ccY4LixC.s:354    .text:0000000000000314 .L0 
+     /tmp/ccY4LixC.s:357    .text:0000000000000320 .L0 
+     /tmp/ccY4LixC.s:358    .text:0000000000000320 .L0 
+     /tmp/ccY4LixC.s:364    .text:0000000000000334 .L0 
+     /tmp/ccY4LixC.s:380    .text:0000000000000370 .L0 
+     /tmp/ccY4LixC.s:384    .text:0000000000000380 .L0 
+     /tmp/ccY4LixC.s:390    .text:0000000000000380 _ZN7Konzola8getcntbiEv
+     /tmp/ccY4LixC.s:393    .text:0000000000000380 .L0 
+     /tmp/ccY4LixC.s:394    .text:0000000000000380 .L0 
+     /tmp/ccY4LixC.s:395    .text:0000000000000384 .L0 
+     /tmp/ccY4LixC.s:398    .text:000000000000038c .L0 
+     /tmp/ccY4LixC.s:399    .text:000000000000038c .L0 
+     /tmp/ccY4LixC.s:401    .text:0000000000000390 .L0 
+     /tmp/ccY4LixC.s:403    .text:0000000000000390 .L0 
+     /tmp/ccY4LixC.s:404    .text:0000000000000390 .L0 
+     /tmp/ccY4LixC.s:408    .text:00000000000003a0 .L0 
+     /tmp/ccY4LixC.s:409    .text:00000000000003a4 .L0 
+     /tmp/ccY4LixC.s:411    .text:00000000000003a8 .L0 
+     /tmp/ccY4LixC.s:412    .text:00000000000003a8 .L0 
+     /tmp/ccY4LixC.s:414    .text:00000000000003ac .L0 
+     /tmp/ccY4LixC.s:416    .text:00000000000003b0 .L0 
+     /tmp/ccY4LixC.s:422    .text:00000000000003b0 _ZN7Konzola8getcntbuEv
+     /tmp/ccY4LixC.s:425    .text:00000000000003b0 .L0 
+     /tmp/ccY4LixC.s:426    .text:00000000000003b0 .L0 
+     /tmp/ccY4LixC.s:427    .text:00000000000003b4 .L0 
+     /tmp/ccY4LixC.s:430    .text:00000000000003bc .L0 
+     /tmp/ccY4LixC.s:431    .text:00000000000003bc .L0 
+     /tmp/ccY4LixC.s:433    .text:00000000000003c0 .L0 
+     /tmp/ccY4LixC.s:435    .text:00000000000003c0 .L0 
+     /tmp/ccY4LixC.s:436    .text:00000000000003c0 .L0 
+     /tmp/ccY4LixC.s:440    .text:00000000000003d0 .L0 
+     /tmp/ccY4LixC.s:441    .text:00000000000003d4 .L0 
+     /tmp/ccY4LixC.s:443    .text:00000000000003d8 .L0 
+     /tmp/ccY4LixC.s:444    .text:00000000000003d8 .L0 
+     /tmp/ccY4LixC.s:446    .text:00000000000003dc .L0 
+     /tmp/ccY4LixC.s:448    .text:00000000000003e0 .L0 
+     /tmp/ccY4LixC.s:459    .data:0000000000000000 _ZN7Konzola9kapacitetE
+     /tmp/ccY4LixC.s:466    .bss:0000000000000000 _ZN7Konzola9baferulazE
+     /tmp/ccY4LixC.s:470    .bss:0000000000000008 _ZN7Konzola10baferizlazE
+     /tmp/ccY4LixC.s:456    .data:0000000000000000 .LANCHOR1
+     /tmp/ccY4LixC.s:463    .bss:0000000000000000 .LANCHOR0
+     /tmp/ccY4LixC.s:481    .text:00000000000003e0 .L0 
+     /tmp/ccY4LixC.s:32     .text:0000000000000020 .L0 
+GAS LISTING /tmp/ccY4LixC.s 			page 15
+
+
+     /tmp/ccY4LixC.s:40     .text:0000000000000030 .L0 
+     /tmp/ccY4LixC.s:64     .text:000000000000005c .L0 
+     /tmp/ccY4LixC.s:74     .text:000000000000007c .L0 
+     /tmp/ccY4LixC.s:128    .text:0000000000000100 .L0 
+     /tmp/ccY4LixC.s:134    .text:000000000000010c .L0 
+     /tmp/ccY4LixC.s:155    .text:0000000000000134 .L0 
+     /tmp/ccY4LixC.s:164    .text:0000000000000154 .L0 
+     /tmp/ccY4LixC.s:222    .text:00000000000001e0 .L0 
+     /tmp/ccY4LixC.s:230    .text:00000000000001f0 .L0 
+     /tmp/ccY4LixC.s:254    .text:000000000000021c .L0 
+     /tmp/ccY4LixC.s:264    .text:000000000000023c .L0 
+     /tmp/ccY4LixC.s:318    .text:00000000000002c0 .L0 
+     /tmp/ccY4LixC.s:324    .text:00000000000002cc .L0 
+     /tmp/ccY4LixC.s:345    .text:00000000000002f4 .L0 
+     /tmp/ccY4LixC.s:354    .text:0000000000000314 .L0 
+     /tmp/ccY4LixC.s:404    .text:0000000000000390 .L0 
+     /tmp/ccY4LixC.s:436    .text:00000000000003c0 .L0 
+     /tmp/ccY4LixC.s:60     .text:000000000000005c .L4
+     /tmp/ccY4LixC.s:36     .text:000000000000002c .L2
+     /tmp/ccY4LixC.s:151    .text:0000000000000134 .L8
+     /tmp/ccY4LixC.s:131    .text:000000000000010c .L6
+     /tmp/ccY4LixC.s:250    .text:000000000000021c .L12
+     /tmp/ccY4LixC.s:226    .text:00000000000001ec .L10
+     /tmp/ccY4LixC.s:341    .text:00000000000002f4 .L16
+     /tmp/ccY4LixC.s:321    .text:00000000000002cc .L14
+     /tmp/ccY4LixC.s:1635   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccY4LixC.s:2730   .debug_str:0000000000000558 .LASF110
+     /tmp/ccY4LixC.s:2766   .debug_str:00000000000006e2 .LASF111
+     /tmp/ccY4LixC.s:2568   .debug_str:00000000000000d9 .LASF112
+     /tmp/ccY4LixC.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccY4LixC.s:473    .text:00000000000003e0 .Letext0
+     /tmp/ccY4LixC.s:2534   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccY4LixC.s:2670   .debug_str:0000000000000390 .LASF0
+     /tmp/ccY4LixC.s:2688   .debug_str:000000000000042a .LASF1
+     /tmp/ccY4LixC.s:2654   .debug_str:000000000000031a .LASF2
+     /tmp/ccY4LixC.s:2632   .debug_str:000000000000028b .LASF4
+     /tmp/ccY4LixC.s:2716   .debug_str:00000000000004f2 .LASF3
+     /tmp/ccY4LixC.s:2564   .debug_str:00000000000000c2 .LASF5
+     /tmp/ccY4LixC.s:2690   .debug_str:000000000000043d .LASF6
+     /tmp/ccY4LixC.s:2668   .debug_str:000000000000037d .LASF7
+     /tmp/ccY4LixC.s:2738   .debug_str:0000000000000645 .LASF8
+     /tmp/ccY4LixC.s:2622   .debug_str:0000000000000249 .LASF9
+     /tmp/ccY4LixC.s:2702   .debug_str:0000000000000492 .LASF10
+     /tmp/ccY4LixC.s:2734   .debug_str:000000000000062c .LASF11
+     /tmp/ccY4LixC.s:2640   .debug_str:00000000000002a9 .LASF12
+     /tmp/ccY4LixC.s:2544   .debug_str:0000000000000033 .LASF13
+     /tmp/ccY4LixC.s:2576   .debug_str:0000000000000125 .LASF14
+     /tmp/ccY4LixC.s:2712   .debug_str:00000000000004d5 .LASF15
+     /tmp/ccY4LixC.s:2584   .debug_str:0000000000000159 .LASF16
+     /tmp/ccY4LixC.s:2582   .debug_str:0000000000000150 .LASF24
+     /tmp/ccY4LixC.s:2662   .debug_str:0000000000000347 .LASF61
+     /tmp/ccY4LixC.s:2762   .debug_str:00000000000006ca .LASF17
+     /tmp/ccY4LixC.s:2750   .debug_str:0000000000000696 .LASF18
+     /tmp/ccY4LixC.s:2724   .debug_str:0000000000000540 .LASF19
+     /tmp/ccY4LixC.s:2598   .debug_str:00000000000001c3 .LASF20
+     /tmp/ccY4LixC.s:2542   .debug_str:0000000000000015 .LASF22
+     /tmp/ccY4LixC.s:2748   .debug_str:000000000000068c .LASF21
+GAS LISTING /tmp/ccY4LixC.s 			page 16
+
+
+     /tmp/ccY4LixC.s:2678   .debug_str:00000000000003c5 .LASF23
+     /tmp/ccY4LixC.s:2616   .debug_str:0000000000000222 .LASF32
+     /tmp/ccY4LixC.s:2664   .debug_str:0000000000000351 .LASF34
+     /tmp/ccY4LixC.s:2672   .debug_str:000000000000039d .LASF49
+     /tmp/ccY4LixC.s:2588   .debug_str:0000000000000177 .LASF51
+     /tmp/ccY4LixC.s:2592   .debug_str:00000000000001ad .LASF25
+     /tmp/ccY4LixC.s:2714   .debug_str:00000000000004eb .LASF26
+     /tmp/ccY4LixC.s:2614   .debug_str:000000000000021b .LASF27
+     /tmp/ccY4LixC.s:2550   .debug_str:000000000000006c .LASF69
+     /tmp/ccY4LixC.s:2706   .debug_str:00000000000004aa .LASF71
+     /tmp/ccY4LixC.s:2540   .debug_str:000000000000000e .LASF28
+     /tmp/ccY4LixC.s:2574   .debug_str:0000000000000114 .LASF29
+     /tmp/ccY4LixC.s:2756   .debug_str:00000000000006a6 .LASF30
+     /tmp/ccY4LixC.s:2548   .debug_str:000000000000004c .LASF31
+     /tmp/ccY4LixC.s:2638   .debug_str:00000000000002a4 .LASF113
+     /tmp/ccY4LixC.s:2674   .debug_str:00000000000003ac .LASF33
+     /tmp/ccY4LixC.s:2652   .debug_str:0000000000000307 .LASF35
+     /tmp/ccY4LixC.s:2596   .debug_str:00000000000001bd .LASF36
+     /tmp/ccY4LixC.s:2556   .debug_str:000000000000008a .LASF37
+     /tmp/ccY4LixC.s:2636   .debug_str:000000000000029b .LASF38
+     /tmp/ccY4LixC.s:2606   .debug_str:00000000000001fe .LASF39
+     /tmp/ccY4LixC.s:2646   .debug_str:00000000000002e2 .LASF86
+     /tmp/ccY4LixC.s:2572   .debug_str:0000000000000107 .LASF40
+     /tmp/ccY4LixC.s:2728   .debug_str:000000000000054c .LASF41
+     /tmp/ccY4LixC.s:2618   .debug_str:0000000000000228 .LASF42
+     /tmp/ccY4LixC.s:2628   .debug_str:0000000000000272 .LASF43
+     /tmp/ccY4LixC.s:2720   .debug_str:000000000000051d .LASF44
+     /tmp/ccY4LixC.s:2630   .debug_str:000000000000027e .LASF46
+     /tmp/ccY4LixC.s:2722   .debug_str:000000000000052d .LASF45
+     /tmp/ccY4LixC.s:2760   .debug_str:00000000000006bd .LASF47
+     /tmp/ccY4LixC.s:2594   .debug_str:00000000000001b2 .LASF48
+     /tmp/ccY4LixC.s:2742   .debug_str:000000000000065d .LASF114
+     /tmp/ccY4LixC.s:2656   .debug_str:0000000000000328 .LASF50
+     /tmp/ccY4LixC.s:2746   .debug_str:000000000000067c .LASF52
+     /tmp/ccY4LixC.s:2726   .debug_str:0000000000000545 .LASF53
+     /tmp/ccY4LixC.s:2708   .debug_str:00000000000004bd .LASF54
+     /tmp/ccY4LixC.s:2744   .debug_str:0000000000000671 .LASF55
+     /tmp/ccY4LixC.s:2700   .debug_str:0000000000000489 .LASF56
+     /tmp/ccY4LixC.s:2754   .debug_str:00000000000006a1 .LASF57
+     /tmp/ccY4LixC.s:2610   .debug_str:000000000000020b .LASF58
+     /tmp/ccY4LixC.s:2554   .debug_str:0000000000000085 .LASF59
+     /tmp/ccY4LixC.s:2536   .debug_str:0000000000000000 .LASF60
+     /tmp/ccY4LixC.s:2650   .debug_str:0000000000000302 .LASF62
+     /tmp/ccY4LixC.s:2624   .debug_str:0000000000000257 .LASF63
+     /tmp/ccY4LixC.s:2676   .debug_str:00000000000003b5 .LASF64
+     /tmp/ccY4LixC.s:2566   .debug_str:00000000000000c9 .LASF65
+     /tmp/ccY4LixC.s:2578   .debug_str:0000000000000131 .LASF66
+     /tmp/ccY4LixC.s:2620   .debug_str:0000000000000238 .LASF67
+     /tmp/ccY4LixC.s:2552   .debug_str:0000000000000075 .LASF68
+     /tmp/ccY4LixC.s:2608   .debug_str:0000000000000206 .LASF70
+     /tmp/ccY4LixC.s:2764   .debug_str:00000000000006cf .LASF72
+     /tmp/ccY4LixC.s:2694   .debug_str:0000000000000466 .LASF73
+     /tmp/ccY4LixC.s:2600   .debug_str:00000000000001d0 .LASF74
+     /tmp/ccY4LixC.s:2538   .debug_str:0000000000000008 .LASF75
+     /tmp/ccY4LixC.s:2648   .debug_str:00000000000002ee .LASF76
+     /tmp/ccY4LixC.s:2752   .debug_str:000000000000069b .LASF77
+     /tmp/ccY4LixC.s:2710   .debug_str:00000000000004ce .LASF78
+GAS LISTING /tmp/ccY4LixC.s 			page 17
+
+
+     /tmp/ccY4LixC.s:2604   .debug_str:00000000000001ef .LASF79
+     /tmp/ccY4LixC.s:2580   .debug_str:0000000000000142 .LASF80
+     /tmp/ccY4LixC.s:2560   .debug_str:00000000000000a1 .LASF81
+     /tmp/ccY4LixC.s:2736   .debug_str:000000000000063b .LASF82
+     /tmp/ccY4LixC.s:2696   .debug_str:000000000000046d .LASF83
+     /tmp/ccY4LixC.s:2626   .debug_str:000000000000026b .LASF84
+     /tmp/ccY4LixC.s:2698   .debug_str:000000000000047b .LASF85
+     /tmp/ccY4LixC.s:2660   .debug_str:0000000000000337 .LASF87
+     /tmp/ccY4LixC.s:2732   .debug_str:000000000000061c .LASF115
+     /tmp/ccY4LixC.s:2644   .debug_str:00000000000002d0 .LASF88
+     /tmp/ccY4LixC.s:2558   .debug_str:000000000000009a .LASF89
+     /tmp/ccY4LixC.s:2570   .debug_str:00000000000000f4 .LASF90
+     /tmp/ccY4LixC.s:2740   .debug_str:0000000000000655 .LASF91
+     /tmp/ccY4LixC.s:2758   .debug_str:00000000000006b2 .LASF92
+     /tmp/ccY4LixC.s:2612   .debug_str:0000000000000211 .LASF93
+     /tmp/ccY4LixC.s:2602   .debug_str:00000000000001e5 .LASF94
+     /tmp/ccY4LixC.s:2546   .debug_str:0000000000000043 .LASF95
+     /tmp/ccY4LixC.s:2642   .debug_str:00000000000002b9 .LASF97
+     /tmp/ccY4LixC.s:2658   .debug_str:000000000000032e .LASF96
+     /tmp/ccY4LixC.s:2680   .debug_str:00000000000003de .LASF98
+     /tmp/ccY4LixC.s:2586   .debug_str:000000000000016f .LASF99
+     /tmp/ccY4LixC.s:2686   .debug_str:0000000000000414 .LASF100
+     /tmp/ccY4LixC.s:2682   .debug_str:00000000000003f5 .LASF101
+     /tmp/ccY4LixC.s:2692   .debug_str:0000000000000450 .LASF102
+     /tmp/ccY4LixC.s:2704   .debug_str:00000000000004a1 .LASF103
+     /tmp/ccY4LixC.s:2590   .debug_str:0000000000000196 .LASF104
+     /tmp/ccY4LixC.s:2634   .debug_str:0000000000000292 .LASF105
+     /tmp/ccY4LixC.s:2684   .debug_str:00000000000003fd .LASF106
+     /tmp/ccY4LixC.s:2718   .debug_str:0000000000000504 .LASF107
+     /tmp/ccY4LixC.s:2562   .debug_str:00000000000000ab .LASF108
+     /tmp/ccY4LixC.s:2666   .debug_str:0000000000000366 .LASF109
+     /tmp/ccY4LixC.s:423    .text:00000000000003b0 .LFB24
+     /tmp/ccY4LixC.s:449    .text:00000000000003e0 .LFE24
+     /tmp/ccY4LixC.s:438    .text:00000000000003d0 .LVL25
+     /tmp/ccY4LixC.s:391    .text:0000000000000380 .LFB23
+     /tmp/ccY4LixC.s:417    .text:00000000000003b0 .LFE23
+     /tmp/ccY4LixC.s:406    .text:00000000000003a0 .LVL24
+     /tmp/ccY4LixC.s:301    .text:00000000000002a8 .LFB22
+     /tmp/ccY4LixC.s:385    .text:0000000000000380 .LFE22
+     /tmp/ccY4LixC.s:326    .text:00000000000002dc .LVL20
+     /tmp/ccY4LixC.s:352    .text:0000000000000314 .LVL21
+     /tmp/ccY4LixC.s:362    .text:0000000000000334 .LVL22
+     /tmp/ccY4LixC.s:382    .text:000000000000037c .LVL23
+     /tmp/ccY4LixC.s:201    .text:00000000000001c0 .LFB21
+     /tmp/ccY4LixC.s:295    .text:00000000000002a8 .LFE21
+     /tmp/ccY4LixC.s:2471   .debug_loc:0000000000000000 .LLST1
+     /tmp/ccY4LixC.s:232    .text:0000000000000200 .LVL14
+     /tmp/ccY4LixC.s:262    .text:000000000000023c .LVL17
+     /tmp/ccY4LixC.s:272    .text:000000000000025c .LVL18
+     /tmp/ccY4LixC.s:292    .text:00000000000002a4 .LVL19
+     /tmp/ccY4LixC.s:111    .text:00000000000000e8 .LFB20
+     /tmp/ccY4LixC.s:195    .text:00000000000001c0 .LFE20
+     /tmp/ccY4LixC.s:136    .text:000000000000011c .LVL8
+     /tmp/ccY4LixC.s:162    .text:0000000000000154 .LVL9
+     /tmp/ccY4LixC.s:172    .text:0000000000000174 .LVL10
+     /tmp/ccY4LixC.s:192    .text:00000000000001bc .LVL11
+     /tmp/ccY4LixC.s:10     .text:0000000000000000 .LFB19
+GAS LISTING /tmp/ccY4LixC.s 			page 18
+
+
+     /tmp/ccY4LixC.s:105    .text:00000000000000e8 .LFE19
+     /tmp/ccY4LixC.s:2496   .debug_loc:0000000000000062 .LLST0
+     /tmp/ccY4LixC.s:42     .text:0000000000000040 .LVL2
+     /tmp/ccY4LixC.s:72     .text:000000000000007c .LVL5
+     /tmp/ccY4LixC.s:82     .text:000000000000009c .LVL6
+     /tmp/ccY4LixC.s:102    .text:00000000000000e4 .LVL7
+     /tmp/ccY4LixC.s:204    .text:00000000000001c0 .LVL12
+     /tmp/ccY4LixC.s:225    .text:00000000000001ec .LVL13
+     /tmp/ccY4LixC.s:249    .text:000000000000021c .LVL15
+     /tmp/ccY4LixC.s:258    .text:000000000000022c .LVL16
+     /tmp/ccY4LixC.s:14     .text:0000000000000000 .LVL0
+     /tmp/ccY4LixC.s:35     .text:000000000000002c .LVL1
+     /tmp/ccY4LixC.s:59     .text:000000000000005c .LVL3
+     /tmp/ccY4LixC.s:68     .text:000000000000006c .LVL4
+     /tmp/ccY4LixC.s:482    .debug_info:0000000000000000 .Ldebug_info0
+
+UNDEFINED SYMBOLS
+_ZN5Bafer3putEi
+_ZN8Memorija9alokacijaEm
+_ZN5BaferC1Ei
+_ZN5BaferD1Ev
+_ZN5Bafer3getEv
+_ZN5Bafer6getCntEv

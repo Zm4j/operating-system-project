@@ -1,0 +1,2502 @@
+GAS LISTING /tmp/cc9Uw2dj.s 			page 1
+
+
+   1              		.file	"provera.cpp"
+   2              		.option pic
+   3              		.option norelax
+   4              		.text
+   5              	.Ltext0:
+   6              		.section	.rodata.str1.8,"aMS",@progbits,1
+   7              		.align	3
+   8              	.LC0:
+   9 0000 73636175 		.string	"scause: \n"
+   9      73653A20 
+   9      0A00
+  10 000a 00000000 		.align	3
+  10      0000
+  11              	.LC1:
+  12 0010 0A737374 		.string	"\nsstatus: \n"
+  12      61747573 
+  12      3A200A00 
+  13              		.text
+  14              		.align	2
+  15              		.globl	handle
+  17              	handle:
+  18              	.LFB20:
+  19              		.file 1 "src/provera.cpp"
+   1:src/provera.cpp **** #include "../h/memorija.h"
+   2:src/provera.cpp **** #include "../h/printing.h"
+   3:src/provera.cpp **** #include "../h/thread.h"
+   4:src/provera.cpp **** #include "../h/semafor.h"
+   5:src/provera.cpp **** #include "../h/scheduler.h"
+   6:src/provera.cpp **** #include "../h/konzola.h"
+   7:src/provera.cpp **** 
+   8:src/provera.cpp **** extern "C" void handle(){
+  20              		.loc 1 8 25
+  21              		.cfi_startproc
+  22 0000 130101F2 		addi	sp,sp,-224
+  23              		.cfi_def_cfa_offset 224
+  24 0004 233C110C 		sd	ra,216(sp)
+  25 0008 2338810C 		sd	s0,208(sp)
+  26 000c 2334910C 		sd	s1,200(sp)
+  27              		.cfi_offset 1, -8
+  28              		.cfi_offset 8, -16
+  29              		.cfi_offset 9, -24
+  30 0010 1304010E 		addi	s0,sp,224
+  31              		.cfi_def_cfa 8, 0
+   9:src/provera.cpp ****     uint64 volatile prekid;
+  32              		.loc 1 9 5
+  10:src/provera.cpp ****     __asm__ volatile("csrr %0, scause" : "=r" (prekid));
+  33              		.loc 1 10 5
+  34              		.loc 1 10 56 is_stmt 0
+  35              	#APP
+  36              	# 10 "src/provera.cpp" 1
+  11              	
+  37              		csrr a5, scause
+  38              	# 0 "" 2
+  39              	#NO_APP
+  40 0018 233CF4FC 		sd	a5,-40(s0)
+  12:src/provera.cpp ****     //printString("scause: \n");
+  13:src/provera.cpp ****     //printInt(prekid >> 63);
+GAS LISTING /tmp/cc9Uw2dj.s 			page 2
+
+
+  14:src/provera.cpp ****     //printInt(prekid % 16);
+  15:src/provera.cpp ****     //printString("\nsstatus: \n");
+  16:src/provera.cpp **** 
+  17:src/provera.cpp ****     //uint64 volatile status;
+  18:src/provera.cpp ****     //__asm__ volatile("csrr %0, sstatus" : "=r" (status));
+  19:src/provera.cpp **** 
+  20:src/provera.cpp ****     if(prekid%16>=8 && !(prekid >> 63)){
+  41              		.loc 1 20 5 is_stmt 1
+  42              	.LBB43:
+  43              		.loc 1 20 8 is_stmt 0
+  44 001c 833784FD 		ld	a5,-40(s0)
+  45              		.loc 1 20 17
+  46 0020 93F78700 		andi	a5,a5,8
+  47              		.loc 1 20 21
+  48 0024 638A0710 		beqz	a5,.L2
+  49              		.loc 1 20 24 discriminator 1
+  50 0028 833784FD 		ld	a5,-40(s0)
+  51              		.loc 1 20 21 discriminator 1
+  52 002c 63C60710 		bltz	a5,.L2
+  53              	.LBB44:
+  21:src/provera.cpp ****         __asm__ volatile("csrr x3, sepc");
+  54              		.loc 1 21 9 is_stmt 1
+  55              		.loc 1 21 42 is_stmt 0
+  56              	#APP
+  57              	# 21 "src/provera.cpp" 1
+  22              	        __asm__ volatile("addi x3,x3,4");
+  58              		csrr x3, sepc
+  59              	# 0 "" 2
+  60              		.loc 1 22 9 is_stmt 1
+  61              		.loc 1 22 41 is_stmt 0
+  62              	# 22 "src/provera.cpp" 1
+  23              	        __asm__ volatile("csrw sepc, x3");
+  63              		addi x3,x3,4
+  64              	# 0 "" 2
+  65              		.loc 1 23 9 is_stmt 1
+  66              		.loc 1 23 42 is_stmt 0
+  67              	# 23 "src/provera.cpp" 1
+  24              	        uint64 volatile a0;
+  68              		csrw sepc, x3
+  69              	# 0 "" 2
+  70              		.loc 1 24 9 is_stmt 1
+  25:src/provera.cpp ****         __asm__ volatile("mv %0, a0" : "=r" (a0));
+  71              		.loc 1 25 9
+  72              		.loc 1 25 50 is_stmt 0
+  73              	# 25 "src/provera.cpp" 1
+  26              	        //mem_alloc
+  74              		mv a5, a0
+  75              	# 0 "" 2
+  76              	#NO_APP
+  77 0040 2338F4F2 		sd	a5,-208(s0)
+  27:src/provera.cpp ****         if(a0==0x01){
+  78              		.loc 1 27 9 is_stmt 1
+  79              	.LBB45:
+  80              		.loc 1 27 14 is_stmt 0
+  81 0044 033704F3 		ld	a4,-208(s0)
+  82              		.loc 1 27 9
+  83 0048 93071000 		li	a5,1
+GAS LISTING /tmp/cc9Uw2dj.s 			page 3
+
+
+  84 004c 630EF712 		beq	a4,a5,.L30
+  85              	.L4:
+  86              	.LBE45:
+  28:src/provera.cpp ****             uint64 size;
+  29:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (size));
+  30:src/provera.cpp ****             Memorija::alokacija(size);
+  31:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+  32:src/provera.cpp ****         }
+  33:src/provera.cpp ****         //mem_free
+  34:src/provera.cpp ****         if(a0==0x02){
+  87              		.loc 1 34 9 is_stmt 1
+  88              	.LBB47:
+  89              		.loc 1 34 14 is_stmt 0
+  90 0050 033704F3 		ld	a4,-208(s0)
+  91              		.loc 1 34 9
+  92 0054 93072000 		li	a5,2
+  93 0058 6302F714 		beq	a4,a5,.L31
+  94              	.L7:
+  95              	.LBE47:
+  35:src/provera.cpp ****             void *size;
+  36:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (size));
+  37:src/provera.cpp ****             Memorija::oslobadjanje(size);
+  38:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+  39:src/provera.cpp ****         }
+  40:src/provera.cpp ****         //thread_create
+  41:src/provera.cpp ****         if(a0==0x11){
+  96              		.loc 1 41 9 is_stmt 1
+  97              	.LBB49:
+  98              		.loc 1 41 14 is_stmt 0
+  99 005c 033704F3 		ld	a4,-208(s0)
+ 100              		.loc 1 41 9
+ 101 0060 93071001 		li	a5,17
+ 102 0064 6306F714 		beq	a4,a5,.L32
+ 103              	.L8:
+ 104              	.LBE49:
+  42:src/provera.cpp ****             void* volatile arg;
+  43:src/provera.cpp ****             void(*start_routine)(void*);
+  44:src/provera.cpp ****             Nit** volatile handle;
+  45:src/provera.cpp **** 
+  46:src/provera.cpp ****             __asm__ volatile ("mv %0, a3" : "=r" (arg));
+  47:src/provera.cpp ****             __asm__ volatile ("mv %0, a2" : "=r" (start_routine));
+  48:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (handle));
+  49:src/provera.cpp **** 
+  50:src/provera.cpp ****             //print((uint64)arg);
+  51:src/provera.cpp ****             *handle = Nit::konstruktor(start_routine,arg,1);
+  52:src/provera.cpp ****             // ovo treba proveriti
+  53:src/provera.cpp **** 
+  54:src/provera.cpp ****             if(*handle==nullptr) {
+  55:src/provera.cpp ****                 a0=-2;
+  56:src/provera.cpp ****                 __asm__ volatile ("mv a0, %0" : : "r" (a0));
+  57:src/provera.cpp ****             }
+  58:src/provera.cpp **** 
+  59:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+  60:src/provera.cpp ****         }
+  61:src/provera.cpp ****         //thread_exit
+  62:src/provera.cpp ****         if(a0==0x12){
+ 105              		.loc 1 62 9 is_stmt 1
+GAS LISTING /tmp/cc9Uw2dj.s 			page 4
+
+
+ 106              		.loc 1 62 14 is_stmt 0
+ 107 0068 033704F3 		ld	a4,-208(s0)
+ 108              		.loc 1 62 9
+ 109 006c 93072001 		li	a5,18
+ 110 0070 630AF718 		beq	a4,a5,.L33
+ 111              	.L10:
+  63:src/provera.cpp ****             Nit::running->finished=true;
+  64:src/provera.cpp ****             Nit::running->flagunisti=true;
+  65:src/provera.cpp ****             Nit::dispatch();
+  66:src/provera.cpp ****         }
+  67:src/provera.cpp ****         //thread_dispatch
+  68:src/provera.cpp ****         if(a0==0x13){
+ 112              		.loc 1 68 9 is_stmt 1
+ 113              	.LBB52:
+ 114              		.loc 1 68 14 is_stmt 0
+ 115 0074 033704F3 		ld	a4,-208(s0)
+ 116              		.loc 1 68 9
+ 117 0078 93073001 		li	a5,19
+ 118 007c 6306F71A 		beq	a4,a5,.L34
+ 119              	.L11:
+ 120              	.LBE52:
+  69:src/provera.cpp ****             uint64 volatile sepc;
+  70:src/provera.cpp ****             uint64 volatile sstatus;
+  71:src/provera.cpp ****             __asm__ volatile("csrr %0, sepc" : "=r" (sepc)); // sepc
+  72:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+  73:src/provera.cpp ****             Nit::dispatch();
+  74:src/provera.cpp ****             __asm__ volatile("csrw sepc, %0" : : "r" (sepc)); // sepc_w
+  75:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+  76:src/provera.cpp ****         }
+  77:src/provera.cpp ****         //sem_open
+  78:src/provera.cpp ****         if(a0==0x21){
+ 121              		.loc 1 78 9 is_stmt 1
+ 122              	.LBB54:
+ 123              		.loc 1 78 14 is_stmt 0
+ 124 0080 033704F3 		ld	a4,-208(s0)
+ 125              		.loc 1 78 9
+ 126 0084 93071002 		li	a5,33
+ 127 0088 6306F71C 		beq	a4,a5,.L35
+ 128              	.L12:
+ 129              	.LBE54:
+  79:src/provera.cpp ****             Semafor** volatile handle;
+  80:src/provera.cpp ****             unsigned volatile val;
+  81:src/provera.cpp **** 
+  82:src/provera.cpp ****             __asm__ volatile ("mv %0, a2" : "=r" (val));
+  83:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (handle));
+  84:src/provera.cpp ****             *handle = new Semafor(val);
+  85:src/provera.cpp ****             if(*handle==nullptr) {
+  86:src/provera.cpp ****                 a0=-2;
+  87:src/provera.cpp ****                 __asm__ volatile ("mv a0, %0" : : "r" (a0));
+  88:src/provera.cpp ****             }
+  89:src/provera.cpp **** 
+  90:src/provera.cpp ****             // ovo isto treba da se menja, da vraca 0 ili sta vec
+  91:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+  92:src/provera.cpp ****         }
+  93:src/provera.cpp ****         //sem_close
+  94:src/provera.cpp ****         if(a0==0x22){
+ 130              		.loc 1 94 9 is_stmt 1
+GAS LISTING /tmp/cc9Uw2dj.s 			page 5
+
+
+ 131              	.LBB61:
+ 132              		.loc 1 94 14 is_stmt 0
+ 133 008c 033704F3 		ld	a4,-208(s0)
+ 134              		.loc 1 94 9
+ 135 0090 93072002 		li	a5,34
+ 136 0094 6302F722 		beq	a4,a5,.L36
+ 137              	.L14:
+ 138              	.LBE61:
+  95:src/provera.cpp ****             Semafor* volatile id;
+  96:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (id));
+  97:src/provera.cpp **** 
+  98:src/provera.cpp ****             id->close();
+  99:src/provera.cpp **** 
+ 100:src/provera.cpp ****             int a0=0;
+ 101:src/provera.cpp ****             __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 102:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 103:src/provera.cpp ****         }
+ 104:src/provera.cpp ****         //sem_wait
+ 105:src/provera.cpp ****         if(a0==0x23){
+ 139              		.loc 1 105 9 is_stmt 1
+ 140              	.LBB63:
+ 141              		.loc 1 105 14 is_stmt 0
+ 142 0098 033704F3 		ld	a4,-208(s0)
+ 143              		.loc 1 105 9
+ 144 009c 93073002 		li	a5,35
+ 145 00a0 630EF722 		beq	a4,a5,.L37
+ 146              	.L15:
+ 147              	.LBE63:
+ 106:src/provera.cpp ****             Semafor* volatile id;
+ 107:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (id));
+ 108:src/provera.cpp ****             //if(id==nullptr) print("asd\n");
+ 109:src/provera.cpp ****             int volatile a0;
+ 110:src/provera.cpp **** 
+ 111:src/provera.cpp ****             a0=id->wait();
+ 112:src/provera.cpp **** 
+ 113:src/provera.cpp ****             uint64 volatile sepc;
+ 114:src/provera.cpp ****             uint64 volatile sstatus;
+ 115:src/provera.cpp ****             __asm__ volatile("csrr %0, sepc" : "=r" (sepc)); // sepc
+ 116:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 117:src/provera.cpp ****             Nit::dispatch();
+ 118:src/provera.cpp ****             __asm__ volatile("csrw sepc, %0" : : "r" (sepc)); // sepc_w
+ 119:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 120:src/provera.cpp **** 
+ 121:src/provera.cpp ****             a0=Nit::running->prekid;
+ 122:src/provera.cpp ****             __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 123:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 124:src/provera.cpp **** 
+ 125:src/provera.cpp ****         }
+ 126:src/provera.cpp ****         //sem_signal
+ 127:src/provera.cpp ****         if(a0==0x24){
+ 148              		.loc 1 127 9 is_stmt 1
+ 149              	.LBB65:
+ 150              		.loc 1 127 14 is_stmt 0
+ 151 00a4 033704F3 		ld	a4,-208(s0)
+ 152              		.loc 1 127 9
+ 153 00a8 93074002 		li	a5,36
+ 154 00ac 630AF728 		beq	a4,a5,.L38
+GAS LISTING /tmp/cc9Uw2dj.s 			page 6
+
+
+ 155              	.L16:
+ 156              	.LBE65:
+ 128:src/provera.cpp ****             Semafor* volatile id;
+ 129:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (id));
+ 130:src/provera.cpp ****             id->signal();
+ 131:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 132:src/provera.cpp ****         }
+ 133:src/provera.cpp ****         //time_sleep
+ 134:src/provera.cpp ****         if(a0==0x31){
+ 157              		.loc 1 134 9 is_stmt 1
+ 158              	.LBB67:
+ 159              		.loc 1 134 14 is_stmt 0
+ 160 00b0 033704F3 		ld	a4,-208(s0)
+ 161              		.loc 1 134 9
+ 162 00b4 93071003 		li	a5,49
+ 163 00b8 6302F72A 		beq	a4,a5,.L39
+ 164              	.L17:
+ 165              	.LBE67:
+ 135:src/provera.cpp ****             time_t t;
+ 136:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (t));
+ 137:src/provera.cpp ****             Scheduler::threadsleep(t);
+ 138:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 139:src/provera.cpp ****         }
+ 140:src/provera.cpp ****         //getc
+ 141:src/provera.cpp ****         if(a0==0x41){
+ 166              		.loc 1 141 9 is_stmt 1
+ 167              	.LBB69:
+ 168              		.loc 1 141 14 is_stmt 0
+ 169 00bc 033704F3 		ld	a4,-208(s0)
+ 170              		.loc 1 141 9
+ 171 00c0 93071004 		li	a5,65
+ 172 00c4 6308F72A 		beq	a4,a5,.L40
+ 173              	.L18:
+ 174              	.LBE69:
+ 142:src/provera.cpp ****             uint64 volatile sepc;
+ 143:src/provera.cpp ****             uint64 volatile sstatus;
+ 144:src/provera.cpp ****             __asm__ volatile("csrr %0, sepc" : "=r" (sepc)); // sepc
+ 145:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 146:src/provera.cpp **** 
+ 147:src/provera.cpp ****             Konzola::getulaz();
+ 148:src/provera.cpp ****             __asm__ volatile("sd a0, 80(s0)");
+ 149:src/provera.cpp **** 
+ 150:src/provera.cpp ****             __asm__ volatile("csrw sepc, %0" : : "r" (sepc)); // sepc_w
+ 151:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 152:src/provera.cpp ****         }
+ 153:src/provera.cpp ****         //putc
+ 154:src/provera.cpp ****         if(a0==0x42){
+ 175              		.loc 1 154 9 is_stmt 1
+ 176              	.LBB71:
+ 177              		.loc 1 154 14 is_stmt 0
+ 178 00c8 033704F3 		ld	a4,-208(s0)
+ 179              		.loc 1 154 9
+ 180 00cc 93072004 		li	a5,66
+ 181 00d0 630AF72C 		beq	a4,a5,.L41
+ 182              	.L19:
+ 183              	.LBE71:
+ 155:src/provera.cpp ****             char volatile c;
+GAS LISTING /tmp/cc9Uw2dj.s 			page 7
+
+
+ 156:src/provera.cpp ****             uint64 volatile sepc;
+ 157:src/provera.cpp ****             uint64 volatile sstatus;
+ 158:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (c));
+ 159:src/provera.cpp ****             __asm__ volatile("csrr %0, sepc" : "=r" (sepc)); // sepc
+ 160:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 161:src/provera.cpp **** 
+ 162:src/provera.cpp ****             //PUTIZLAZ TREBA
+ 163:src/provera.cpp ****             Konzola::putizlaz(c);
+ 164:src/provera.cpp **** 
+ 165:src/provera.cpp ****             __asm__ volatile("csrw sepc, %0" : : "r" (sepc)); // sepc_w
+ 166:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 167:src/provera.cpp ****         }
+ 168:src/provera.cpp ****         //putScheduler
+ 169:src/provera.cpp ****         if(a0==0x69){
+ 184              		.loc 1 169 9 is_stmt 1
+ 185              	.LBB73:
+ 186              		.loc 1 169 14 is_stmt 0
+ 187 00d4 033704F3 		ld	a4,-208(s0)
+ 188              		.loc 1 169 9
+ 189 00d8 93079006 		li	a5,105
+ 190 00dc 6302F730 		beq	a4,a5,.L42
+ 191              	.L20:
+ 192              	.LBE73:
+ 170:src/provera.cpp ****             Nit* volatile t;
+ 171:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (t));
+ 172:src/provera.cpp ****             Scheduler::put(t);
+ 173:src/provera.cpp ****             __asm__ volatile("sd a0, 80(s0)");
+ 174:src/provera.cpp ****         }
+ 175:src/provera.cpp ****         //promena rezima
+ 176:src/provera.cpp ****         if(a0==0x70){
+ 193              		.loc 1 176 9 is_stmt 1
+ 194              	.LBB75:
+ 195              		.loc 1 176 14 is_stmt 0
+ 196 00e0 033704F3 		ld	a4,-208(s0)
+ 197              		.loc 1 176 9
+ 198 00e4 93070007 		li	a5,112
+ 199 00e8 630AF730 		beq	a4,a5,.L43
+ 200              	.L21:
+ 201              	.LBE75:
+ 177:src/provera.cpp ****             uint64 volatile sstatus;
+ 178:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus));
+ 179:src/provera.cpp ****             sstatus|=256;
+ 180:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0"::"r" (sstatus));
+ 181:src/provera.cpp ****         }
+ 182:src/provera.cpp ****         if(a0==0x68){
+ 202              		.loc 1 182 9 is_stmt 1
+ 203              	.LBB77:
+ 204              		.loc 1 182 14 is_stmt 0
+ 205 00ec 033704F3 		ld	a4,-208(s0)
+ 206              		.loc 1 182 9
+ 207 00f0 93078006 		li	a5,104
+ 208 00f4 6310F708 		bne	a4,a5,.L1
+ 209              	.LBB78:
+ 183:src/provera.cpp ****             void* volatile arg;
+ 210              		.loc 1 183 13 is_stmt 1
+ 184:src/provera.cpp ****             void(*start_routine)(void*);
+ 211              		.loc 1 184 13
+GAS LISTING /tmp/cc9Uw2dj.s 			page 8
+
+
+ 185:src/provera.cpp ****             Nit** volatile handle;
+ 212              		.loc 1 185 13
+ 186:src/provera.cpp **** 
+ 187:src/provera.cpp ****             __asm__ volatile ("mv %0, a3" : "=r" (arg));
+ 213              		.loc 1 187 13
+ 214              		.loc 1 187 56 is_stmt 0
+ 215              	#APP
+ 216              	# 187 "src/provera.cpp" 1
+ 188              	            __asm__ volatile ("mv %0, a2" : "=r" (start_routine));
+ 217              		mv a5, a3
+ 218              	# 0 "" 2
+ 219              	#NO_APP
+ 220 00fc 233CF4FA 		sd	a5,-72(s0)
+ 221              		.loc 1 188 13 is_stmt 1
+ 222              		.loc 1 188 66 is_stmt 0
+ 223              	#APP
+ 224              	# 188 "src/provera.cpp" 1
+ 189              	            __asm__ volatile ("mv %0, a1" : "=r" (handle));
+ 225              		mv a0, a2
+ 226              	# 0 "" 2
+ 227              	.LVL0:
+ 228              		.loc 1 189 13 is_stmt 1
+ 229              		.loc 1 189 59 is_stmt 0
+ 230              	# 189 "src/provera.cpp" 1
+ 190              	
+ 231              		mv a5, a1
+ 232              	# 0 "" 2
+ 233              	#NO_APP
+ 234 0108 2330F4FC 		sd	a5,-64(s0)
+ 191:src/provera.cpp ****             //print((uint64)arg);
+ 192:src/provera.cpp ****             *handle = Nit::konstruktor(start_routine,arg,0);
+ 235              		.loc 1 192 13 is_stmt 1
+ 236              		.loc 1 192 39 is_stmt 0
+ 237 010c 833584FB 		ld	a1,-72(s0)
+ 238              		.loc 1 192 14
+ 239 0110 833404FC 		ld	s1,-64(s0)
+ 240              		.loc 1 192 39
+ 241 0114 13060000 		li	a2,0
+ 242 0118 97000000 		call	_ZN3Nit11konstruktorEPFvPvES0_i@plt
+ 242      E7800000 
+ 243              	.LVL1:
+ 244              		.loc 1 192 21
+ 245 0120 23B0A400 		sd	a0,0(s1)
+ 193:src/provera.cpp ****             // ovo treba proveriti
+ 194:src/provera.cpp **** 
+ 195:src/provera.cpp ****             if(*handle==nullptr) {
+ 246              		.loc 1 195 13 is_stmt 1
+ 247              		.loc 1 195 17 is_stmt 0
+ 248 0124 833704FC 		ld	a5,-64(s0)
+ 249              		.loc 1 195 16
+ 250 0128 83B70700 		ld	a5,0(a5)
+ 251              		.loc 1 195 13
+ 252 012c 6388072E 		beqz	a5,.L44
+ 253              	.L23:
+ 196:src/provera.cpp ****                 a0=-2;
+ 197:src/provera.cpp ****                 __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 198:src/provera.cpp ****             }
+GAS LISTING /tmp/cc9Uw2dj.s 			page 9
+
+
+ 199:src/provera.cpp **** 
+ 200:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 254              		.loc 1 200 13 is_stmt 1
+ 255              		.loc 1 200 47 is_stmt 0
+ 256              	#APP
+ 257              	# 200 "src/provera.cpp" 1
+ 201              	        }
+ 258              		sd a0, 80(s0)
+ 259              	# 0 "" 2
+ 260              	#NO_APP
+ 261              	.LBE78:
+ 262 0134 6F000004 		j	.L1
+ 263              	.L2:
+ 264              	.LBE77:
+ 265              	.LBE44:
+ 266              	.LBE43:
+ 202:src/provera.cpp ****     }
+ 203:src/provera.cpp ****     else{
+ 204:src/provera.cpp ****         if(prekid == 0x8000000000000001UL){
+ 267              		.loc 1 204 9 is_stmt 1
+ 268              	.LBB106:
+ 269              	.LBB94:
+ 270              		.loc 1 204 19 is_stmt 0
+ 271 0138 033784FD 		ld	a4,-40(s0)
+ 272              		.loc 1 204 9
+ 273 013c 9307F0FF 		li	a5,-1
+ 274 0140 9397F703 		slli	a5,a5,63
+ 275 0144 93871700 		addi	a5,a5,1
+ 276 0148 6304F72E 		beq	a4,a5,.L45
+ 277              	.L6:
+ 278              	.LBE94:
+ 279              	.LBE106:
+ 205:src/provera.cpp ****             //spoljasnji prekidi
+ 206:src/provera.cpp ****             uint64 maska = 2;
+ 207:src/provera.cpp ****             Nit::tajmer++;
+ 208:src/provera.cpp ****             Scheduler::dekremntacija(1); //ovo je za uspavane niti
+ 209:src/provera.cpp **** 
+ 210:src/provera.cpp ****             if (Nit::tajmer % (DEFAULT_TIME_SLICE) == 0) {
+ 211:src/provera.cpp ****                 //Scheduler::Print();
+ 212:src/provera.cpp **** 
+ 213:src/provera.cpp ****                 uint64 volatile sepc;
+ 214:src/provera.cpp ****                 uint64 volatile sstatus;
+ 215:src/provera.cpp ****                 __asm__ volatile("csrr %0, sepc" : "=r" (sepc)); // sepc
+ 216:src/provera.cpp ****                 __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 217:src/provera.cpp ****                 Nit::dispatch();
+ 218:src/provera.cpp ****                 __asm__ volatile("csrw sepc, %0" : : "r" (sepc)); // sepc_w
+ 219:src/provera.cpp ****                 __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 220:src/provera.cpp **** 
+ 221:src/provera.cpp ****                 Nit::tajmer = 0;
+ 222:src/provera.cpp ****             }
+ 223:src/provera.cpp **** 
+ 224:src/provera.cpp ****             __asm__ volatile("csrc sip, %0"::"r" (maska));
+ 225:src/provera.cpp ****         }
+ 226:src/provera.cpp ****         if(prekid == 0x8000000000000009UL){
+ 280              		.loc 1 226 9 is_stmt 1
+ 281              	.LBB107:
+ 282              	.LBB100:
+GAS LISTING /tmp/cc9Uw2dj.s 			page 10
+
+
+ 283              		.loc 1 226 19 is_stmt 0
+ 284 014c 033784FD 		ld	a4,-40(s0)
+ 285              		.loc 1 226 9
+ 286 0150 9307F0FF 		li	a5,-1
+ 287 0154 9397F703 		slli	a5,a5,63
+ 288 0158 93879700 		addi	a5,a5,9
+ 289 015c 630EF732 		beq	a4,a5,.L46
+ 227:src/provera.cpp ****             int volatile h = plic_claim();
+ 228:src/provera.cpp ****             if(h==CONSOLE_IRQ){
+ 229:src/provera.cpp ****                 while(*(uint8*)CONSOLE_STATUS & CONSOLE_RX_STATUS_BIT){
+ 230:src/provera.cpp ****                     Konzola::putulaz(*(char*)CONSOLE_RX_DATA);
+ 231:src/provera.cpp ****                 }
+ 232:src/provera.cpp ****             }
+ 233:src/provera.cpp ****             plic_complete(CONSOLE_IRQ);
+ 234:src/provera.cpp ****         }
+ 235:src/provera.cpp ****         else if(prekid!=0x8000000000000001UL) {
+ 290              		.loc 1 235 14 is_stmt 1
+ 291              		.loc 1 235 23 is_stmt 0
+ 292 0160 033784FD 		ld	a4,-40(s0)
+ 293              		.loc 1 235 14
+ 294 0164 9307F0FF 		li	a5,-1
+ 295 0168 9397F703 		slli	a5,a5,63
+ 296 016c 93871700 		addi	a5,a5,1
+ 297 0170 6314F738 		bne	a4,a5,.L47
+ 298              	.L1:
+ 299              	.LBE100:
+ 300              	.LBE107:
+ 236:src/provera.cpp ****             printString("scause: \n");
+ 237:src/provera.cpp ****             printInt(prekid >> 63);
+ 238:src/provera.cpp ****             printInt(prekid % 16);
+ 239:src/provera.cpp ****             printString("\nsstatus: \n");
+ 240:src/provera.cpp ****             //print(status);
+ 241:src/provera.cpp ****             while (1);
+ 242:src/provera.cpp ****         }
+ 243:src/provera.cpp ****     }
+ 244:src/provera.cpp **** }
+ 301              		.loc 1 244 1
+ 302 0174 8330810D 		ld	ra,216(sp)
+ 303              		.cfi_remember_state
+ 304              		.cfi_restore 1
+ 305 0178 0334010D 		ld	s0,208(sp)
+ 306              		.cfi_restore 8
+ 307              		.cfi_def_cfa 2, 224
+ 308 017c 8334810C 		ld	s1,200(sp)
+ 309              		.cfi_restore 9
+ 310 0180 1301010E 		addi	sp,sp,224
+ 311              		.cfi_def_cfa_offset 0
+ 312 0184 67800000 		jr	ra
+ 313              	.L30:
+ 314              		.cfi_restore_state
+ 315              	.LBB108:
+ 316              	.LBB103:
+ 317              	.LBB80:
+ 318              	.LBB46:
+  28:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (size));
+ 319              		.loc 1 28 13 is_stmt 1
+  29:src/provera.cpp ****             Memorija::alokacija(size);
+GAS LISTING /tmp/cc9Uw2dj.s 			page 11
+
+
+ 320              		.loc 1 29 13
+  29:src/provera.cpp ****             Memorija::alokacija(size);
+ 321              		.loc 1 29 57 is_stmt 0
+ 322              	#APP
+ 323              	# 29 "src/provera.cpp" 1
+ 324              		mv a0, a1
+ 325              	# 0 "" 2
+ 326              	.LVL2:
+  30:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 327              		.loc 1 30 13 is_stmt 1
+  30:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 328              		.loc 1 30 32 is_stmt 0
+ 329              	#NO_APP
+ 330 018c 97000000 		call	_ZN8Memorija9alokacijaEm@plt
+ 330      E7800000 
+ 331              	.LVL3:
+  31:src/provera.cpp ****         }
+ 332              		.loc 1 31 13 is_stmt 1
+  31:src/provera.cpp ****         }
+ 333              		.loc 1 31 47 is_stmt 0
+ 334              	#APP
+ 335              	# 31 "src/provera.cpp" 1
+ 336              		sd a0, 80(s0)
+ 337              	# 0 "" 2
+ 338              	#NO_APP
+ 339              	.LBE46:
+ 340 0198 6FF09FEB 		j	.L4
+ 341              	.L31:
+ 342              	.LBE80:
+ 343              	.LBB81:
+ 344              	.LBB48:
+  35:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (size));
+ 345              		.loc 1 35 13 is_stmt 1
+  36:src/provera.cpp ****             Memorija::oslobadjanje(size);
+ 346              		.loc 1 36 13
+  36:src/provera.cpp ****             Memorija::oslobadjanje(size);
+ 347              		.loc 1 36 57 is_stmt 0
+ 348              	#APP
+ 349              	# 36 "src/provera.cpp" 1
+ 350              		mv a0, a1
+ 351              	# 0 "" 2
+ 352              	.LVL4:
+  37:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 353              		.loc 1 37 13 is_stmt 1
+  37:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 354              		.loc 1 37 35 is_stmt 0
+ 355              	#NO_APP
+ 356 01a0 97000000 		call	_ZN8Memorija12oslobadjanjeEPv@plt
+ 356      E7800000 
+ 357              	.LVL5:
+  38:src/provera.cpp ****         }
+ 358              		.loc 1 38 13 is_stmt 1
+  38:src/provera.cpp ****         }
+ 359              		.loc 1 38 47 is_stmt 0
+ 360              	#APP
+ 361              	# 38 "src/provera.cpp" 1
+ 362              		sd a0, 80(s0)
+GAS LISTING /tmp/cc9Uw2dj.s 			page 12
+
+
+ 363              	# 0 "" 2
+ 364              	#NO_APP
+ 365              	.LBE48:
+ 366 01ac 6FF01FEB 		j	.L7
+ 367              	.L32:
+ 368              	.LBE81:
+ 369              	.LBB82:
+ 370              	.LBB50:
+  42:src/provera.cpp ****             void(*start_routine)(void*);
+ 371              		.loc 1 42 13 is_stmt 1
+  43:src/provera.cpp ****             Nit** volatile handle;
+ 372              		.loc 1 43 13
+  44:src/provera.cpp **** 
+ 373              		.loc 1 44 13
+  46:src/provera.cpp ****             __asm__ volatile ("mv %0, a2" : "=r" (start_routine));
+ 374              		.loc 1 46 13
+  46:src/provera.cpp ****             __asm__ volatile ("mv %0, a2" : "=r" (start_routine));
+ 375              		.loc 1 46 56 is_stmt 0
+ 376              	#APP
+ 377              	# 46 "src/provera.cpp" 1
+ 378              		mv a5, a3
+ 379              	# 0 "" 2
+ 380              	#NO_APP
+ 381 01b4 233CF4F2 		sd	a5,-200(s0)
+  47:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (handle));
+ 382              		.loc 1 47 13 is_stmt 1
+  47:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (handle));
+ 383              		.loc 1 47 66 is_stmt 0
+ 384              	#APP
+ 385              	# 47 "src/provera.cpp" 1
+ 386              		mv a0, a2
+ 387              	# 0 "" 2
+ 388              	.LVL6:
+  48:src/provera.cpp **** 
+ 389              		.loc 1 48 13 is_stmt 1
+  48:src/provera.cpp **** 
+ 390              		.loc 1 48 59 is_stmt 0
+ 391              	# 48 "src/provera.cpp" 1
+ 392              		mv a5, a1
+ 393              	# 0 "" 2
+ 394              	#NO_APP
+ 395 01c0 2330F4F4 		sd	a5,-192(s0)
+  51:src/provera.cpp ****             // ovo treba proveriti
+ 396              		.loc 1 51 13 is_stmt 1
+  51:src/provera.cpp ****             // ovo treba proveriti
+ 397              		.loc 1 51 39 is_stmt 0
+ 398 01c4 833584F3 		ld	a1,-200(s0)
+  51:src/provera.cpp ****             // ovo treba proveriti
+ 399              		.loc 1 51 14
+ 400 01c8 833404F4 		ld	s1,-192(s0)
+  51:src/provera.cpp ****             // ovo treba proveriti
+ 401              		.loc 1 51 39
+ 402 01cc 13061000 		li	a2,1
+ 403 01d0 97000000 		call	_ZN3Nit11konstruktorEPFvPvES0_i@plt
+ 403      E7800000 
+ 404              	.LVL7:
+  51:src/provera.cpp ****             // ovo treba proveriti
+GAS LISTING /tmp/cc9Uw2dj.s 			page 13
+
+
+ 405              		.loc 1 51 21
+ 406 01d8 23B0A400 		sd	a0,0(s1)
+  54:src/provera.cpp ****                 a0=-2;
+ 407              		.loc 1 54 13 is_stmt 1
+  54:src/provera.cpp ****                 a0=-2;
+ 408              		.loc 1 54 17 is_stmt 0
+ 409 01dc 833704F4 		ld	a5,-192(s0)
+  54:src/provera.cpp ****                 a0=-2;
+ 410              		.loc 1 54 16
+ 411 01e0 83B70700 		ld	a5,0(a5)
+  54:src/provera.cpp ****                 a0=-2;
+ 412              		.loc 1 54 13
+ 413 01e4 63860700 		beqz	a5,.L48
+ 414              	.L9:
+  59:src/provera.cpp ****         }
+ 415              		.loc 1 59 13 is_stmt 1
+  59:src/provera.cpp ****         }
+ 416              		.loc 1 59 47 is_stmt 0
+ 417              	#APP
+ 418              	# 59 "src/provera.cpp" 1
+ 419              		sd a0, 80(s0)
+ 420              	# 0 "" 2
+ 421              	#NO_APP
+ 422              	.LBE50:
+ 423 01ec 6FF0DFE7 		j	.L8
+ 424              	.L48:
+ 425              	.LBB51:
+  55:src/provera.cpp ****                 __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 426              		.loc 1 55 17 is_stmt 1
+  55:src/provera.cpp ****                 __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 427              		.loc 1 55 19 is_stmt 0
+ 428 01f0 9307E0FF 		li	a5,-2
+ 429 01f4 2338F4F2 		sd	a5,-208(s0)
+  56:src/provera.cpp ****             }
+ 430              		.loc 1 56 17 is_stmt 1
+  56:src/provera.cpp ****             }
+ 431              		.loc 1 56 56 is_stmt 0
+ 432 01f8 833704F3 		ld	a5,-208(s0)
+  56:src/provera.cpp ****             }
+ 433              		.loc 1 56 60
+ 434              	#APP
+ 435              	# 56 "src/provera.cpp" 1
+ 436              		mv a0, a5
+ 437              	# 0 "" 2
+ 438              	#NO_APP
+ 439 0200 6FF09FFE 		j	.L9
+ 440              	.L33:
+ 441              	.LBE51:
+ 442              	.LBE82:
+  63:src/provera.cpp ****             Nit::running->flagunisti=true;
+ 443              		.loc 1 63 13 is_stmt 1
+  63:src/provera.cpp ****             Nit::running->flagunisti=true;
+ 444              		.loc 1 63 27 is_stmt 0
+ 445 0204 97070000 		la	a5,_ZN3Nit7runningE
+ 445      83B70700 
+ 446 020c 83B70700 		ld	a5,0(a5)
+  63:src/provera.cpp ****             Nit::running->flagunisti=true;
+GAS LISTING /tmp/cc9Uw2dj.s 			page 14
+
+
+ 447              		.loc 1 63 35
+ 448 0210 13071000 		li	a4,1
+ 449 0214 2384E700 		sb	a4,8(a5)
+  64:src/provera.cpp ****             Nit::dispatch();
+ 450              		.loc 1 64 13 is_stmt 1
+  64:src/provera.cpp ****             Nit::dispatch();
+ 451              		.loc 1 64 37 is_stmt 0
+ 452 0218 238CE700 		sb	a4,24(a5)
+  65:src/provera.cpp ****         }
+ 453              		.loc 1 65 13 is_stmt 1
+  65:src/provera.cpp ****         }
+ 454              		.loc 1 65 26 is_stmt 0
+ 455 021c 97000000 		call	_ZN3Nit8dispatchEv@plt
+ 455      E7800000 
+ 456              	.LVL8:
+ 457 0224 6FF01FE5 		j	.L10
+ 458              	.L34:
+ 459              	.LBB83:
+ 460              	.LBB53:
+  69:src/provera.cpp ****             uint64 volatile sstatus;
+ 461              		.loc 1 69 13 is_stmt 1
+  70:src/provera.cpp ****             __asm__ volatile("csrr %0, sepc" : "=r" (sepc)); // sepc
+ 462              		.loc 1 70 13
+  71:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 463              		.loc 1 71 13
+  71:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 464              		.loc 1 71 60 is_stmt 0
+ 465              	#APP
+ 466              	# 71 "src/provera.cpp" 1
+ 467              		csrr a5, sepc
+ 468              	# 0 "" 2
+ 469              	#NO_APP
+ 470 022c 2334F4F4 		sd	a5,-184(s0)
+  72:src/provera.cpp ****             Nit::dispatch();
+ 471              		.loc 1 72 13 is_stmt 1
+  72:src/provera.cpp ****             Nit::dispatch();
+ 472              		.loc 1 72 66 is_stmt 0
+ 473              	#APP
+ 474              	# 72 "src/provera.cpp" 1
+ 475              		csrr a5, sstatus
+ 476              	# 0 "" 2
+ 477              	#NO_APP
+ 478 0234 2338F4F4 		sd	a5,-176(s0)
+  73:src/provera.cpp ****             __asm__ volatile("csrw sepc, %0" : : "r" (sepc)); // sepc_w
+ 479              		.loc 1 73 13 is_stmt 1
+  73:src/provera.cpp ****             __asm__ volatile("csrw sepc, %0" : : "r" (sepc)); // sepc_w
+ 480              		.loc 1 73 26 is_stmt 0
+ 481 0238 97000000 		call	_ZN3Nit8dispatchEv@plt
+ 481      E7800000 
+ 482              	.LVL9:
+  74:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 483              		.loc 1 74 13 is_stmt 1
+  74:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 484              		.loc 1 74 55 is_stmt 0
+ 485 0240 833784F4 		ld	a5,-184(s0)
+  74:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 486              		.loc 1 74 61
+GAS LISTING /tmp/cc9Uw2dj.s 			page 15
+
+
+ 487              	#APP
+ 488              	# 74 "src/provera.cpp" 1
+  75:src/provera.cpp ****         }
+ 489              		csrw sepc, a5
+ 490              	# 0 "" 2
+ 491              		.loc 1 75 13 is_stmt 1
+  75:src/provera.cpp ****         }
+ 492              		.loc 1 75 58 is_stmt 0
+ 493              	#NO_APP
+ 494 0248 833704F5 		ld	a5,-176(s0)
+  75:src/provera.cpp ****         }
+ 495              		.loc 1 75 67
+ 496              	#APP
+ 497              	# 75 "src/provera.cpp" 1
+ 498              		csrw sstatus, a5
+ 499              	# 0 "" 2
+ 500              	#NO_APP
+ 501              	.LBE53:
+ 502 0250 6FF01FE3 		j	.L11
+ 503              	.L35:
+ 504              	.LBE83:
+ 505              	.LBB84:
+ 506              	.LBB55:
+  79:src/provera.cpp ****             unsigned volatile val;
+ 507              		.loc 1 79 13 is_stmt 1
+  80:src/provera.cpp **** 
+ 508              		.loc 1 80 13
+  82:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (handle));
+ 509              		.loc 1 82 13
+  82:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (handle));
+ 510              		.loc 1 82 56 is_stmt 0
+ 511              	#APP
+ 512              	# 82 "src/provera.cpp" 1
+ 513              		mv a5, a2
+ 514              	# 0 "" 2
+ 515              	#NO_APP
+ 516 0258 2322F4F2 		sw	a5,-220(s0)
+  83:src/provera.cpp ****             *handle = new Semafor(val);
+ 517              		.loc 1 83 13 is_stmt 1
+  83:src/provera.cpp ****             *handle = new Semafor(val);
+ 518              		.loc 1 83 59 is_stmt 0
+ 519              	#APP
+ 520              	# 83 "src/provera.cpp" 1
+ 521              		mv a5, a1
+ 522              	# 0 "" 2
+ 523              	#NO_APP
+ 524 0260 233CF4F4 		sd	a5,-168(s0)
+  84:src/provera.cpp ****             if(*handle==nullptr) {
+ 525              		.loc 1 84 13 is_stmt 1
+  84:src/provera.cpp ****             if(*handle==nullptr) {
+ 526              		.loc 1 84 35 is_stmt 0
+ 527 0264 832444F2 		lw	s1,-220(s0)
+ 528 0268 9B840400 		sext.w	s1,s1
+ 529              	.LVL10:
+ 530              	.LBB56:
+ 531              	.LBB57:
+ 532              		.file 2 "src/../h/semafor.h"
+GAS LISTING /tmp/cc9Uw2dj.s 			page 16
+
+
+   1:src/../h/semafor.h **** //
+   2:src/../h/semafor.h **** // Created by os on 8/20/22.
+   3:src/../h/semafor.h **** //
+   4:src/../h/semafor.h **** 
+   5:src/../h/semafor.h **** #ifndef PROJECT_BASE_V1_1_SEMAFOR_H
+   6:src/../h/semafor.h **** #define PROJECT_BASE_V1_1_SEMAFOR_H
+   7:src/../h/semafor.h **** 
+   8:src/../h/semafor.h **** #include "thread.h"
+   9:src/../h/semafor.h **** 
+  10:src/../h/semafor.h **** class Semafor {
+  11:src/../h/semafor.h **** private:
+  12:src/../h/semafor.h **** 
+  13:src/../h/semafor.h ****     static int idd;
+  14:src/../h/semafor.h ****     int id=0;
+  15:src/../h/semafor.h **** 
+  16:src/../h/semafor.h ****     struct struktura{
+  17:src/../h/semafor.h ****         Nit *t;
+  18:src/../h/semafor.h ****         struktura* next;
+  19:src/../h/semafor.h ****     };
+  20:src/../h/semafor.h **** 
+  21:src/../h/semafor.h ****     struktura *tail=nullptr;
+  22:src/../h/semafor.h ****     struktura *head=nullptr;
+  23:src/../h/semafor.h **** 
+  24:src/../h/semafor.h **** public:
+  25:src/../h/semafor.h ****     int val;
+  26:src/../h/semafor.h **** 
+  27:src/../h/semafor.h ****     void Print();
+  28:src/../h/semafor.h **** 
+  29:src/../h/semafor.h ****     static void *operator new(uint64 n){
+  30:src/../h/semafor.h ****         return Memorija::alokacija(n);
+ 533              		.loc 2 30 9 is_stmt 1
+ 534              		.loc 2 30 35 is_stmt 0
+ 535 026c 13050002 		li	a0,32
+ 536 0270 97000000 		call	_ZN8Memorija9alokacijaEm@plt
+ 536      E7800000 
+ 537              	.LVL11:
+ 538              	.LBE57:
+ 539              	.LBE56:
+ 540              	.LBB58:
+ 541              	.LBB59:
+  31:src/../h/semafor.h ****     }
+  32:src/../h/semafor.h **** 
+  33:src/../h/semafor.h ****     static void *operator new[](uint64 n){
+  34:src/../h/semafor.h ****         return Memorija::alokacija(n);
+  35:src/../h/semafor.h ****     }
+  36:src/../h/semafor.h **** 
+  37:src/../h/semafor.h ****     static void operator delete(void* p){
+  38:src/../h/semafor.h ****         Memorija::oslobadjanje(p);
+  39:src/../h/semafor.h ****     }
+  40:src/../h/semafor.h **** 
+  41:src/../h/semafor.h ****     static void operator delete[](void* p){
+  42:src/../h/semafor.h ****         Memorija::oslobadjanje(p);
+  43:src/../h/semafor.h ****     }
+  44:src/../h/semafor.h **** 
+  45:src/../h/semafor.h ****     Semafor(unsigned n=1):val(n){}
+ 542              		.loc 2 45 32
+ 543 0278 23200500 		sw	zero,0(a0)
+GAS LISTING /tmp/cc9Uw2dj.s 			page 17
+
+
+ 544 027c 23340500 		sd	zero,8(a0)
+ 545 0280 23380500 		sd	zero,16(a0)
+ 546 0284 232C9500 		sw	s1,24(a0)
+ 547              	.LVL12:
+ 548              	.LBE59:
+ 549              	.LBE58:
+  84:src/provera.cpp ****             if(*handle==nullptr) {
+ 550              		.loc 1 84 14
+ 551 0288 033784F5 		ld	a4,-168(s0)
+  84:src/provera.cpp ****             if(*handle==nullptr) {
+ 552              		.loc 1 84 21
+ 553 028c 2330A700 		sd	a0,0(a4)
+  85:src/provera.cpp ****                 a0=-2;
+ 554              		.loc 1 85 13 is_stmt 1
+  85:src/provera.cpp ****                 a0=-2;
+ 555              		.loc 1 85 17 is_stmt 0
+ 556 0290 833784F5 		ld	a5,-168(s0)
+  85:src/provera.cpp ****                 a0=-2;
+ 557              		.loc 1 85 16
+ 558 0294 83B70700 		ld	a5,0(a5)
+  85:src/provera.cpp ****                 a0=-2;
+ 559              		.loc 1 85 13
+ 560 0298 63860700 		beqz	a5,.L49
+ 561              	.L13:
+  91:src/provera.cpp ****         }
+ 562              		.loc 1 91 13 is_stmt 1
+  91:src/provera.cpp ****         }
+ 563              		.loc 1 91 47 is_stmt 0
+ 564              	#APP
+ 565              	# 91 "src/provera.cpp" 1
+ 566              		sd a0, 80(s0)
+ 567              	# 0 "" 2
+ 568              	#NO_APP
+ 569              	.LBE55:
+ 570 02a0 6FF0DFDE 		j	.L12
+ 571              	.L49:
+ 572              	.LBB60:
+  86:src/provera.cpp ****                 __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 573              		.loc 1 86 17 is_stmt 1
+  86:src/provera.cpp ****                 __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 574              		.loc 1 86 19 is_stmt 0
+ 575 02a4 9307E0FF 		li	a5,-2
+ 576 02a8 2338F4F2 		sd	a5,-208(s0)
+  87:src/provera.cpp ****             }
+ 577              		.loc 1 87 17 is_stmt 1
+  87:src/provera.cpp ****             }
+ 578              		.loc 1 87 56 is_stmt 0
+ 579 02ac 833704F3 		ld	a5,-208(s0)
+  87:src/provera.cpp ****             }
+ 580              		.loc 1 87 60
+ 581              	#APP
+ 582              	# 87 "src/provera.cpp" 1
+ 583              		mv a0, a5
+ 584              	# 0 "" 2
+ 585              	#NO_APP
+ 586 02b4 6FF09FFE 		j	.L13
+ 587              	.L36:
+GAS LISTING /tmp/cc9Uw2dj.s 			page 18
+
+
+ 588              	.LBE60:
+ 589              	.LBE84:
+ 590              	.LBB85:
+ 591              	.LBB62:
+  95:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (id));
+ 592              		.loc 1 95 13 is_stmt 1
+  96:src/provera.cpp **** 
+ 593              		.loc 1 96 13
+  96:src/provera.cpp **** 
+ 594              		.loc 1 96 55 is_stmt 0
+ 595              	#APP
+ 596              	# 96 "src/provera.cpp" 1
+ 597              		mv a5, a1
+ 598              	# 0 "" 2
+ 599              	#NO_APP
+ 600 02bc 2330F4F6 		sd	a5,-160(s0)
+  98:src/provera.cpp **** 
+ 601              		.loc 1 98 13 is_stmt 1
+  98:src/provera.cpp **** 
+ 602              		.loc 1 98 22 is_stmt 0
+ 603 02c0 033504F6 		ld	a0,-160(s0)
+ 604 02c4 97000000 		call	_ZN7Semafor5closeEv@plt
+ 604      E7800000 
+ 605              	.LVL13:
+ 100:src/provera.cpp ****             __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 606              		.loc 1 100 13 is_stmt 1
+ 101:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 607              		.loc 1 101 13
+ 101:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 608              		.loc 1 101 56 is_stmt 0
+ 609 02cc 93070000 		li	a5,0
+ 610              	#APP
+ 611              	# 101 "src/provera.cpp" 1
+ 102:src/provera.cpp ****         }
+ 612              		mv a0, a5
+ 613              	# 0 "" 2
+ 614              		.loc 1 102 13 is_stmt 1
+ 102:src/provera.cpp ****         }
+ 615              		.loc 1 102 47 is_stmt 0
+ 616              	# 102 "src/provera.cpp" 1
+ 617              		sd a0, 80(s0)
+ 618              	# 0 "" 2
+ 619              	#NO_APP
+ 620              	.LBE62:
+ 621 02d8 6FF01FDC 		j	.L14
+ 622              	.LVL14:
+ 623              	.L37:
+ 624              	.LBE85:
+ 625              	.LBB86:
+ 626              	.LBB64:
+ 106:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (id));
+ 627              		.loc 1 106 13 is_stmt 1
+ 107:src/provera.cpp ****             //if(id==nullptr) print("asd\n");
+ 628              		.loc 1 107 13
+ 107:src/provera.cpp ****             //if(id==nullptr) print("asd\n");
+ 629              		.loc 1 107 55 is_stmt 0
+ 630              	#APP
+GAS LISTING /tmp/cc9Uw2dj.s 			page 19
+
+
+ 631              	# 107 "src/provera.cpp" 1
+ 632              		mv a5, a1
+ 633              	# 0 "" 2
+ 634              	#NO_APP
+ 635 02e0 2334F4F6 		sd	a5,-152(s0)
+ 109:src/provera.cpp **** 
+ 636              		.loc 1 109 13 is_stmt 1
+ 111:src/provera.cpp **** 
+ 637              		.loc 1 111 13
+ 111:src/provera.cpp **** 
+ 638              		.loc 1 111 24 is_stmt 0
+ 639 02e4 033584F6 		ld	a0,-152(s0)
+ 640 02e8 97000000 		call	_ZN7Semafor4waitEv@plt
+ 640      E7800000 
+ 641              	.LVL15:
+ 111:src/provera.cpp **** 
+ 642              		.loc 1 111 15
+ 643 02f0 2324A4F2 		sw	a0,-216(s0)
+ 113:src/provera.cpp ****             uint64 volatile sstatus;
+ 644              		.loc 1 113 13 is_stmt 1
+ 114:src/provera.cpp ****             __asm__ volatile("csrr %0, sepc" : "=r" (sepc)); // sepc
+ 645              		.loc 1 114 13
+ 115:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 646              		.loc 1 115 13
+ 115:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 647              		.loc 1 115 60 is_stmt 0
+ 648              	#APP
+ 649              	# 115 "src/provera.cpp" 1
+ 650              		csrr a5, sepc
+ 651              	# 0 "" 2
+ 652              	#NO_APP
+ 653 02f8 2338F4F6 		sd	a5,-144(s0)
+ 116:src/provera.cpp ****             Nit::dispatch();
+ 654              		.loc 1 116 13 is_stmt 1
+ 116:src/provera.cpp ****             Nit::dispatch();
+ 655              		.loc 1 116 66 is_stmt 0
+ 656              	#APP
+ 657              	# 116 "src/provera.cpp" 1
+ 658              		csrr a5, sstatus
+ 659              	# 0 "" 2
+ 660              	#NO_APP
+ 661 0300 233CF4F6 		sd	a5,-136(s0)
+ 117:src/provera.cpp ****             __asm__ volatile("csrw sepc, %0" : : "r" (sepc)); // sepc_w
+ 662              		.loc 1 117 13 is_stmt 1
+ 117:src/provera.cpp ****             __asm__ volatile("csrw sepc, %0" : : "r" (sepc)); // sepc_w
+ 663              		.loc 1 117 26 is_stmt 0
+ 664 0304 97000000 		call	_ZN3Nit8dispatchEv@plt
+ 664      E7800000 
+ 665              	.LVL16:
+ 118:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 666              		.loc 1 118 13 is_stmt 1
+ 118:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 667              		.loc 1 118 55 is_stmt 0
+ 668 030c 833704F7 		ld	a5,-144(s0)
+ 118:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 669              		.loc 1 118 61
+ 670              	#APP
+GAS LISTING /tmp/cc9Uw2dj.s 			page 20
+
+
+ 671              	# 118 "src/provera.cpp" 1
+ 119:src/provera.cpp **** 
+ 672              		csrw sepc, a5
+ 673              	# 0 "" 2
+ 674              		.loc 1 119 13 is_stmt 1
+ 119:src/provera.cpp **** 
+ 675              		.loc 1 119 58 is_stmt 0
+ 676              	#NO_APP
+ 677 0314 833784F7 		ld	a5,-136(s0)
+ 119:src/provera.cpp **** 
+ 678              		.loc 1 119 67
+ 679              	#APP
+ 680              	# 119 "src/provera.cpp" 1
+ 121:src/provera.cpp ****             __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 681              		csrw sstatus, a5
+ 682              	# 0 "" 2
+ 683              		.loc 1 121 13 is_stmt 1
+ 121:src/provera.cpp ****             __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 684              		.loc 1 121 30 is_stmt 0
+ 685              	#NO_APP
+ 686 031c 97070000 		la	a5,_ZN3Nit7runningE
+ 686      83B70700 
+ 687 0324 83B70700 		ld	a5,0(a5)
+ 688 0328 83A70700 		lw	a5,0(a5)
+ 121:src/provera.cpp ****             __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 689              		.loc 1 121 15
+ 690 032c 2324F4F2 		sw	a5,-216(s0)
+ 122:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 691              		.loc 1 122 13 is_stmt 1
+ 122:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 692              		.loc 1 122 52 is_stmt 0
+ 693 0330 832784F2 		lw	a5,-216(s0)
+ 122:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 694              		.loc 1 122 56
+ 695              	#APP
+ 696              	# 122 "src/provera.cpp" 1
+ 123:src/provera.cpp **** 
+ 697              		mv a0, a5
+ 698              	# 0 "" 2
+ 699              		.loc 1 123 13 is_stmt 1
+ 123:src/provera.cpp **** 
+ 700              		.loc 1 123 47 is_stmt 0
+ 701              	# 123 "src/provera.cpp" 1
+ 702              		sd a0, 80(s0)
+ 703              	# 0 "" 2
+ 704              	#NO_APP
+ 705              	.LBE64:
+ 706 033c 6FF09FD6 		j	.L15
+ 707              	.L38:
+ 708              	.LBE86:
+ 709              	.LBB87:
+ 710              	.LBB66:
+ 128:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (id));
+ 711              		.loc 1 128 13 is_stmt 1
+ 129:src/provera.cpp ****             id->signal();
+ 712              		.loc 1 129 13
+ 129:src/provera.cpp ****             id->signal();
+GAS LISTING /tmp/cc9Uw2dj.s 			page 21
+
+
+ 713              		.loc 1 129 55 is_stmt 0
+ 714              	#APP
+ 715              	# 129 "src/provera.cpp" 1
+ 716              		mv a5, a1
+ 717              	# 0 "" 2
+ 718              	#NO_APP
+ 719 0344 2330F4F8 		sd	a5,-128(s0)
+ 130:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 720              		.loc 1 130 13 is_stmt 1
+ 130:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 721              		.loc 1 130 23 is_stmt 0
+ 722 0348 033504F8 		ld	a0,-128(s0)
+ 723 034c 97000000 		call	_ZN7Semafor6signalEv@plt
+ 723      E7800000 
+ 724              	.LVL17:
+ 131:src/provera.cpp ****         }
+ 725              		.loc 1 131 13 is_stmt 1
+ 131:src/provera.cpp ****         }
+ 726              		.loc 1 131 47 is_stmt 0
+ 727              	#APP
+ 728              	# 131 "src/provera.cpp" 1
+ 729              		sd a0, 80(s0)
+ 730              	# 0 "" 2
+ 731              	#NO_APP
+ 732              	.LBE66:
+ 733 0358 6FF09FD5 		j	.L16
+ 734              	.L39:
+ 735              	.LBE87:
+ 736              	.LBB88:
+ 737              	.LBB68:
+ 135:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (t));
+ 738              		.loc 1 135 13 is_stmt 1
+ 136:src/provera.cpp ****             Scheduler::threadsleep(t);
+ 739              		.loc 1 136 13
+ 136:src/provera.cpp ****             Scheduler::threadsleep(t);
+ 740              		.loc 1 136 54 is_stmt 0
+ 741              	#APP
+ 742              	# 136 "src/provera.cpp" 1
+ 743              		mv a0, a1
+ 744              	# 0 "" 2
+ 745              	.LVL18:
+ 137:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 746              		.loc 1 137 13 is_stmt 1
+ 137:src/provera.cpp ****             __asm__ volatile ("sd a0, 80(s0)");
+ 747              		.loc 1 137 35 is_stmt 0
+ 748              	#NO_APP
+ 749 0360 1B050500 		sext.w	a0,a0
+ 750              	.LVL19:
+ 751 0364 97000000 		call	_ZN9Scheduler11threadsleepEi@plt
+ 751      E7800000 
+ 752              	.LVL20:
+ 138:src/provera.cpp ****         }
+ 753              		.loc 1 138 13 is_stmt 1
+ 138:src/provera.cpp ****         }
+ 754              		.loc 1 138 47 is_stmt 0
+ 755              	#APP
+ 756              	# 138 "src/provera.cpp" 1
+GAS LISTING /tmp/cc9Uw2dj.s 			page 22
+
+
+ 757              		sd a0, 80(s0)
+ 758              	# 0 "" 2
+ 759              	#NO_APP
+ 760              	.LBE68:
+ 761 0370 6FF0DFD4 		j	.L17
+ 762              	.L40:
+ 763              	.LBE88:
+ 764              	.LBB89:
+ 765              	.LBB70:
+ 142:src/provera.cpp ****             uint64 volatile sstatus;
+ 766              		.loc 1 142 13 is_stmt 1
+ 143:src/provera.cpp ****             __asm__ volatile("csrr %0, sepc" : "=r" (sepc)); // sepc
+ 767              		.loc 1 143 13
+ 144:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 768              		.loc 1 144 13
+ 144:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 769              		.loc 1 144 60 is_stmt 0
+ 770              	#APP
+ 771              	# 144 "src/provera.cpp" 1
+ 772              		csrr a5, sepc
+ 773              	# 0 "" 2
+ 774              	#NO_APP
+ 775 0378 2334F4F8 		sd	a5,-120(s0)
+ 145:src/provera.cpp **** 
+ 776              		.loc 1 145 13 is_stmt 1
+ 145:src/provera.cpp **** 
+ 777              		.loc 1 145 66 is_stmt 0
+ 778              	#APP
+ 779              	# 145 "src/provera.cpp" 1
+ 780              		csrr a5, sstatus
+ 781              	# 0 "" 2
+ 782              	#NO_APP
+ 783 0380 2338F4F8 		sd	a5,-112(s0)
+ 147:src/provera.cpp ****             __asm__ volatile("sd a0, 80(s0)");
+ 784              		.loc 1 147 13 is_stmt 1
+ 147:src/provera.cpp ****             __asm__ volatile("sd a0, 80(s0)");
+ 785              		.loc 1 147 29 is_stmt 0
+ 786 0384 97000000 		call	_ZN7Konzola7getulazEv@plt
+ 786      E7800000 
+ 787              	.LVL21:
+ 148:src/provera.cpp **** 
+ 788              		.loc 1 148 13 is_stmt 1
+ 148:src/provera.cpp **** 
+ 789              		.loc 1 148 46 is_stmt 0
+ 790              	#APP
+ 791              	# 148 "src/provera.cpp" 1
+ 150:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 792              		sd a0, 80(s0)
+ 793              	# 0 "" 2
+ 794              		.loc 1 150 13 is_stmt 1
+ 150:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 795              		.loc 1 150 55 is_stmt 0
+ 796              	#NO_APP
+ 797 0390 833784F8 		ld	a5,-120(s0)
+ 150:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 798              		.loc 1 150 61
+ 799              	#APP
+GAS LISTING /tmp/cc9Uw2dj.s 			page 23
+
+
+ 800              	# 150 "src/provera.cpp" 1
+ 151:src/provera.cpp ****         }
+ 801              		csrw sepc, a5
+ 802              	# 0 "" 2
+ 803              		.loc 1 151 13 is_stmt 1
+ 151:src/provera.cpp ****         }
+ 804              		.loc 1 151 58 is_stmt 0
+ 805              	#NO_APP
+ 806 0398 833704F9 		ld	a5,-112(s0)
+ 151:src/provera.cpp ****         }
+ 807              		.loc 1 151 67
+ 808              	#APP
+ 809              	# 151 "src/provera.cpp" 1
+ 810              		csrw sstatus, a5
+ 811              	# 0 "" 2
+ 812              	#NO_APP
+ 813              	.LBE70:
+ 814 03a0 6FF09FD2 		j	.L18
+ 815              	.L41:
+ 816              	.LBE89:
+ 817              	.LBB90:
+ 818              	.LBB72:
+ 155:src/provera.cpp ****             uint64 volatile sepc;
+ 819              		.loc 1 155 13 is_stmt 1
+ 156:src/provera.cpp ****             uint64 volatile sstatus;
+ 820              		.loc 1 156 13
+ 157:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (c));
+ 821              		.loc 1 157 13
+ 158:src/provera.cpp ****             __asm__ volatile("csrr %0, sepc" : "=r" (sepc)); // sepc
+ 822              		.loc 1 158 13
+ 158:src/provera.cpp ****             __asm__ volatile("csrr %0, sepc" : "=r" (sepc)); // sepc
+ 823              		.loc 1 158 54 is_stmt 0
+ 824              	#APP
+ 825              	# 158 "src/provera.cpp" 1
+ 826              		mv a5, a1
+ 827              	# 0 "" 2
+ 828              	#NO_APP
+ 829 03a8 A301F4F2 		sb	a5,-221(s0)
+ 159:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 830              		.loc 1 159 13 is_stmt 1
+ 159:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 831              		.loc 1 159 60 is_stmt 0
+ 832              	#APP
+ 833              	# 159 "src/provera.cpp" 1
+ 834              		csrr a5, sepc
+ 835              	# 0 "" 2
+ 836              	#NO_APP
+ 837 03b0 233CF4F8 		sd	a5,-104(s0)
+ 160:src/provera.cpp **** 
+ 838              		.loc 1 160 13 is_stmt 1
+ 160:src/provera.cpp **** 
+ 839              		.loc 1 160 66 is_stmt 0
+ 840              	#APP
+ 841              	# 160 "src/provera.cpp" 1
+ 842              		csrr a5, sstatus
+ 843              	# 0 "" 2
+ 844              	#NO_APP
+GAS LISTING /tmp/cc9Uw2dj.s 			page 24
+
+
+ 845 03b8 2330F4FA 		sd	a5,-96(s0)
+ 163:src/provera.cpp **** 
+ 846              		.loc 1 163 13 is_stmt 1
+ 163:src/provera.cpp **** 
+ 847              		.loc 1 163 30 is_stmt 0
+ 848 03bc 034534F2 		lbu	a0,-221(s0)
+ 849 03c0 1375F50F 		andi	a0,a0,0xff
+ 850 03c4 97000000 		call	_ZN7Konzola8putizlazEi@plt
+ 850      E7800000 
+ 851              	.LVL22:
+ 165:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 852              		.loc 1 165 13 is_stmt 1
+ 165:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 853              		.loc 1 165 55 is_stmt 0
+ 854 03cc 833784F9 		ld	a5,-104(s0)
+ 165:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 855              		.loc 1 165 61
+ 856              	#APP
+ 857              	# 165 "src/provera.cpp" 1
+ 166:src/provera.cpp ****         }
+ 858              		csrw sepc, a5
+ 859              	# 0 "" 2
+ 860              		.loc 1 166 13 is_stmt 1
+ 166:src/provera.cpp ****         }
+ 861              		.loc 1 166 58 is_stmt 0
+ 862              	#NO_APP
+ 863 03d4 833704FA 		ld	a5,-96(s0)
+ 166:src/provera.cpp ****         }
+ 864              		.loc 1 166 67
+ 865              	#APP
+ 866              	# 166 "src/provera.cpp" 1
+ 867              		csrw sstatus, a5
+ 868              	# 0 "" 2
+ 869              	#NO_APP
+ 870              	.LBE72:
+ 871 03dc 6FF09FCF 		j	.L19
+ 872              	.L42:
+ 873              	.LBE90:
+ 874              	.LBB91:
+ 875              	.LBB74:
+ 170:src/provera.cpp ****             __asm__ volatile ("mv %0, a1" : "=r" (t));
+ 876              		.loc 1 170 13 is_stmt 1
+ 171:src/provera.cpp ****             Scheduler::put(t);
+ 877              		.loc 1 171 13
+ 171:src/provera.cpp ****             Scheduler::put(t);
+ 878              		.loc 1 171 54 is_stmt 0
+ 879              	#APP
+ 880              	# 171 "src/provera.cpp" 1
+ 881              		mv a5, a1
+ 882              	# 0 "" 2
+ 883              	#NO_APP
+ 884 03e4 2334F4FA 		sd	a5,-88(s0)
+ 172:src/provera.cpp ****             __asm__ volatile("sd a0, 80(s0)");
+ 885              		.loc 1 172 13 is_stmt 1
+ 172:src/provera.cpp ****             __asm__ volatile("sd a0, 80(s0)");
+ 886              		.loc 1 172 27 is_stmt 0
+ 887 03e8 033584FA 		ld	a0,-88(s0)
+GAS LISTING /tmp/cc9Uw2dj.s 			page 25
+
+
+ 888 03ec 97000000 		call	_ZN9Scheduler3putEP3Nit@plt
+ 888      E7800000 
+ 889              	.LVL23:
+ 173:src/provera.cpp ****         }
+ 890              		.loc 1 173 13 is_stmt 1
+ 173:src/provera.cpp ****         }
+ 891              		.loc 1 173 46 is_stmt 0
+ 892              	#APP
+ 893              	# 173 "src/provera.cpp" 1
+ 894              		sd a0, 80(s0)
+ 895              	# 0 "" 2
+ 896              	#NO_APP
+ 897              	.LBE74:
+ 898 03f8 6FF09FCE 		j	.L20
+ 899              	.L43:
+ 900              	.LBE91:
+ 901              	.LBB92:
+ 902              	.LBB76:
+ 177:src/provera.cpp ****             __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus));
+ 903              		.loc 1 177 13 is_stmt 1
+ 178:src/provera.cpp ****             sstatus|=256;
+ 904              		.loc 1 178 13
+ 178:src/provera.cpp ****             sstatus|=256;
+ 905              		.loc 1 178 66 is_stmt 0
+ 906              	#APP
+ 907              	# 178 "src/provera.cpp" 1
+ 908              		csrr a5, sstatus
+ 909              	# 0 "" 2
+ 910              	#NO_APP
+ 911 0400 2338F4FA 		sd	a5,-80(s0)
+ 179:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0"::"r" (sstatus));
+ 912              		.loc 1 179 13 is_stmt 1
+ 179:src/provera.cpp ****             __asm__ volatile("csrw sstatus, %0"::"r" (sstatus));
+ 913              		.loc 1 179 20 is_stmt 0
+ 914 0404 833704FB 		ld	a5,-80(s0)
+ 915 0408 93E70710 		ori	a5,a5,256
+ 916 040c 2338F4FA 		sd	a5,-80(s0)
+ 180:src/provera.cpp ****         }
+ 917              		.loc 1 180 13 is_stmt 1
+ 180:src/provera.cpp ****         }
+ 918              		.loc 1 180 55 is_stmt 0
+ 919 0410 833704FB 		ld	a5,-80(s0)
+ 180:src/provera.cpp ****         }
+ 920              		.loc 1 180 64
+ 921              	#APP
+ 922              	# 180 "src/provera.cpp" 1
+ 923              		csrw sstatus, a5
+ 924              	# 0 "" 2
+ 925              	#NO_APP
+ 926              	.LBE76:
+ 927 0418 6FF05FCD 		j	.L21
+ 928              	.L44:
+ 929              	.LBE92:
+ 930              	.LBB93:
+ 931              	.LBB79:
+ 196:src/provera.cpp ****                 __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 932              		.loc 1 196 17 is_stmt 1
+GAS LISTING /tmp/cc9Uw2dj.s 			page 26
+
+
+ 196:src/provera.cpp ****                 __asm__ volatile ("mv a0, %0" : : "r" (a0));
+ 933              		.loc 1 196 19 is_stmt 0
+ 934 041c 9307E0FF 		li	a5,-2
+ 935 0420 2338F4F2 		sd	a5,-208(s0)
+ 197:src/provera.cpp ****             }
+ 936              		.loc 1 197 17 is_stmt 1
+ 197:src/provera.cpp ****             }
+ 937              		.loc 1 197 56 is_stmt 0
+ 938 0424 833704F3 		ld	a5,-208(s0)
+ 197:src/provera.cpp ****             }
+ 939              		.loc 1 197 60
+ 940              	#APP
+ 941              	# 197 "src/provera.cpp" 1
+ 942              		mv a0, a5
+ 943              	# 0 "" 2
+ 944              	#NO_APP
+ 945 042c 6FF05FD0 		j	.L23
+ 946              	.L45:
+ 947              	.LBE79:
+ 948              	.LBE93:
+ 949              	.LBE103:
+ 950              	.LBB104:
+ 951              	.LBB95:
+ 206:src/provera.cpp ****             Nit::tajmer++;
+ 952              		.loc 1 206 13 is_stmt 1
+ 953              	.LVL24:
+ 207:src/provera.cpp ****             Scheduler::dekremntacija(1); //ovo je za uspavane niti
+ 954              		.loc 1 207 13
+ 207:src/provera.cpp ****             Scheduler::dekremntacija(1); //ovo je za uspavane niti
+ 955              		.loc 1 207 24 is_stmt 0
+ 956 0430 97040000 		la	s1,_ZN3Nit6tajmerE
+ 956      83B40400 
+ 957 0438 83A70400 		lw	a5,0(s1)
+ 958 043c 9B871700 		addiw	a5,a5,1
+ 959 0440 23A0F400 		sw	a5,0(s1)
+ 208:src/provera.cpp **** 
+ 960              		.loc 1 208 13 is_stmt 1
+ 208:src/provera.cpp **** 
+ 961              		.loc 1 208 37 is_stmt 0
+ 962 0444 13051000 		li	a0,1
+ 963 0448 97000000 		call	_ZN9Scheduler13dekremntacijaEi@plt
+ 963      E7800000 
+ 964              	.LVL25:
+ 210:src/provera.cpp ****                 //Scheduler::Print();
+ 965              		.loc 1 210 13 is_stmt 1
+ 966              	.LBB96:
+ 210:src/provera.cpp ****                 //Scheduler::Print();
+ 967              		.loc 1 210 22 is_stmt 0
+ 968 0450 83A70400 		lw	a5,0(s1)
+ 210:src/provera.cpp ****                 //Scheduler::Print();
+ 969              		.loc 1 210 13
+ 970 0454 93F71700 		andi	a5,a5,1
+ 971 0458 63880700 		beqz	a5,.L50
+ 972              	.L24:
+ 973              	.LBE96:
+ 224:src/provera.cpp ****         }
+ 974              		.loc 1 224 13 is_stmt 1
+GAS LISTING /tmp/cc9Uw2dj.s 			page 27
+
+
+ 224:src/provera.cpp ****         }
+ 975              		.loc 1 224 58 is_stmt 0
+ 976 045c 93072000 		li	a5,2
+ 977              	#APP
+ 978              	# 224 "src/provera.cpp" 1
+ 979              		csrc sip, a5
+ 980              	# 0 "" 2
+ 981              	#NO_APP
+ 982              	.LBE95:
+ 983 0464 6FF09FCE 		j	.L6
+ 984              	.L50:
+ 985              	.LBB99:
+ 986              	.LBB98:
+ 987              	.LBB97:
+ 213:src/provera.cpp ****                 uint64 volatile sstatus;
+ 988              		.loc 1 213 17 is_stmt 1
+ 214:src/provera.cpp ****                 __asm__ volatile("csrr %0, sepc" : "=r" (sepc)); // sepc
+ 989              		.loc 1 214 17
+ 215:src/provera.cpp ****                 __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 990              		.loc 1 215 17
+ 215:src/provera.cpp ****                 __asm__ volatile("csrr %0, sstatus" : "=r" (sstatus)); // sstatus_r
+ 991              		.loc 1 215 64 is_stmt 0
+ 992              	#APP
+ 993              	# 215 "src/provera.cpp" 1
+ 994              		csrr a5, sepc
+ 995              	# 0 "" 2
+ 996              	#NO_APP
+ 997 046c 2334F4FC 		sd	a5,-56(s0)
+ 216:src/provera.cpp ****                 Nit::dispatch();
+ 998              		.loc 1 216 17 is_stmt 1
+ 216:src/provera.cpp ****                 Nit::dispatch();
+ 999              		.loc 1 216 70 is_stmt 0
+ 1000              	#APP
+ 1001              	# 216 "src/provera.cpp" 1
+ 1002              		csrr a5, sstatus
+ 1003              	# 0 "" 2
+ 1004              	#NO_APP
+ 1005 0474 2338F4FC 		sd	a5,-48(s0)
+ 217:src/provera.cpp ****                 __asm__ volatile("csrw sepc, %0" : : "r" (sepc)); // sepc_w
+ 1006              		.loc 1 217 17 is_stmt 1
+ 217:src/provera.cpp ****                 __asm__ volatile("csrw sepc, %0" : : "r" (sepc)); // sepc_w
+ 1007              		.loc 1 217 30 is_stmt 0
+ 1008 0478 97000000 		call	_ZN3Nit8dispatchEv@plt
+ 1008      E7800000 
+ 1009              	.LVL26:
+ 218:src/provera.cpp ****                 __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 1010              		.loc 1 218 17 is_stmt 1
+ 218:src/provera.cpp ****                 __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 1011              		.loc 1 218 59 is_stmt 0
+ 1012 0480 833784FC 		ld	a5,-56(s0)
+ 218:src/provera.cpp ****                 __asm__ volatile("csrw sstatus, %0" : : "r" (sstatus)); // sstatus_w
+ 1013              		.loc 1 218 65
+ 1014              	#APP
+ 1015              	# 218 "src/provera.cpp" 1
+ 219:src/provera.cpp **** 
+ 1016              		csrw sepc, a5
+ 1017              	# 0 "" 2
+GAS LISTING /tmp/cc9Uw2dj.s 			page 28
+
+
+ 1018              		.loc 1 219 17 is_stmt 1
+ 219:src/provera.cpp **** 
+ 1019              		.loc 1 219 62 is_stmt 0
+ 1020              	#NO_APP
+ 1021 0488 833704FD 		ld	a5,-48(s0)
+ 219:src/provera.cpp **** 
+ 1022              		.loc 1 219 71
+ 1023              	#APP
+ 1024              	# 219 "src/provera.cpp" 1
+ 221:src/provera.cpp ****             }
+ 1025              		csrw sstatus, a5
+ 1026              	# 0 "" 2
+ 1027              		.loc 1 221 17 is_stmt 1
+ 221:src/provera.cpp ****             }
+ 1028              		.loc 1 221 29 is_stmt 0
+ 1029              	#NO_APP
+ 1030 0490 23A00400 		sw	zero,0(s1)
+ 1031              	.LBE97:
+ 1032 0494 6FF09FFC 		j	.L24
+ 1033              	.LVL27:
+ 1034              	.L46:
+ 1035              	.LBE98:
+ 1036              	.LBE99:
+ 1037              	.LBE104:
+ 1038              	.LBB105:
+ 1039              	.LBB101:
+ 227:src/provera.cpp ****             if(h==CONSOLE_IRQ){
+ 1040              		.loc 1 227 13 is_stmt 1
+ 227:src/provera.cpp ****             if(h==CONSOLE_IRQ){
+ 1041              		.loc 1 227 40 is_stmt 0
+ 1042 0498 97000000 		call	plic_claim@plt
+ 1042      E7800000 
+ 1043              	.LVL28:
+ 227:src/provera.cpp ****             if(h==CONSOLE_IRQ){
+ 1044              		.loc 1 227 41
+ 1045 04a0 2326A4F2 		sw	a0,-212(s0)
+ 228:src/provera.cpp ****                 while(*(uint8*)CONSOLE_STATUS & CONSOLE_RX_STATUS_BIT){
+ 1046              		.loc 1 228 13 is_stmt 1
+ 228:src/provera.cpp ****                 while(*(uint8*)CONSOLE_STATUS & CONSOLE_RX_STATUS_BIT){
+ 1047              		.loc 1 228 17 is_stmt 0
+ 1048 04a4 8327C4F2 		lw	a5,-212(s0)
+ 1049 04a8 9B870700 		sext.w	a5,a5
+ 228:src/provera.cpp ****                 while(*(uint8*)CONSOLE_STATUS & CONSOLE_RX_STATUS_BIT){
+ 1050              		.loc 1 228 13
+ 1051 04ac 1307A000 		li	a4,10
+ 1052 04b0 638AE700 		beq	a5,a4,.L27
+ 1053              	.L26:
+ 233:src/provera.cpp ****         }
+ 1054              		.loc 1 233 13 is_stmt 1
+ 233:src/provera.cpp ****         }
+ 1055              		.loc 1 233 26 is_stmt 0
+ 1056 04b4 1305A000 		li	a0,10
+ 1057 04b8 97000000 		call	plic_complete@plt
+ 1057      E7800000 
+ 1058              	.LVL29:
+ 1059              	.LBE101:
+ 1060 04c0 6FF05FCB 		j	.L1
+GAS LISTING /tmp/cc9Uw2dj.s 			page 29
+
+
+ 1061              	.L27:
+ 1062              	.LBB102:
+ 229:src/provera.cpp ****                     Konzola::putulaz(*(char*)CONSOLE_RX_DATA);
+ 1063              		.loc 1 229 17 is_stmt 1
+ 229:src/provera.cpp ****                     Konzola::putulaz(*(char*)CONSOLE_RX_DATA);
+ 1064              		.loc 1 229 49
+ 229:src/provera.cpp ****                     Konzola::putulaz(*(char*)CONSOLE_RX_DATA);
+ 1065              		.loc 1 229 23 is_stmt 0
+ 1066 04c4 97070000 		la	a5,CONSOLE_STATUS
+ 1066      83B70700 
+ 1067 04cc 83B70700 		ld	a5,0(a5)
+ 1068 04d0 83C70700 		lbu	a5,0(a5)
+ 229:src/provera.cpp ****                     Konzola::putulaz(*(char*)CONSOLE_RX_DATA);
+ 1069              		.loc 1 229 49
+ 1070 04d4 93F71700 		andi	a5,a5,1
+ 1071 04d8 E38E07FC 		beqz	a5,.L26
+ 230:src/provera.cpp ****                 }
+ 1072              		.loc 1 230 21 is_stmt 1
+ 230:src/provera.cpp ****                 }
+ 1073              		.loc 1 230 38 is_stmt 0
+ 1074 04dc 97070000 		la	a5,CONSOLE_RX_DATA
+ 1074      83B70700 
+ 1075 04e4 83B70700 		ld	a5,0(a5)
+ 230:src/provera.cpp ****                 }
+ 1076              		.loc 1 230 37
+ 1077 04e8 03C50700 		lbu	a0,0(a5)
+ 1078 04ec 97000000 		call	_ZN7Konzola7putulazEi@plt
+ 1078      E7800000 
+ 1079              	.LVL30:
+ 229:src/provera.cpp ****                     Konzola::putulaz(*(char*)CONSOLE_RX_DATA);
+ 1080              		.loc 1 229 17
+ 1081 04f4 6FF01FFD 		j	.L27
+ 1082              	.L47:
+ 1083              	.LBE102:
+ 236:src/provera.cpp ****             printInt(prekid >> 63);
+ 1084              		.loc 1 236 13 is_stmt 1
+ 236:src/provera.cpp ****             printInt(prekid >> 63);
+ 1085              		.loc 1 236 24 is_stmt 0
+ 1086 04f8 17050000 		lla	a0,.LC0
+ 1086      13050500 
+ 1087 0500 97000000 		call	_Z11printStringPKc@plt
+ 1087      E7800000 
+ 1088              	.LVL31:
+ 237:src/provera.cpp ****             printInt(prekid % 16);
+ 1089              		.loc 1 237 13 is_stmt 1
+ 237:src/provera.cpp ****             printInt(prekid % 16);
+ 1090              		.loc 1 237 22 is_stmt 0
+ 1091 0508 033584FD 		ld	a0,-40(s0)
+ 237:src/provera.cpp ****             printInt(prekid % 16);
+ 1092              		.loc 1 237 21
+ 1093 050c 13060000 		li	a2,0
+ 1094 0510 9305A000 		li	a1,10
+ 1095 0514 13250500 		slti	a0,a0,0
+ 1096 0518 97000000 		call	_Z8printIntiii@plt
+ 1096      E7800000 
+ 1097              	.LVL32:
+ 238:src/provera.cpp ****             printString("\nsstatus: \n");
+GAS LISTING /tmp/cc9Uw2dj.s 			page 30
+
+
+ 1098              		.loc 1 238 13 is_stmt 1
+ 238:src/provera.cpp ****             printString("\nsstatus: \n");
+ 1099              		.loc 1 238 29 is_stmt 0
+ 1100 0520 033584FD 		ld	a0,-40(s0)
+ 238:src/provera.cpp ****             printString("\nsstatus: \n");
+ 1101              		.loc 1 238 21
+ 1102 0524 13060000 		li	a2,0
+ 1103 0528 9305A000 		li	a1,10
+ 1104 052c 1375F500 		andi	a0,a0,15
+ 1105 0530 97000000 		call	_Z8printIntiii@plt
+ 1105      E7800000 
+ 1106              	.LVL33:
+ 239:src/provera.cpp ****             //print(status);
+ 1107              		.loc 1 239 13 is_stmt 1
+ 239:src/provera.cpp ****             //print(status);
+ 1108              		.loc 1 239 24 is_stmt 0
+ 1109 0538 17050000 		lla	a0,.LC1
+ 1109      13050500 
+ 1110 0540 97000000 		call	_Z11printStringPKc@plt
+ 1110      E7800000 
+ 1111              	.LVL34:
+ 1112              	.L28:
+ 241:src/provera.cpp ****         }
+ 1113              		.loc 1 241 13 is_stmt 1 discriminator 1
+ 241:src/provera.cpp ****         }
+ 1114              		.loc 1 241 13 discriminator 1
+ 1115 0548 6F000000 		j	.L28
+ 1116              	.LBE105:
+ 1117              	.LBE108:
+ 1118              		.cfi_endproc
+ 1119              	.LFE20:
+ 1121              	.Letext0:
+ 1122              		.file 3 "src/../h/../lib/hw.h"
+ 1123              		.file 4 "src/../h/memorija.h"
+ 1124              		.file 5 "src/../h/thread.h"
+ 1125              		.file 6 "src/../h/scheduler.h"
+ 1126              		.file 7 "src/../h/Bafer.h"
+ 1127              		.file 8 "src/../h/konzola.h"
+ 1128              		.file 9 "src/../h/../h/syscall_c.h"
+ 1129              		.file 10 "src/../h/printing.h"
+ 1130              		.file 11 "<built-in>"
+GAS LISTING /tmp/cc9Uw2dj.s 			page 31
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 provera.cpp
+     /tmp/cc9Uw2dj.s:17     .text:0000000000000000 handle
+     /tmp/cc9Uw2dj.s:21     .text:0000000000000000 .L0 
+     /tmp/cc9Uw2dj.s:22     .text:0000000000000000 .L0 
+     /tmp/cc9Uw2dj.s:23     .text:0000000000000004 .L0 
+     /tmp/cc9Uw2dj.s:27     .text:0000000000000010 .L0 
+     /tmp/cc9Uw2dj.s:28     .text:0000000000000010 .L0 
+     /tmp/cc9Uw2dj.s:29     .text:0000000000000010 .L0 
+     /tmp/cc9Uw2dj.s:31     .text:0000000000000014 .L0 
+     /tmp/cc9Uw2dj.s:33     .text:0000000000000014 .L0 
+     /tmp/cc9Uw2dj.s:34     .text:0000000000000014 .L0 
+     src/provera.cpp:10     .text:0000000000000014 .L0 
+     /tmp/cc9Uw2dj.s:43     .text:000000000000001c .L0 
+     /tmp/cc9Uw2dj.s:44     .text:000000000000001c .L0 
+     /tmp/cc9Uw2dj.s:46     .text:0000000000000020 .L0 
+     /tmp/cc9Uw2dj.s:48     .text:0000000000000024 .L0 
+     /tmp/cc9Uw2dj.s:50     .text:0000000000000028 .L0 
+     /tmp/cc9Uw2dj.s:52     .text:000000000000002c .L0 
+     /tmp/cc9Uw2dj.s:55     .text:0000000000000030 .L0 
+     src/provera.cpp:21     .text:0000000000000030 .L0 
+     /tmp/cc9Uw2dj.s:61     .text:0000000000000034 .L0 
+     src/provera.cpp:22     .text:0000000000000034 .L0 
+     /tmp/cc9Uw2dj.s:66     .text:0000000000000038 .L0 
+     src/provera.cpp:23     .text:0000000000000038 .L0 
+     /tmp/cc9Uw2dj.s:71     .text:000000000000003c .L0 
+     /tmp/cc9Uw2dj.s:72     .text:000000000000003c .L0 
+     src/provera.cpp:25     .text:000000000000003c .L0 
+     /tmp/cc9Uw2dj.s:80     .text:0000000000000044 .L0 
+     /tmp/cc9Uw2dj.s:81     .text:0000000000000044 .L0 
+     /tmp/cc9Uw2dj.s:83     .text:0000000000000048 .L0 
+     /tmp/cc9Uw2dj.s:89     .text:0000000000000050 .L0 
+     /tmp/cc9Uw2dj.s:90     .text:0000000000000050 .L0 
+     /tmp/cc9Uw2dj.s:92     .text:0000000000000054 .L0 
+     /tmp/cc9Uw2dj.s:98     .text:000000000000005c .L0 
+     /tmp/cc9Uw2dj.s:99     .text:000000000000005c .L0 
+     /tmp/cc9Uw2dj.s:101    .text:0000000000000060 .L0 
+     /tmp/cc9Uw2dj.s:106    .text:0000000000000068 .L0 
+     /tmp/cc9Uw2dj.s:107    .text:0000000000000068 .L0 
+     /tmp/cc9Uw2dj.s:109    .text:000000000000006c .L0 
+     /tmp/cc9Uw2dj.s:114    .text:0000000000000074 .L0 
+     /tmp/cc9Uw2dj.s:115    .text:0000000000000074 .L0 
+     /tmp/cc9Uw2dj.s:117    .text:0000000000000078 .L0 
+     /tmp/cc9Uw2dj.s:123    .text:0000000000000080 .L0 
+     /tmp/cc9Uw2dj.s:124    .text:0000000000000080 .L0 
+     /tmp/cc9Uw2dj.s:126    .text:0000000000000084 .L0 
+     /tmp/cc9Uw2dj.s:132    .text:000000000000008c .L0 
+     /tmp/cc9Uw2dj.s:133    .text:000000000000008c .L0 
+     /tmp/cc9Uw2dj.s:135    .text:0000000000000090 .L0 
+     /tmp/cc9Uw2dj.s:141    .text:0000000000000098 .L0 
+     /tmp/cc9Uw2dj.s:142    .text:0000000000000098 .L0 
+     /tmp/cc9Uw2dj.s:144    .text:000000000000009c .L0 
+     /tmp/cc9Uw2dj.s:150    .text:00000000000000a4 .L0 
+     /tmp/cc9Uw2dj.s:151    .text:00000000000000a4 .L0 
+     /tmp/cc9Uw2dj.s:153    .text:00000000000000a8 .L0 
+     /tmp/cc9Uw2dj.s:159    .text:00000000000000b0 .L0 
+     /tmp/cc9Uw2dj.s:160    .text:00000000000000b0 .L0 
+GAS LISTING /tmp/cc9Uw2dj.s 			page 32
+
+
+     /tmp/cc9Uw2dj.s:162    .text:00000000000000b4 .L0 
+     /tmp/cc9Uw2dj.s:168    .text:00000000000000bc .L0 
+     /tmp/cc9Uw2dj.s:169    .text:00000000000000bc .L0 
+     /tmp/cc9Uw2dj.s:171    .text:00000000000000c0 .L0 
+     /tmp/cc9Uw2dj.s:177    .text:00000000000000c8 .L0 
+     /tmp/cc9Uw2dj.s:178    .text:00000000000000c8 .L0 
+     /tmp/cc9Uw2dj.s:180    .text:00000000000000cc .L0 
+     /tmp/cc9Uw2dj.s:186    .text:00000000000000d4 .L0 
+     /tmp/cc9Uw2dj.s:187    .text:00000000000000d4 .L0 
+     /tmp/cc9Uw2dj.s:189    .text:00000000000000d8 .L0 
+     /tmp/cc9Uw2dj.s:195    .text:00000000000000e0 .L0 
+     /tmp/cc9Uw2dj.s:196    .text:00000000000000e0 .L0 
+     /tmp/cc9Uw2dj.s:198    .text:00000000000000e4 .L0 
+     /tmp/cc9Uw2dj.s:204    .text:00000000000000ec .L0 
+     /tmp/cc9Uw2dj.s:205    .text:00000000000000ec .L0 
+     /tmp/cc9Uw2dj.s:207    .text:00000000000000f0 .L0 
+     /tmp/cc9Uw2dj.s:211    .text:00000000000000f8 .L0 
+     /tmp/cc9Uw2dj.s:212    .text:00000000000000f8 .L0 
+     /tmp/cc9Uw2dj.s:213    .text:00000000000000f8 .L0 
+     /tmp/cc9Uw2dj.s:214    .text:00000000000000f8 .L0 
+     src/provera.cpp:187    .text:00000000000000f8 .L0 
+     /tmp/cc9Uw2dj.s:222    .text:0000000000000100 .L0 
+     src/provera.cpp:188    .text:0000000000000100 .L0 
+     /tmp/cc9Uw2dj.s:229    .text:0000000000000104 .L0 
+     src/provera.cpp:189    .text:0000000000000104 .L0 
+     /tmp/cc9Uw2dj.s:236    .text:000000000000010c .L0 
+     /tmp/cc9Uw2dj.s:237    .text:000000000000010c .L0 
+     /tmp/cc9Uw2dj.s:239    .text:0000000000000110 .L0 
+     /tmp/cc9Uw2dj.s:241    .text:0000000000000114 .L0 
+     /tmp/cc9Uw2dj.s:245    .text:0000000000000120 .L0 
+     /tmp/cc9Uw2dj.s:247    .text:0000000000000124 .L0 
+     /tmp/cc9Uw2dj.s:248    .text:0000000000000124 .L0 
+     /tmp/cc9Uw2dj.s:250    .text:0000000000000128 .L0 
+     /tmp/cc9Uw2dj.s:252    .text:000000000000012c .L0 
+     /tmp/cc9Uw2dj.s:255    .text:0000000000000130 .L0 
+     src/provera.cpp:200    .text:0000000000000130 .L0 
+     /tmp/cc9Uw2dj.s:270    .text:0000000000000138 .L0 
+     /tmp/cc9Uw2dj.s:271    .text:0000000000000138 .L0 
+     /tmp/cc9Uw2dj.s:273    .text:000000000000013c .L0 
+     /tmp/cc9Uw2dj.s:283    .text:000000000000014c .L0 
+     /tmp/cc9Uw2dj.s:284    .text:000000000000014c .L0 
+     /tmp/cc9Uw2dj.s:286    .text:0000000000000150 .L0 
+     /tmp/cc9Uw2dj.s:291    .text:0000000000000160 .L0 
+     /tmp/cc9Uw2dj.s:292    .text:0000000000000160 .L0 
+     /tmp/cc9Uw2dj.s:294    .text:0000000000000164 .L0 
+     /tmp/cc9Uw2dj.s:302    .text:0000000000000174 .L0 
+     /tmp/cc9Uw2dj.s:303    .text:0000000000000178 .L0 
+     /tmp/cc9Uw2dj.s:304    .text:0000000000000178 .L0 
+     /tmp/cc9Uw2dj.s:306    .text:000000000000017c .L0 
+     /tmp/cc9Uw2dj.s:307    .text:000000000000017c .L0 
+     /tmp/cc9Uw2dj.s:309    .text:0000000000000180 .L0 
+     /tmp/cc9Uw2dj.s:311    .text:0000000000000184 .L0 
+     /tmp/cc9Uw2dj.s:314    .text:0000000000000188 .L0 
+     /tmp/cc9Uw2dj.s:320    .text:0000000000000188 .L0 
+     /tmp/cc9Uw2dj.s:321    .text:0000000000000188 .L0 
+     src/provera.cpp:29     .text:0000000000000188 .L0 
+     /tmp/cc9Uw2dj.s:328    .text:000000000000018c .L0 
+GAS LISTING /tmp/cc9Uw2dj.s 			page 33
+
+
+     /tmp/cc9Uw2dj.s:330    .text:000000000000018c .L0 
+     /tmp/cc9Uw2dj.s:333    .text:0000000000000194 .L0 
+     src/provera.cpp:31     .text:0000000000000194 .L0 
+     /tmp/cc9Uw2dj.s:346    .text:000000000000019c .L0 
+     /tmp/cc9Uw2dj.s:347    .text:000000000000019c .L0 
+     src/provera.cpp:36     .text:000000000000019c .L0 
+     /tmp/cc9Uw2dj.s:354    .text:00000000000001a0 .L0 
+     /tmp/cc9Uw2dj.s:356    .text:00000000000001a0 .L0 
+     /tmp/cc9Uw2dj.s:359    .text:00000000000001a8 .L0 
+     src/provera.cpp:38     .text:00000000000001a8 .L0 
+     /tmp/cc9Uw2dj.s:372    .text:00000000000001b0 .L0 
+     /tmp/cc9Uw2dj.s:373    .text:00000000000001b0 .L0 
+     /tmp/cc9Uw2dj.s:374    .text:00000000000001b0 .L0 
+     /tmp/cc9Uw2dj.s:375    .text:00000000000001b0 .L0 
+     src/provera.cpp:46     .text:00000000000001b0 .L0 
+     /tmp/cc9Uw2dj.s:383    .text:00000000000001b8 .L0 
+     src/provera.cpp:47     .text:00000000000001b8 .L0 
+     /tmp/cc9Uw2dj.s:390    .text:00000000000001bc .L0 
+     src/provera.cpp:48     .text:00000000000001bc .L0 
+     /tmp/cc9Uw2dj.s:397    .text:00000000000001c4 .L0 
+     /tmp/cc9Uw2dj.s:398    .text:00000000000001c4 .L0 
+     /tmp/cc9Uw2dj.s:400    .text:00000000000001c8 .L0 
+     /tmp/cc9Uw2dj.s:402    .text:00000000000001cc .L0 
+     /tmp/cc9Uw2dj.s:406    .text:00000000000001d8 .L0 
+     /tmp/cc9Uw2dj.s:408    .text:00000000000001dc .L0 
+     /tmp/cc9Uw2dj.s:409    .text:00000000000001dc .L0 
+     /tmp/cc9Uw2dj.s:411    .text:00000000000001e0 .L0 
+     /tmp/cc9Uw2dj.s:413    .text:00000000000001e4 .L0 
+     /tmp/cc9Uw2dj.s:416    .text:00000000000001e8 .L0 
+     src/provera.cpp:59     .text:00000000000001e8 .L0 
+     /tmp/cc9Uw2dj.s:427    .text:00000000000001f0 .L0 
+     /tmp/cc9Uw2dj.s:428    .text:00000000000001f0 .L0 
+     /tmp/cc9Uw2dj.s:431    .text:00000000000001f8 .L0 
+     /tmp/cc9Uw2dj.s:432    .text:00000000000001f8 .L0 
+     src/provera.cpp:56     .text:00000000000001fc .L0 
+     /tmp/cc9Uw2dj.s:444    .text:0000000000000204 .L0 
+     /tmp/cc9Uw2dj.s:445    .text:0000000000000204 .L0 
+     /tmp/cc9Uw2dj.s:448    .text:0000000000000210 .L0 
+     /tmp/cc9Uw2dj.s:451    .text:0000000000000218 .L0 
+     /tmp/cc9Uw2dj.s:452    .text:0000000000000218 .L0 
+     /tmp/cc9Uw2dj.s:454    .text:000000000000021c .L0 
+     /tmp/cc9Uw2dj.s:455    .text:000000000000021c .L0 
+     /tmp/cc9Uw2dj.s:462    .text:0000000000000228 .L0 
+     /tmp/cc9Uw2dj.s:463    .text:0000000000000228 .L0 
+     /tmp/cc9Uw2dj.s:464    .text:0000000000000228 .L0 
+     src/provera.cpp:71     .text:0000000000000228 .L0 
+     /tmp/cc9Uw2dj.s:472    .text:0000000000000230 .L0 
+     src/provera.cpp:72     .text:0000000000000230 .L0 
+     /tmp/cc9Uw2dj.s:480    .text:0000000000000238 .L0 
+     /tmp/cc9Uw2dj.s:481    .text:0000000000000238 .L0 
+     /tmp/cc9Uw2dj.s:484    .text:0000000000000240 .L0 
+     /tmp/cc9Uw2dj.s:485    .text:0000000000000240 .L0 
+     src/provera.cpp:74     .text:0000000000000244 .L0 
+     /tmp/cc9Uw2dj.s:492    .text:0000000000000248 .L0 
+     /tmp/cc9Uw2dj.s:494    .text:0000000000000248 .L0 
+     src/provera.cpp:75     .text:000000000000024c .L0 
+     /tmp/cc9Uw2dj.s:508    .text:0000000000000254 .L0 
+GAS LISTING /tmp/cc9Uw2dj.s 			page 34
+
+
+     /tmp/cc9Uw2dj.s:509    .text:0000000000000254 .L0 
+     /tmp/cc9Uw2dj.s:510    .text:0000000000000254 .L0 
+     src/provera.cpp:82     .text:0000000000000254 .L0 
+     /tmp/cc9Uw2dj.s:518    .text:000000000000025c .L0 
+     src/provera.cpp:83     .text:000000000000025c .L0 
+     /tmp/cc9Uw2dj.s:526    .text:0000000000000264 .L0 
+     /tmp/cc9Uw2dj.s:527    .text:0000000000000264 .L0 
+     /tmp/cc9Uw2dj.s:534    .text:000000000000026c .L0 
+     /tmp/cc9Uw2dj.s:535    .text:000000000000026c .L0 
+     /tmp/cc9Uw2dj.s:543    .text:0000000000000278 .L0 
+     /tmp/cc9Uw2dj.s:551    .text:0000000000000288 .L0 
+     /tmp/cc9Uw2dj.s:553    .text:000000000000028c .L0 
+     /tmp/cc9Uw2dj.s:555    .text:0000000000000290 .L0 
+     /tmp/cc9Uw2dj.s:556    .text:0000000000000290 .L0 
+     /tmp/cc9Uw2dj.s:558    .text:0000000000000294 .L0 
+     /tmp/cc9Uw2dj.s:560    .text:0000000000000298 .L0 
+     /tmp/cc9Uw2dj.s:563    .text:000000000000029c .L0 
+     src/provera.cpp:91     .text:000000000000029c .L0 
+     /tmp/cc9Uw2dj.s:574    .text:00000000000002a4 .L0 
+     /tmp/cc9Uw2dj.s:575    .text:00000000000002a4 .L0 
+     /tmp/cc9Uw2dj.s:578    .text:00000000000002ac .L0 
+     /tmp/cc9Uw2dj.s:579    .text:00000000000002ac .L0 
+     src/provera.cpp:87     .text:00000000000002b0 .L0 
+     /tmp/cc9Uw2dj.s:593    .text:00000000000002b8 .L0 
+     /tmp/cc9Uw2dj.s:594    .text:00000000000002b8 .L0 
+     src/provera.cpp:96     .text:00000000000002b8 .L0 
+     /tmp/cc9Uw2dj.s:602    .text:00000000000002c0 .L0 
+     /tmp/cc9Uw2dj.s:603    .text:00000000000002c0 .L0 
+     /tmp/cc9Uw2dj.s:607    .text:00000000000002cc .L0 
+     /tmp/cc9Uw2dj.s:608    .text:00000000000002cc .L0 
+     /tmp/cc9Uw2dj.s:609    .text:00000000000002cc .L0 
+     /tmp/cc9Uw2dj.s:615    .text:00000000000002d4 .L0 
+     src/provera.cpp:102    .text:00000000000002d4 .L0 
+     /tmp/cc9Uw2dj.s:628    .text:00000000000002dc .L0 
+     /tmp/cc9Uw2dj.s:629    .text:00000000000002dc .L0 
+     src/provera.cpp:107    .text:00000000000002dc .L0 
+     /tmp/cc9Uw2dj.s:637    .text:00000000000002e4 .L0 
+     /tmp/cc9Uw2dj.s:638    .text:00000000000002e4 .L0 
+     /tmp/cc9Uw2dj.s:639    .text:00000000000002e4 .L0 
+     /tmp/cc9Uw2dj.s:643    .text:00000000000002f0 .L0 
+     /tmp/cc9Uw2dj.s:645    .text:00000000000002f4 .L0 
+     /tmp/cc9Uw2dj.s:646    .text:00000000000002f4 .L0 
+     /tmp/cc9Uw2dj.s:647    .text:00000000000002f4 .L0 
+     src/provera.cpp:115    .text:00000000000002f4 .L0 
+     /tmp/cc9Uw2dj.s:655    .text:00000000000002fc .L0 
+     src/provera.cpp:116    .text:00000000000002fc .L0 
+     /tmp/cc9Uw2dj.s:663    .text:0000000000000304 .L0 
+     /tmp/cc9Uw2dj.s:664    .text:0000000000000304 .L0 
+     /tmp/cc9Uw2dj.s:667    .text:000000000000030c .L0 
+     /tmp/cc9Uw2dj.s:668    .text:000000000000030c .L0 
+     src/provera.cpp:118    .text:0000000000000310 .L0 
+     /tmp/cc9Uw2dj.s:675    .text:0000000000000314 .L0 
+     /tmp/cc9Uw2dj.s:677    .text:0000000000000314 .L0 
+     src/provera.cpp:119    .text:0000000000000318 .L0 
+     /tmp/cc9Uw2dj.s:684    .text:000000000000031c .L0 
+     /tmp/cc9Uw2dj.s:686    .text:000000000000031c .L0 
+     /tmp/cc9Uw2dj.s:690    .text:000000000000032c .L0 
+GAS LISTING /tmp/cc9Uw2dj.s 			page 35
+
+
+     /tmp/cc9Uw2dj.s:692    .text:0000000000000330 .L0 
+     /tmp/cc9Uw2dj.s:693    .text:0000000000000330 .L0 
+     src/provera.cpp:122    .text:0000000000000334 .L0 
+     /tmp/cc9Uw2dj.s:700    .text:0000000000000338 .L0 
+     src/provera.cpp:123    .text:0000000000000338 .L0 
+     /tmp/cc9Uw2dj.s:712    .text:0000000000000340 .L0 
+     /tmp/cc9Uw2dj.s:713    .text:0000000000000340 .L0 
+     src/provera.cpp:129    .text:0000000000000340 .L0 
+     /tmp/cc9Uw2dj.s:721    .text:0000000000000348 .L0 
+     /tmp/cc9Uw2dj.s:722    .text:0000000000000348 .L0 
+     /tmp/cc9Uw2dj.s:726    .text:0000000000000354 .L0 
+     src/provera.cpp:131    .text:0000000000000354 .L0 
+     /tmp/cc9Uw2dj.s:739    .text:000000000000035c .L0 
+     /tmp/cc9Uw2dj.s:740    .text:000000000000035c .L0 
+     src/provera.cpp:136    .text:000000000000035c .L0 
+     /tmp/cc9Uw2dj.s:747    .text:0000000000000360 .L0 
+     /tmp/cc9Uw2dj.s:749    .text:0000000000000360 .L0 
+     /tmp/cc9Uw2dj.s:754    .text:000000000000036c .L0 
+     src/provera.cpp:138    .text:000000000000036c .L0 
+     /tmp/cc9Uw2dj.s:767    .text:0000000000000374 .L0 
+     /tmp/cc9Uw2dj.s:768    .text:0000000000000374 .L0 
+     /tmp/cc9Uw2dj.s:769    .text:0000000000000374 .L0 
+     src/provera.cpp:144    .text:0000000000000374 .L0 
+     /tmp/cc9Uw2dj.s:777    .text:000000000000037c .L0 
+     src/provera.cpp:145    .text:000000000000037c .L0 
+     /tmp/cc9Uw2dj.s:785    .text:0000000000000384 .L0 
+     /tmp/cc9Uw2dj.s:786    .text:0000000000000384 .L0 
+     /tmp/cc9Uw2dj.s:789    .text:000000000000038c .L0 
+     src/provera.cpp:148    .text:000000000000038c .L0 
+     /tmp/cc9Uw2dj.s:795    .text:0000000000000390 .L0 
+     /tmp/cc9Uw2dj.s:797    .text:0000000000000390 .L0 
+     src/provera.cpp:150    .text:0000000000000394 .L0 
+     /tmp/cc9Uw2dj.s:804    .text:0000000000000398 .L0 
+     /tmp/cc9Uw2dj.s:806    .text:0000000000000398 .L0 
+     src/provera.cpp:151    .text:000000000000039c .L0 
+     /tmp/cc9Uw2dj.s:820    .text:00000000000003a4 .L0 
+     /tmp/cc9Uw2dj.s:821    .text:00000000000003a4 .L0 
+     /tmp/cc9Uw2dj.s:822    .text:00000000000003a4 .L0 
+     /tmp/cc9Uw2dj.s:823    .text:00000000000003a4 .L0 
+     src/provera.cpp:158    .text:00000000000003a4 .L0 
+     /tmp/cc9Uw2dj.s:831    .text:00000000000003ac .L0 
+     src/provera.cpp:159    .text:00000000000003ac .L0 
+     /tmp/cc9Uw2dj.s:839    .text:00000000000003b4 .L0 
+     src/provera.cpp:160    .text:00000000000003b4 .L0 
+     /tmp/cc9Uw2dj.s:847    .text:00000000000003bc .L0 
+     /tmp/cc9Uw2dj.s:848    .text:00000000000003bc .L0 
+     /tmp/cc9Uw2dj.s:853    .text:00000000000003cc .L0 
+     /tmp/cc9Uw2dj.s:854    .text:00000000000003cc .L0 
+     src/provera.cpp:165    .text:00000000000003d0 .L0 
+     /tmp/cc9Uw2dj.s:861    .text:00000000000003d4 .L0 
+     /tmp/cc9Uw2dj.s:863    .text:00000000000003d4 .L0 
+     src/provera.cpp:166    .text:00000000000003d8 .L0 
+     /tmp/cc9Uw2dj.s:877    .text:00000000000003e0 .L0 
+     /tmp/cc9Uw2dj.s:878    .text:00000000000003e0 .L0 
+     src/provera.cpp:171    .text:00000000000003e0 .L0 
+     /tmp/cc9Uw2dj.s:886    .text:00000000000003e8 .L0 
+     /tmp/cc9Uw2dj.s:887    .text:00000000000003e8 .L0 
+GAS LISTING /tmp/cc9Uw2dj.s 			page 36
+
+
+     /tmp/cc9Uw2dj.s:891    .text:00000000000003f4 .L0 
+     src/provera.cpp:173    .text:00000000000003f4 .L0 
+     /tmp/cc9Uw2dj.s:904    .text:00000000000003fc .L0 
+     /tmp/cc9Uw2dj.s:905    .text:00000000000003fc .L0 
+     src/provera.cpp:178    .text:00000000000003fc .L0 
+     /tmp/cc9Uw2dj.s:913    .text:0000000000000404 .L0 
+     /tmp/cc9Uw2dj.s:914    .text:0000000000000404 .L0 
+     /tmp/cc9Uw2dj.s:918    .text:0000000000000410 .L0 
+     /tmp/cc9Uw2dj.s:919    .text:0000000000000410 .L0 
+     src/provera.cpp:180    .text:0000000000000414 .L0 
+     /tmp/cc9Uw2dj.s:933    .text:000000000000041c .L0 
+     /tmp/cc9Uw2dj.s:934    .text:000000000000041c .L0 
+     /tmp/cc9Uw2dj.s:937    .text:0000000000000424 .L0 
+     /tmp/cc9Uw2dj.s:938    .text:0000000000000424 .L0 
+     src/provera.cpp:197    .text:0000000000000428 .L0 
+     /tmp/cc9Uw2dj.s:954    .text:0000000000000430 .L0 
+     /tmp/cc9Uw2dj.s:955    .text:0000000000000430 .L0 
+     /tmp/cc9Uw2dj.s:956    .text:0000000000000430 .L0 
+     /tmp/cc9Uw2dj.s:961    .text:0000000000000444 .L0 
+     /tmp/cc9Uw2dj.s:962    .text:0000000000000444 .L0 
+     /tmp/cc9Uw2dj.s:967    .text:0000000000000450 .L0 
+     /tmp/cc9Uw2dj.s:968    .text:0000000000000450 .L0 
+     /tmp/cc9Uw2dj.s:970    .text:0000000000000454 .L0 
+     /tmp/cc9Uw2dj.s:975    .text:000000000000045c .L0 
+     /tmp/cc9Uw2dj.s:976    .text:000000000000045c .L0 
+     /tmp/cc9Uw2dj.s:989    .text:0000000000000468 .L0 
+     /tmp/cc9Uw2dj.s:990    .text:0000000000000468 .L0 
+     /tmp/cc9Uw2dj.s:991    .text:0000000000000468 .L0 
+     src/provera.cpp:215    .text:0000000000000468 .L0 
+     /tmp/cc9Uw2dj.s:999    .text:0000000000000470 .L0 
+     src/provera.cpp:216    .text:0000000000000470 .L0 
+     /tmp/cc9Uw2dj.s:1007   .text:0000000000000478 .L0 
+     /tmp/cc9Uw2dj.s:1008   .text:0000000000000478 .L0 
+     /tmp/cc9Uw2dj.s:1011   .text:0000000000000480 .L0 
+     /tmp/cc9Uw2dj.s:1012   .text:0000000000000480 .L0 
+     src/provera.cpp:218    .text:0000000000000484 .L0 
+     /tmp/cc9Uw2dj.s:1019   .text:0000000000000488 .L0 
+     /tmp/cc9Uw2dj.s:1021   .text:0000000000000488 .L0 
+     src/provera.cpp:219    .text:000000000000048c .L0 
+     /tmp/cc9Uw2dj.s:1028   .text:0000000000000490 .L0 
+     /tmp/cc9Uw2dj.s:1030   .text:0000000000000490 .L0 
+     /tmp/cc9Uw2dj.s:1041   .text:0000000000000498 .L0 
+     /tmp/cc9Uw2dj.s:1042   .text:0000000000000498 .L0 
+     /tmp/cc9Uw2dj.s:1045   .text:00000000000004a0 .L0 
+     /tmp/cc9Uw2dj.s:1047   .text:00000000000004a4 .L0 
+     /tmp/cc9Uw2dj.s:1048   .text:00000000000004a4 .L0 
+     /tmp/cc9Uw2dj.s:1051   .text:00000000000004ac .L0 
+     /tmp/cc9Uw2dj.s:1055   .text:00000000000004b4 .L0 
+     /tmp/cc9Uw2dj.s:1056   .text:00000000000004b4 .L0 
+     /tmp/cc9Uw2dj.s:1064   .text:00000000000004c4 .L0 
+     /tmp/cc9Uw2dj.s:1065   .text:00000000000004c4 .L0 
+     /tmp/cc9Uw2dj.s:1066   .text:00000000000004c4 .L0 
+     /tmp/cc9Uw2dj.s:1070   .text:00000000000004d4 .L0 
+     /tmp/cc9Uw2dj.s:1073   .text:00000000000004dc .L0 
+     /tmp/cc9Uw2dj.s:1074   .text:00000000000004dc .L0 
+     /tmp/cc9Uw2dj.s:1077   .text:00000000000004e8 .L0 
+     /tmp/cc9Uw2dj.s:1081   .text:00000000000004f4 .L0 
+GAS LISTING /tmp/cc9Uw2dj.s 			page 37
+
+
+     /tmp/cc9Uw2dj.s:1085   .text:00000000000004f8 .L0 
+     /tmp/cc9Uw2dj.s:1086   .text:00000000000004f8 .L0 
+     /tmp/cc9Uw2dj.s:1090   .text:0000000000000508 .L0 
+     /tmp/cc9Uw2dj.s:1091   .text:0000000000000508 .L0 
+     /tmp/cc9Uw2dj.s:1093   .text:000000000000050c .L0 
+     /tmp/cc9Uw2dj.s:1099   .text:0000000000000520 .L0 
+     /tmp/cc9Uw2dj.s:1100   .text:0000000000000520 .L0 
+     /tmp/cc9Uw2dj.s:1102   .text:0000000000000524 .L0 
+     /tmp/cc9Uw2dj.s:1108   .text:0000000000000538 .L0 
+     /tmp/cc9Uw2dj.s:1109   .text:0000000000000538 .L0 
+     /tmp/cc9Uw2dj.s:1114   .text:0000000000000548 .L0 
+     /tmp/cc9Uw2dj.s:1115   .text:0000000000000548 .L0 
+     /tmp/cc9Uw2dj.s:1118   .text:000000000000054c .L0 
+     /tmp/cc9Uw2dj.s:1131   .text:000000000000054c .L0 
+     /tmp/cc9Uw2dj.s:445    .text:0000000000000204 .L0 
+     /tmp/cc9Uw2dj.s:686    .text:000000000000031c .L0 
+     /tmp/cc9Uw2dj.s:956    .text:0000000000000430 .L0 
+     /tmp/cc9Uw2dj.s:1066   .text:00000000000004c4 .L0 
+     /tmp/cc9Uw2dj.s:1074   .text:00000000000004dc .L0 
+     /tmp/cc9Uw2dj.s:8      .rodata.str1.8:0000000000000000 .LC0
+     /tmp/cc9Uw2dj.s:1086   .text:00000000000004f8 .L0 
+     /tmp/cc9Uw2dj.s:11     .rodata.str1.8:0000000000000010 .LC1
+     /tmp/cc9Uw2dj.s:1109   .text:0000000000000538 .L0 
+     /tmp/cc9Uw2dj.s:263    .text:0000000000000138 .L2
+     /tmp/cc9Uw2dj.s:313    .text:0000000000000188 .L30
+     /tmp/cc9Uw2dj.s:341    .text:000000000000019c .L31
+     /tmp/cc9Uw2dj.s:367    .text:00000000000001b0 .L32
+     /tmp/cc9Uw2dj.s:440    .text:0000000000000204 .L33
+     /tmp/cc9Uw2dj.s:458    .text:0000000000000228 .L34
+     /tmp/cc9Uw2dj.s:503    .text:0000000000000254 .L35
+     /tmp/cc9Uw2dj.s:587    .text:00000000000002b8 .L36
+     /tmp/cc9Uw2dj.s:623    .text:00000000000002dc .L37
+     /tmp/cc9Uw2dj.s:707    .text:0000000000000340 .L38
+     /tmp/cc9Uw2dj.s:734    .text:000000000000035c .L39
+     /tmp/cc9Uw2dj.s:762    .text:0000000000000374 .L40
+     /tmp/cc9Uw2dj.s:815    .text:00000000000003a4 .L41
+     /tmp/cc9Uw2dj.s:872    .text:00000000000003e0 .L42
+     /tmp/cc9Uw2dj.s:899    .text:00000000000003fc .L43
+     /tmp/cc9Uw2dj.s:298    .text:0000000000000174 .L1
+     /tmp/cc9Uw2dj.s:928    .text:000000000000041c .L44
+     /tmp/cc9Uw2dj.s:946    .text:0000000000000430 .L45
+     /tmp/cc9Uw2dj.s:1034   .text:0000000000000498 .L46
+     /tmp/cc9Uw2dj.s:1082   .text:00000000000004f8 .L47
+     /tmp/cc9Uw2dj.s:85     .text:0000000000000050 .L4
+     /tmp/cc9Uw2dj.s:94     .text:000000000000005c .L7
+     /tmp/cc9Uw2dj.s:424    .text:00000000000001f0 .L48
+     /tmp/cc9Uw2dj.s:103    .text:0000000000000068 .L8
+     /tmp/cc9Uw2dj.s:414    .text:00000000000001e8 .L9
+     /tmp/cc9Uw2dj.s:111    .text:0000000000000074 .L10
+     /tmp/cc9Uw2dj.s:119    .text:0000000000000080 .L11
+     /tmp/cc9Uw2dj.s:571    .text:00000000000002a4 .L49
+     /tmp/cc9Uw2dj.s:128    .text:000000000000008c .L12
+     /tmp/cc9Uw2dj.s:561    .text:000000000000029c .L13
+     /tmp/cc9Uw2dj.s:137    .text:0000000000000098 .L14
+     /tmp/cc9Uw2dj.s:146    .text:00000000000000a4 .L15
+     /tmp/cc9Uw2dj.s:155    .text:00000000000000b0 .L16
+     /tmp/cc9Uw2dj.s:164    .text:00000000000000bc .L17
+GAS LISTING /tmp/cc9Uw2dj.s 			page 38
+
+
+     /tmp/cc9Uw2dj.s:173    .text:00000000000000c8 .L18
+     /tmp/cc9Uw2dj.s:182    .text:00000000000000d4 .L19
+     /tmp/cc9Uw2dj.s:191    .text:00000000000000e0 .L20
+     /tmp/cc9Uw2dj.s:200    .text:00000000000000ec .L21
+     /tmp/cc9Uw2dj.s:253    .text:0000000000000130 .L23
+     /tmp/cc9Uw2dj.s:984    .text:0000000000000468 .L50
+     /tmp/cc9Uw2dj.s:277    .text:000000000000014c .L6
+     /tmp/cc9Uw2dj.s:972    .text:000000000000045c .L24
+     /tmp/cc9Uw2dj.s:1061   .text:00000000000004c4 .L27
+     /tmp/cc9Uw2dj.s:1053   .text:00000000000004b4 .L26
+     /tmp/cc9Uw2dj.s:1112   .text:0000000000000548 .L28
+     /tmp/cc9Uw2dj.s:2852   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/cc9Uw2dj.s:4289   .debug_str:0000000000000670 .LASF135
+     /tmp/cc9Uw2dj.s:4309   .debug_str:00000000000007b5 .LASF136
+     /tmp/cc9Uw2dj.s:4083   .debug_str:00000000000000dd .LASF137
+     /tmp/cc9Uw2dj.s:5      .text:0000000000000000 .Ltext0
+     /tmp/cc9Uw2dj.s:1121   .text:000000000000054c .Letext0
+     /tmp/cc9Uw2dj.s:4049   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/cc9Uw2dj.s:4217   .debug_str:0000000000000466 .LASF0
+     /tmp/cc9Uw2dj.s:4235   .debug_str:0000000000000506 .LASF1
+     /tmp/cc9Uw2dj.s:4201   .debug_str:00000000000003f3 .LASF2
+     /tmp/cc9Uw2dj.s:4129   .debug_str:0000000000000212 .LASF3
+     /tmp/cc9Uw2dj.s:4173   .debug_str:000000000000031c .LASF4
+     /tmp/cc9Uw2dj.s:4271   .debug_str:00000000000005ef .LASF5
+     /tmp/cc9Uw2dj.s:4077   .debug_str:00000000000000b9 .LASF6
+     /tmp/cc9Uw2dj.s:4119   .debug_str:00000000000001df .LASF7
+     /tmp/cc9Uw2dj.s:4239   .debug_str:0000000000000528 .LASF8
+     /tmp/cc9Uw2dj.s:4215   .debug_str:0000000000000453 .LASF9
+     /tmp/cc9Uw2dj.s:4301   .debug_str:000000000000077b .LASF10
+     /tmp/cc9Uw2dj.s:4155   .debug_str:00000000000002a2 .LASF11
+     /tmp/cc9Uw2dj.s:4251   .debug_str:0000000000000579 .LASF12
+     /tmp/cc9Uw2dj.s:4295   .debug_str:000000000000074a .LASF13
+     /tmp/cc9Uw2dj.s:4187   .debug_str:0000000000000382 .LASF14
+     /tmp/cc9Uw2dj.s:4059   .debug_str:0000000000000033 .LASF15
+     /tmp/cc9Uw2dj.s:4097   .debug_str:000000000000013d .LASF16
+     /tmp/cc9Uw2dj.s:4267   .debug_str:00000000000005d2 .LASF17
+     /tmp/cc9Uw2dj.s:4111   .debug_str:000000000000018e .LASF18
+     /tmp/cc9Uw2dj.s:4105   .debug_str:0000000000000173 .LASF26
+     /tmp/cc9Uw2dj.s:4211   .debug_str:0000000000000434 .LASF62
+     /tmp/cc9Uw2dj.s:4333   .debug_str:0000000000000833 .LASF19
+     /tmp/cc9Uw2dj.s:4315   .debug_str:00000000000007df .LASF20
+     /tmp/cc9Uw2dj.s:4283   .debug_str:0000000000000658 .LASF21
+     /tmp/cc9Uw2dj.s:4125   .debug_str:00000000000001f7 .LASF22
+     /tmp/cc9Uw2dj.s:4057   .debug_str:0000000000000015 .LASF24
+     /tmp/cc9Uw2dj.s:4313   .debug_str:00000000000007d5 .LASF23
+     /tmp/cc9Uw2dj.s:4225   .debug_str:000000000000049b .LASF25
+     /tmp/cc9Uw2dj.s:4149   .debug_str:000000000000027b .LASF34
+     /tmp/cc9Uw2dj.s:4213   .debug_str:000000000000043e .LASF36
+     /tmp/cc9Uw2dj.s:4219   .debug_str:0000000000000473 .LASF51
+     /tmp/cc9Uw2dj.s:4115   .debug_str:00000000000001a9 .LASF53
+     /tmp/cc9Uw2dj.s:4113   .debug_str:00000000000001a4 .LASF27
+     /tmp/cc9Uw2dj.s:4269   .debug_str:00000000000005e8 .LASF28
+     /tmp/cc9Uw2dj.s:4147   .debug_str:0000000000000274 .LASF29
+     /tmp/cc9Uw2dj.s:4065   .debug_str:000000000000006c .LASF70
+     /tmp/cc9Uw2dj.s:4257   .debug_str:0000000000000599 .LASF72
+     /tmp/cc9Uw2dj.s:4055   .debug_str:000000000000000e .LASF30
+     /tmp/cc9Uw2dj.s:4091   .debug_str:000000000000011d .LASF31
+GAS LISTING /tmp/cc9Uw2dj.s 			page 39
+
+
+     /tmp/cc9Uw2dj.s:4323   .debug_str:00000000000007f7 .LASF32
+     /tmp/cc9Uw2dj.s:4063   .debug_str:000000000000004c .LASF33
+     /tmp/cc9Uw2dj.s:4181   .debug_str:0000000000000354 .LASF138
+     /tmp/cc9Uw2dj.s:4221   .debug_str:0000000000000482 .LASF35
+     /tmp/cc9Uw2dj.s:4199   .debug_str:00000000000003e0 .LASF37
+     /tmp/cc9Uw2dj.s:4123   .debug_str:00000000000001f1 .LASF38
+     /tmp/cc9Uw2dj.s:4071   .debug_str:000000000000008a .LASF39
+     /tmp/cc9Uw2dj.s:4179   .debug_str:000000000000034b .LASF40
+     /tmp/cc9Uw2dj.s:4137   .debug_str:0000000000000243 .LASF41
+     /tmp/cc9Uw2dj.s:4193   .debug_str:00000000000003bb .LASF80
+     /tmp/cc9Uw2dj.s:4089   .debug_str:0000000000000110 .LASF42
+     /tmp/cc9Uw2dj.s:4287   .debug_str:0000000000000664 .LASF43
+     /tmp/cc9Uw2dj.s:4151   .debug_str:0000000000000281 .LASF44
+     /tmp/cc9Uw2dj.s:4167   .debug_str:00000000000002ef .LASF45
+     /tmp/cc9Uw2dj.s:4277   .debug_str:0000000000000629 .LASF46
+     /tmp/cc9Uw2dj.s:4171   .debug_str:000000000000030f .LASF48
+     /tmp/cc9Uw2dj.s:4279   .debug_str:0000000000000639 .LASF47
+     /tmp/cc9Uw2dj.s:4331   .debug_str:0000000000000826 .LASF49
+     /tmp/cc9Uw2dj.s:4121   .debug_str:00000000000001e6 .LASF50
+     /tmp/cc9Uw2dj.s:4307   .debug_str:00000000000007a1 .LASF139
+     /tmp/cc9Uw2dj.s:4203   .debug_str:0000000000000401 .LASF52
+     /tmp/cc9Uw2dj.s:4311   .debug_str:00000000000007c5 .LASF54
+     /tmp/cc9Uw2dj.s:4285   .debug_str:000000000000065d .LASF55
+     /tmp/cc9Uw2dj.s:4261   .debug_str:00000000000005b4 .LASF56
+     /tmp/cc9Uw2dj.s:4139   .debug_str:000000000000024b .LASF57
+     /tmp/cc9Uw2dj.s:4249   .debug_str:0000000000000570 .LASF58
+     /tmp/cc9Uw2dj.s:4321   .debug_str:00000000000007f2 .LASF59
+     /tmp/cc9Uw2dj.s:4141   .debug_str:0000000000000256 .LASF60
+     /tmp/cc9Uw2dj.s:4051   .debug_str:0000000000000000 .LASF61
+     /tmp/cc9Uw2dj.s:4197   .debug_str:00000000000003db .LASF63
+     /tmp/cc9Uw2dj.s:4161   .debug_str:00000000000002cf .LASF64
+     /tmp/cc9Uw2dj.s:4223   .debug_str:000000000000048b .LASF65
+     /tmp/cc9Uw2dj.s:4079   .debug_str:00000000000000c0 .LASF66
+     /tmp/cc9Uw2dj.s:4099   .debug_str:0000000000000149 .LASF67
+     /tmp/cc9Uw2dj.s:4153   .debug_str:0000000000000291 .LASF68
+     /tmp/cc9Uw2dj.s:4067   .debug_str:0000000000000075 .LASF69
+     /tmp/cc9Uw2dj.s:4335   .debug_str:0000000000000838 .LASF71
+     /tmp/cc9Uw2dj.s:4131   .debug_str:0000000000000218 .LASF73
+     /tmp/cc9Uw2dj.s:4243   .debug_str:0000000000000551 .LASF74
+     /tmp/cc9Uw2dj.s:4159   .debug_str:00000000000002ba .LASF75
+     /tmp/cc9Uw2dj.s:4053   .debug_str:0000000000000008 .LASF76
+     /tmp/cc9Uw2dj.s:4195   .debug_str:00000000000003c7 .LASF77
+     /tmp/cc9Uw2dj.s:4069   .debug_str:0000000000000085 .LASF78
+     /tmp/cc9Uw2dj.s:4247   .debug_str:0000000000000566 .LASF79
+     /tmp/cc9Uw2dj.s:4177   .debug_str:0000000000000333 .LASF81
+     /tmp/cc9Uw2dj.s:4169   .debug_str:00000000000002fb .LASF140
+     /tmp/cc9Uw2dj.s:4229   .debug_str:00000000000004cb .LASF82
+     /tmp/cc9Uw2dj.s:4275   .debug_str:000000000000060a .LASF83
+     /tmp/cc9Uw2dj.s:4281   .debug_str:000000000000064c .LASF84
+     /tmp/cc9Uw2dj.s:4185   .debug_str:0000000000000365 .LASF85
+     /tmp/cc9Uw2dj.s:4207   .debug_str:000000000000040e .LASF86
+     /tmp/cc9Uw2dj.s:4337   .debug_str:000000000000083d .LASF87
+     /tmp/cc9Uw2dj.s:4075   .debug_str:00000000000000a1 .LASF89
+     /tmp/cc9Uw2dj.s:4317   .debug_str:00000000000007e4 .LASF88
+     /tmp/cc9Uw2dj.s:4297   .debug_str:0000000000000759 .LASF90
+     /tmp/cc9Uw2dj.s:4319   .debug_str:00000000000007ec .LASF91
+     /tmp/cc9Uw2dj.s:4291   .debug_str:0000000000000734 .LASF92
+GAS LISTING /tmp/cc9Uw2dj.s 			page 40
+
+
+     /tmp/cc9Uw2dj.s:4081   .debug_str:00000000000000d0 .LASF93
+     /tmp/cc9Uw2dj.s:4263   .debug_str:00000000000005c5 .LASF94
+     /tmp/cc9Uw2dj.s:4265   .debug_str:00000000000005cb .LASF95
+     /tmp/cc9Uw2dj.s:4133   .debug_str:000000000000022b .LASF96
+     /tmp/cc9Uw2dj.s:4103   .debug_str:0000000000000165 .LASF97
+     /tmp/cc9Uw2dj.s:4157   .debug_str:00000000000002b0 .LASF98
+     /tmp/cc9Uw2dj.s:4299   .debug_str:0000000000000771 .LASF99
+     /tmp/cc9Uw2dj.s:4245   .debug_str:0000000000000558 .LASF100
+     /tmp/cc9Uw2dj.s:4163   .debug_str:00000000000002e3 .LASF101
+     /tmp/cc9Uw2dj.s:4127   .debug_str:0000000000000204 .LASF102
+     /tmp/cc9Uw2dj.s:4209   .debug_str:0000000000000424 .LASF103
+     /tmp/cc9Uw2dj.s:4293   .debug_str:000000000000073a .LASF141
+     /tmp/cc9Uw2dj.s:4191   .debug_str:00000000000003a9 .LASF104
+     /tmp/cc9Uw2dj.s:4073   .debug_str:000000000000009a .LASF105
+     /tmp/cc9Uw2dj.s:4087   .debug_str:00000000000000fd .LASF106
+     /tmp/cc9Uw2dj.s:4303   .debug_str:000000000000078b .LASF107
+     /tmp/cc9Uw2dj.s:4329   .debug_str:000000000000081b .LASF108
+     /tmp/cc9Uw2dj.s:4143   .debug_str:000000000000025c .LASF109
+     /tmp/cc9Uw2dj.s:4107   .debug_str:000000000000017c .LASF110
+     /tmp/cc9Uw2dj.s:4061   .debug_str:0000000000000043 .LASF111
+     /tmp/cc9Uw2dj.s:4189   .debug_str:0000000000000392 .LASF112
+     /tmp/cc9Uw2dj.s:4273   .debug_str:0000000000000601 .LASF113
+     /tmp/cc9Uw2dj.s:4227   .debug_str:00000000000004b4 .LASF114
+     /tmp/cc9Uw2dj.s:4255   .debug_str:0000000000000591 .LASF115
+     /tmp/cc9Uw2dj.s:4233   .debug_str:00000000000004f0 .LASF116
+     /tmp/cc9Uw2dj.s:4109   .debug_str:0000000000000186 .LASF117
+     /tmp/cc9Uw2dj.s:4241   .debug_str:000000000000053b .LASF118
+     /tmp/cc9Uw2dj.s:4253   .debug_str:0000000000000588 .LASF119
+     /tmp/cc9Uw2dj.s:4117   .debug_str:00000000000001c8 .LASF120
+     /tmp/cc9Uw2dj.s:4135   .debug_str:000000000000023a .LASF121
+     /tmp/cc9Uw2dj.s:4231   .debug_str:00000000000004d9 .LASF122
+     /tmp/cc9Uw2dj.s:4205   .debug_str:0000000000000407 .LASF123
+     /tmp/cc9Uw2dj.s:18     .text:0000000000000000 .LFB20
+     /tmp/cc9Uw2dj.s:1119   .text:000000000000054c .LFE20
+     /tmp/cc9Uw2dj.s:4011   .debug_ranges:0000000000000000 .Ldebug_ranges0
+     /tmp/cc9Uw2dj.s:318    .text:0000000000000188 .LBB46
+     /tmp/cc9Uw2dj.s:339    .text:0000000000000198 .LBE46
+     /tmp/cc9Uw2dj.s:3924   .debug_loc:0000000000000000 .LLST0
+     /tmp/cc9Uw2dj.s:331    .text:0000000000000194 .LVL3
+     /tmp/cc9Uw2dj.s:344    .text:000000000000019c .LBB48
+     /tmp/cc9Uw2dj.s:365    .text:00000000000001ac .LBE48
+     /tmp/cc9Uw2dj.s:3931   .debug_loc:0000000000000023 .LLST1
+     /tmp/cc9Uw2dj.s:357    .text:00000000000001a8 .LVL5
+     /tmp/cc9Uw2dj.s:4145   .debug_str:0000000000000266 .LASF124
+     /tmp/cc9Uw2dj.s:3938   .debug_loc:0000000000000046 .LLST2
+     /tmp/cc9Uw2dj.s:404    .text:00000000000001d8 .LVL7
+     /tmp/cc9Uw2dj.s:460    .text:0000000000000228 .LBB53
+     /tmp/cc9Uw2dj.s:501    .text:0000000000000250 .LBE53
+     /tmp/cc9Uw2dj.s:4085   .debug_str:00000000000000f8 .LASF125
+     /tmp/cc9Uw2dj.s:4259   .debug_str:00000000000005ac .LASF126
+     /tmp/cc9Uw2dj.s:482    .text:0000000000000240 .LVL9
+     /tmp/cc9Uw2dj.s:530    .text:000000000000026c .LBB56
+     /tmp/cc9Uw2dj.s:539    .text:0000000000000278 .LBE56
+     /tmp/cc9Uw2dj.s:3945   .debug_loc:0000000000000069 .LLST3
+     /tmp/cc9Uw2dj.s:537    .text:0000000000000278 .LVL11
+     /tmp/cc9Uw2dj.s:540    .text:0000000000000278 .LBB58
+     /tmp/cc9Uw2dj.s:549    .text:0000000000000288 .LBE58
+GAS LISTING /tmp/cc9Uw2dj.s 			page 41
+
+
+     /tmp/cc9Uw2dj.s:3954   .debug_loc:000000000000008e .LLST4
+     /tmp/cc9Uw2dj.s:3961   .debug_loc:00000000000000b1 .LLST5
+     /tmp/cc9Uw2dj.s:591    .text:00000000000002b8 .LBB62
+     /tmp/cc9Uw2dj.s:620    .text:00000000000002d8 .LBE62
+     /tmp/cc9Uw2dj.s:3968   .debug_loc:00000000000000d4 .LLST6
+     /tmp/cc9Uw2dj.s:605    .text:00000000000002cc .LVL13
+     /tmp/cc9Uw2dj.s:626    .text:00000000000002dc .LBB64
+     /tmp/cc9Uw2dj.s:705    .text:000000000000033c .LBE64
+     /tmp/cc9Uw2dj.s:641    .text:00000000000002f0 .LVL15
+     /tmp/cc9Uw2dj.s:665    .text:000000000000030c .LVL16
+     /tmp/cc9Uw2dj.s:710    .text:0000000000000340 .LBB66
+     /tmp/cc9Uw2dj.s:732    .text:0000000000000358 .LBE66
+     /tmp/cc9Uw2dj.s:724    .text:0000000000000354 .LVL17
+     /tmp/cc9Uw2dj.s:737    .text:000000000000035c .LBB68
+     /tmp/cc9Uw2dj.s:760    .text:0000000000000370 .LBE68
+     /tmp/cc9Uw2dj.s:3976   .debug_loc:00000000000000f8 .LLST7
+     /tmp/cc9Uw2dj.s:752    .text:000000000000036c .LVL20
+     /tmp/cc9Uw2dj.s:765    .text:0000000000000374 .LBB70
+     /tmp/cc9Uw2dj.s:813    .text:00000000000003a0 .LBE70
+     /tmp/cc9Uw2dj.s:787    .text:000000000000038c .LVL21
+     /tmp/cc9Uw2dj.s:818    .text:00000000000003a4 .LBB72
+     /tmp/cc9Uw2dj.s:870    .text:00000000000003dc .LBE72
+     /tmp/cc9Uw2dj.s:851    .text:00000000000003cc .LVL22
+     /tmp/cc9Uw2dj.s:875    .text:00000000000003e0 .LBB74
+     /tmp/cc9Uw2dj.s:897    .text:00000000000003f8 .LBE74
+     /tmp/cc9Uw2dj.s:889    .text:00000000000003f4 .LVL23
+     /tmp/cc9Uw2dj.s:902    .text:00000000000003fc .LBB76
+     /tmp/cc9Uw2dj.s:926    .text:0000000000000418 .LBE76
+     /tmp/cc9Uw2dj.s:3983   .debug_loc:000000000000011b .LLST8
+     /tmp/cc9Uw2dj.s:243    .text:0000000000000120 .LVL1
+     /tmp/cc9Uw2dj.s:456    .text:0000000000000224 .LVL8
+     /tmp/cc9Uw2dj.s:4093   .debug_str:000000000000012e .LASF127
+     /tmp/cc9Uw2dj.s:3990   .debug_loc:000000000000013e .LLST9
+     /tmp/cc9Uw2dj.s:987    .text:0000000000000468 .LBB97
+     /tmp/cc9Uw2dj.s:1031   .text:0000000000000494 .LBE97
+     /tmp/cc9Uw2dj.s:1009   .text:0000000000000480 .LVL26
+     /tmp/cc9Uw2dj.s:964    .text:0000000000000450 .LVL25
+     /tmp/cc9Uw2dj.s:1043   .text:00000000000004a0 .LVL28
+     /tmp/cc9Uw2dj.s:1058   .text:00000000000004c0 .LVL29
+     /tmp/cc9Uw2dj.s:1079   .text:00000000000004f4 .LVL30
+     /tmp/cc9Uw2dj.s:1088   .text:0000000000000508 .LVL31
+     /tmp/cc9Uw2dj.s:1097   .text:0000000000000520 .LVL32
+     /tmp/cc9Uw2dj.s:1106   .text:0000000000000538 .LVL33
+     /tmp/cc9Uw2dj.s:1111   .text:0000000000000548 .LVL34
+     /tmp/cc9Uw2dj.s:4165   .debug_str:00000000000002ea .LASF128
+     /tmp/cc9Uw2dj.s:4327   .debug_str:0000000000000816 .LASF142
+     /tmp/cc9Uw2dj.s:4175   .debug_str:0000000000000323 .LASF143
+     /tmp/cc9Uw2dj.s:4101   .debug_str:000000000000015a .LASF129
+     /tmp/cc9Uw2dj.s:4305   .debug_str:0000000000000793 .LASF130
+     /tmp/cc9Uw2dj.s:4325   .debug_str:0000000000000803 .LASF131
+     /tmp/cc9Uw2dj.s:4183   .debug_str:0000000000000359 .LASF132
+     /tmp/cc9Uw2dj.s:4237   .debug_str:0000000000000519 .LASF133
+     /tmp/cc9Uw2dj.s:4095   .debug_str:0000000000000134 .LASF134
+     /tmp/cc9Uw2dj.s:326    .text:000000000000018c .LVL2
+     /tmp/cc9Uw2dj.s:352    .text:00000000000001a0 .LVL4
+     /tmp/cc9Uw2dj.s:388    .text:00000000000001bc .LVL6
+     /tmp/cc9Uw2dj.s:529    .text:000000000000026c .LVL10
+GAS LISTING /tmp/cc9Uw2dj.s 			page 42
+
+
+     /tmp/cc9Uw2dj.s:547    .text:0000000000000288 .LVL12
+     /tmp/cc9Uw2dj.s:622    .text:00000000000002dc .LVL14
+     /tmp/cc9Uw2dj.s:745    .text:0000000000000360 .LVL18
+     /tmp/cc9Uw2dj.s:750    .text:0000000000000364 .LVL19
+     /tmp/cc9Uw2dj.s:227    .text:0000000000000104 .LVL0
+     /tmp/cc9Uw2dj.s:953    .text:0000000000000430 .LVL24
+     /tmp/cc9Uw2dj.s:1033   .text:0000000000000498 .LVL27
+     /tmp/cc9Uw2dj.s:1132   .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/cc9Uw2dj.s:53     .text:0000000000000030 .LBB44
+     /tmp/cc9Uw2dj.s:265    .text:0000000000000138 .LBE44
+     /tmp/cc9Uw2dj.s:316    .text:0000000000000188 .LBB103
+     /tmp/cc9Uw2dj.s:949    .text:0000000000000430 .LBE103
+     /tmp/cc9Uw2dj.s:370    .text:00000000000001b0 .LBB50
+     /tmp/cc9Uw2dj.s:422    .text:00000000000001ec .LBE50
+     /tmp/cc9Uw2dj.s:425    .text:00000000000001f0 .LBB51
+     /tmp/cc9Uw2dj.s:441    .text:0000000000000204 .LBE51
+     /tmp/cc9Uw2dj.s:506    .text:0000000000000254 .LBB55
+     /tmp/cc9Uw2dj.s:569    .text:00000000000002a0 .LBE55
+     /tmp/cc9Uw2dj.s:572    .text:00000000000002a4 .LBB60
+     /tmp/cc9Uw2dj.s:588    .text:00000000000002b8 .LBE60
+     /tmp/cc9Uw2dj.s:209    .text:00000000000000f8 .LBB78
+     /tmp/cc9Uw2dj.s:261    .text:0000000000000134 .LBE78
+     /tmp/cc9Uw2dj.s:931    .text:000000000000041c .LBB79
+     /tmp/cc9Uw2dj.s:947    .text:0000000000000430 .LBE79
+     /tmp/cc9Uw2dj.s:951    .text:0000000000000430 .LBB95
+     /tmp/cc9Uw2dj.s:982    .text:0000000000000464 .LBE95
+     /tmp/cc9Uw2dj.s:985    .text:0000000000000468 .LBB99
+     /tmp/cc9Uw2dj.s:1036   .text:0000000000000498 .LBE99
+     /tmp/cc9Uw2dj.s:1039   .text:0000000000000498 .LBB101
+     /tmp/cc9Uw2dj.s:1059   .text:00000000000004c0 .LBE101
+     /tmp/cc9Uw2dj.s:1062   .text:00000000000004c4 .LBB102
+     /tmp/cc9Uw2dj.s:1083   .text:00000000000004f8 .LBE102
+
+UNDEFINED SYMBOLS
+_ZN3Nit11konstruktorEPFvPvES0_i
+_ZN8Memorija9alokacijaEm
+_ZN8Memorija12oslobadjanjeEPv
+_ZN3Nit7runningE
+_ZN3Nit8dispatchEv
+_ZN7Semafor5closeEv
+_ZN7Semafor4waitEv
+_ZN7Semafor6signalEv
+_ZN9Scheduler11threadsleepEi
+_ZN7Konzola7getulazEv
+_ZN7Konzola8putizlazEi
+_ZN9Scheduler3putEP3Nit
+_ZN3Nit6tajmerE
+_ZN9Scheduler13dekremntacijaEi
+plic_claim
+plic_complete
+CONSOLE_STATUS
+CONSOLE_RX_DATA
+_ZN7Konzola7putulazEi
+_Z11printStringPKc
+_Z8printIntiii
