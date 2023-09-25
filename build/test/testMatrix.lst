@@ -1,0 +1,982 @@
+GAS LISTING /tmp/ccxFcpe3.s 			page 1
+
+
+   1              		.file	"testMatrix.cpp"
+   2              		.option pic
+   3              		.option norelax
+   4              		.text
+   5              	.Ltext0:
+   6              		.align	2
+   7              		.globl	_Z8functionPv
+   9              	_Z8functionPv:
+  10              	.LFB2:
+  11              		.file 1 "test/testMatrix.cpp"
+   1:test/testMatrix.cpp **** //
+   2:test/testMatrix.cpp **** // Created by os on 9/25/23.
+   3:test/testMatrix.cpp **** //
+   4:test/testMatrix.cpp **** 
+   5:test/testMatrix.cpp **** #include "../h/syscall_cpp.h"
+   6:test/testMatrix.cpp **** #include "printing.hpp"
+   7:test/testMatrix.cpp **** 
+   8:test/testMatrix.cpp **** namespace {
+   9:test/testMatrix.cpp ****     typedef struct struktura{
+  10:test/testMatrix.cpp ****         int** matrix;
+  11:test/testMatrix.cpp ****         int* rez;
+  12:test/testMatrix.cpp ****         int n;
+  13:test/testMatrix.cpp ****         int m;
+  14:test/testMatrix.cpp ****         int id;
+  15:test/testMatrix.cpp ****     }struktura;
+  16:test/testMatrix.cpp **** }
+  17:test/testMatrix.cpp **** 
+  18:test/testMatrix.cpp **** void function(void* a){
+  12              		.loc 1 18 23
+  13              		.cfi_startproc
+  14              	.LVL0:
+  15 0000 130101FF 		addi	sp,sp,-16
+  16              		.cfi_def_cfa_offset 16
+  17 0004 23348100 		sd	s0,8(sp)
+  18              		.cfi_offset 8, -8
+  19 0008 13040101 		addi	s0,sp,16
+  20              		.cfi_def_cfa 8, 0
+  19:test/testMatrix.cpp ****     struktura *s = static_cast<struktura*>(a);
+  21              		.loc 1 19 5
+  22              	.LVL1:
+  20:test/testMatrix.cpp ****     s->rez[s->id]=0;
+  23              		.loc 1 20 5
+  24              		.loc 1 20 8 is_stmt 0
+  25 000c 83378500 		ld	a5,8(a0)
+  26              		.loc 1 20 15
+  27 0010 03278501 		lw	a4,24(a0)
+  28              		.loc 1 20 17
+  29 0014 13172700 		slli	a4,a4,2
+  30 0018 B387E700 		add	a5,a5,a4
+  31              		.loc 1 20 18
+  32 001c 23A00700 		sw	zero,0(a5)
+  21:test/testMatrix.cpp ****     for(int i=0;i < s->n;i++){
+  33              		.loc 1 21 5 is_stmt 1
+  34              	.LVL2:
+  35              	.LBB2:
+  36              		.loc 1 21 13 is_stmt 0
+  37 0020 93060000 		li	a3,0
+GAS LISTING /tmp/ccxFcpe3.s 			page 2
+
+
+  38              	.LVL3:
+  39              	.L3:
+  40              		.loc 1 21 19 is_stmt 1 discriminator 3
+  41              		.loc 1 21 24 is_stmt 0 discriminator 3
+  42 0024 83270501 		lw	a5,16(a0)
+  43              		.loc 1 21 19 discriminator 3
+  44 0028 63D2F604 		ble	a5,a3,.L1
+  22:test/testMatrix.cpp ****         s->rez[s->id]+= s->matrix[s->id][i];
+  45              		.loc 1 22 9 is_stmt 1 discriminator 2
+  46              		.loc 1 22 12 is_stmt 0 discriminator 2
+  47 002c 83378500 		ld	a5,8(a0)
+  48              		.loc 1 22 19 discriminator 2
+  49 0030 03278501 		lw	a4,24(a0)
+  50              		.loc 1 22 22 discriminator 2
+  51 0034 13162700 		slli	a2,a4,2
+  52 0038 B387C700 		add	a5,a5,a2
+  53              		.loc 1 22 28 discriminator 2
+  54 003c 03360500 		ld	a2,0(a0)
+  55              		.loc 1 22 40 discriminator 2
+  56 0040 13173700 		slli	a4,a4,3
+  57 0044 3307E600 		add	a4,a2,a4
+  58 0048 03370700 		ld	a4,0(a4)
+  59              		.loc 1 22 43 discriminator 2
+  60 004c 13962600 		slli	a2,a3,2
+  61 0050 3307C700 		add	a4,a4,a2
+  62 0054 03260700 		lw	a2,0(a4)
+  63              		.loc 1 22 22 discriminator 2
+  64 0058 03A70700 		lw	a4,0(a5)
+  65 005c 3B07C700 		addw	a4,a4,a2
+  66 0060 23A0E700 		sw	a4,0(a5)
+  21:test/testMatrix.cpp ****     for(int i=0;i < s->n;i++){
+  67              		.loc 1 21 5 is_stmt 1 discriminator 2
+  68 0064 9B861600 		addiw	a3,a3,1
+  69              	.LVL4:
+  70 0068 6FF0DFFB 		j	.L3
+  71              	.LVL5:
+  72              	.L1:
+  73              	.LBE2:
+  23:test/testMatrix.cpp ****     }
+  24:test/testMatrix.cpp **** }
+  74              		.loc 1 24 1 is_stmt 0
+  75 006c 03348100 		ld	s0,8(sp)
+  76              		.cfi_restore 8
+  77              		.cfi_def_cfa 2, 16
+  78 0070 13010101 		addi	sp,sp,16
+  79              		.cfi_def_cfa_offset 0
+  80 0074 67800000 		jr	ra
+  81              		.cfi_endproc
+  82              	.LFE2:
+  84              		.section	.rodata.str1.8,"aMS",@progbits,1
+  85              		.align	3
+  86              	.LC0:
+  87 0000 556E6573 		.string	"Unesite n i m dimenzije matrice:\n"
+  87      69746520 
+  87      6E206920 
+  87      6D206469 
+  87      6D656E7A 
+GAS LISTING /tmp/ccxFcpe3.s 			page 3
+
+
+  88 0022 00000000 		.align	3
+  88      0000
+  89              	.LC1:
+  90 0028 53756D61 		.string	"Suma matrice je: "
+  90      206D6174 
+  90      72696365 
+  90      206A653A 
+  90      2000
+  91 003a 00000000 		.align	3
+  91      0000
+  92              	.LC2:
+  93 0040 0A00     		.string	"\n"
+  94              		.text
+  95              		.align	2
+  96              		.globl	_Z13testMatrixSumv
+  98              	_Z13testMatrixSumv:
+  99              	.LFB3:
+  25:test/testMatrix.cpp **** 
+  26:test/testMatrix.cpp **** void testMatrixSum(){
+ 100              		.loc 1 26 21 is_stmt 1
+ 101              		.cfi_startproc
+ 102              		.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+ 103              		.cfi_lsda 0x1b,.LLSDA3
+ 104 0078 130101F8 		addi	sp,sp,-128
+ 105              		.cfi_def_cfa_offset 128
+ 106 007c 233C1106 		sd	ra,120(sp)
+ 107 0080 23388106 		sd	s0,112(sp)
+ 108 0084 23349106 		sd	s1,104(sp)
+ 109 0088 23302107 		sd	s2,96(sp)
+ 110 008c 233C3105 		sd	s3,88(sp)
+ 111 0090 23384105 		sd	s4,80(sp)
+ 112 0094 23345105 		sd	s5,72(sp)
+ 113 0098 23306105 		sd	s6,64(sp)
+ 114 009c 233C7103 		sd	s7,56(sp)
+ 115 00a0 23388103 		sd	s8,48(sp)
+ 116 00a4 23349103 		sd	s9,40(sp)
+ 117              		.cfi_offset 1, -8
+ 118              		.cfi_offset 8, -16
+ 119              		.cfi_offset 9, -24
+ 120              		.cfi_offset 18, -32
+ 121              		.cfi_offset 19, -40
+ 122              		.cfi_offset 20, -48
+ 123              		.cfi_offset 21, -56
+ 124              		.cfi_offset 22, -64
+ 125              		.cfi_offset 23, -72
+ 126              		.cfi_offset 24, -80
+ 127              		.cfi_offset 25, -88
+ 128 00a8 13040108 		addi	s0,sp,128
+ 129              		.cfi_def_cfa 8, 0
+  27:test/testMatrix.cpp ****     char input[30];
+ 130              		.loc 1 27 5
+  28:test/testMatrix.cpp ****     int n, m;
+ 131              		.loc 1 28 5
+  29:test/testMatrix.cpp **** 
+  30:test/testMatrix.cpp ****     printString("Unesite n i m dimenzije matrice:\n");
+ 132              		.loc 1 30 5
+ 133              		.loc 1 30 16 is_stmt 0
+GAS LISTING /tmp/ccxFcpe3.s 			page 4
+
+
+ 134 00ac 17050000 		lla	a0,.LC0
+ 134      13050500 
+ 135              	.LEHB0:
+ 136 00b4 97000000 		call	_Z11printStringPKc@plt
+ 136      E7800000 
+ 137              	.LVL6:
+  31:test/testMatrix.cpp ****     getString(input, 30);
+ 138              		.loc 1 31 5 is_stmt 1
+ 139              		.loc 1 31 14 is_stmt 0
+ 140 00bc 9305E001 		li	a1,30
+ 141 00c0 930404F8 		addi	s1,s0,-128
+ 142 00c4 13850400 		mv	a0,s1
+ 143 00c8 97000000 		call	_Z9getStringPci@plt
+ 143      E7800000 
+ 144              	.LVL7:
+  32:test/testMatrix.cpp ****     n = stringToInt(input);
+ 145              		.loc 1 32 5 is_stmt 1
+ 146              		.loc 1 32 20 is_stmt 0
+ 147 00d0 13850400 		mv	a0,s1
+ 148 00d4 97000000 		call	_Z11stringToIntPKc@plt
+ 148      E7800000 
+ 149              	.LVL8:
+ 150 00dc 930A0500 		mv	s5,a0
+ 151              	.LVL9:
+  33:test/testMatrix.cpp ****     getString(input, 30);
+ 152              		.loc 1 33 5 is_stmt 1
+ 153              		.loc 1 33 14 is_stmt 0
+ 154 00e0 9305E001 		li	a1,30
+ 155 00e4 13850400 		mv	a0,s1
+ 156 00e8 97000000 		call	_Z9getStringPci@plt
+ 156      E7800000 
+ 157              	.LVL10:
+  34:test/testMatrix.cpp ****     m = stringToInt(input);
+ 158              		.loc 1 34 5 is_stmt 1
+ 159              		.loc 1 34 20 is_stmt 0
+ 160 00f0 13850400 		mv	a0,s1
+ 161 00f4 97000000 		call	_Z11stringToIntPKc@plt
+ 161      E7800000 
+ 162              	.LVL11:
+ 163 00fc 130B0500 		mv	s6,a0
+ 164              	.LVL12:
+  35:test/testMatrix.cpp **** 
+  36:test/testMatrix.cpp ****     int** matrix = (int**) mem_alloc(m*sizeof(int*));
+ 165              		.loc 1 36 5 is_stmt 1
+ 166              		.loc 1 36 37 is_stmt 0
+ 167 0100 931C3500 		slli	s9,a0,3
+ 168 0104 13850C00 		mv	a0,s9
+ 169              	.LVL13:
+ 170 0108 97000000 		call	_Z9mem_allocm@plt
+ 170      E7800000 
+ 171              	.LVL14:
+ 172 0110 130C0500 		mv	s8,a0
+ 173              	.LBB3:
+  37:test/testMatrix.cpp ****     for(int i=0;i<m;i++){
+ 174              		.loc 1 37 13
+ 175 0114 930B0000 		li	s7,0
+ 176 0118 6F008000 		j	.L9
+GAS LISTING /tmp/ccxFcpe3.s 			page 5
+
+
+ 177              	.LVL15:
+ 178              	.L7:
+ 179              		.loc 1 37 5 is_stmt 1 discriminator 2
+ 180 011c 9B8B1B00 		addiw	s7,s7,1
+ 181              	.LVL16:
+ 182              	.L9:
+ 183              		.loc 1 37 18 discriminator 1
+ 184 0120 63DE6B05 		bge	s7,s6,.L6
+ 185              	.LBB4:
+  38:test/testMatrix.cpp ****         matrix[i] = (int*) mem_alloc(n*sizeof(int));
+ 186              		.loc 1 38 9
+ 187              		.loc 1 38 17 is_stmt 0
+ 188 0124 139A3B00 		slli	s4,s7,3
+ 189 0128 330A4C01 		add	s4,s8,s4
+ 190              		.loc 1 38 37
+ 191 012c 13952A00 		slli	a0,s5,2
+ 192 0130 97000000 		call	_Z9mem_allocm@plt
+ 192      E7800000 
+ 193              	.LVL17:
+ 194              		.loc 1 38 19
+ 195 0138 2330AA00 		sd	a0,0(s4)
+  39:test/testMatrix.cpp ****         for (int j = 0; j < n; j++) {
+ 196              		.loc 1 39 9 is_stmt 1
+ 197              	.LVL18:
+ 198              	.LBB5:
+ 199              		.loc 1 39 18 is_stmt 0
+ 200 013c 13090000 		li	s2,0
+ 201              	.LVL19:
+ 202              	.L8:
+ 203              		.loc 1 39 27 is_stmt 1 discriminator 2
+ 204 0140 E35E59FD 		bge	s2,s5,.L7
+  40:test/testMatrix.cpp ****             getString(input,30);
+ 205              		.loc 1 40 13
+ 206              		.loc 1 40 22 is_stmt 0
+ 207 0144 9305E001 		li	a1,30
+ 208 0148 930404F8 		addi	s1,s0,-128
+ 209 014c 13850400 		mv	a0,s1
+ 210 0150 97000000 		call	_Z9getStringPci@plt
+ 210      E7800000 
+ 211              	.LVL20:
+  41:test/testMatrix.cpp ****             matrix[i][j] = stringToInt(input);
+ 212              		.loc 1 41 13 is_stmt 1
+ 213              		.loc 1 41 21 is_stmt 0
+ 214 0158 83390A00 		ld	s3,0(s4)
+ 215              		.loc 1 41 24
+ 216 015c 93172900 		slli	a5,s2,2
+ 217 0160 B389F900 		add	s3,s3,a5
+ 218              		.loc 1 41 39
+ 219 0164 13850400 		mv	a0,s1
+ 220 0168 97000000 		call	_Z11stringToIntPKc@plt
+ 220      E7800000 
+ 221              	.LVL21:
+ 222              		.loc 1 41 26
+ 223 0170 23A0A900 		sw	a0,0(s3)
+  39:test/testMatrix.cpp ****         for (int j = 0; j < n; j++) {
+ 224              		.loc 1 39 9 is_stmt 1
+ 225 0174 1B091900 		addiw	s2,s2,1
+GAS LISTING /tmp/ccxFcpe3.s 			page 6
+
+
+ 226              	.LVL22:
+ 227 0178 6FF09FFC 		j	.L8
+ 228              	.L6:
+ 229              	.LBE5:
+ 230              	.LBE4:
+ 231              	.LBE3:
+  42:test/testMatrix.cpp ****         }
+  43:test/testMatrix.cpp ****     }
+  44:test/testMatrix.cpp **** 
+  45:test/testMatrix.cpp ****     int* rez = (int*) mem_alloc(m*sizeof(int));
+ 232              		.loc 1 45 5
+ 233              		.loc 1 45 32 is_stmt 0
+ 234 017c 13152B00 		slli	a0,s6,2
+ 235 0180 97000000 		call	_Z9mem_allocm@plt
+ 235      E7800000 
+ 236              	.LVL23:
+ 237 0188 130A0500 		mv	s4,a0
+ 238              	.LVL24:
+  46:test/testMatrix.cpp **** 
+  47:test/testMatrix.cpp ****     Thread* thread[m];
+ 239              		.loc 1 47 5 is_stmt 1
+ 240              		.loc 1 47 13 is_stmt 0
+ 241 018c 9387FC00 		addi	a5,s9,15
+ 242 0190 93F707FF 		andi	a5,a5,-16
+ 243 0194 3301F140 		sub	sp,sp,a5
+ 244 0198 930B0100 		mv	s7,sp
+ 245              	.LVL25:
+  48:test/testMatrix.cpp ****     for(int i=0;i<m;i++){
+ 246              		.loc 1 48 5 is_stmt 1
+ 247              	.LBB6:
+ 248              		.loc 1 48 13 is_stmt 0
+ 249 019c 13090000 		li	s2,0
+ 250 01a0 6F000002 		j	.L11
+ 251              	.LVL26:
+ 252              	.L20:
+ 253              	.LBB7:
+  49:test/testMatrix.cpp ****         struktura* s = new struktura;
+  50:test/testMatrix.cpp ****         s->matrix=matrix;
+  51:test/testMatrix.cpp ****         s->rez=rez;
+  52:test/testMatrix.cpp ****         s->m=m;
+  53:test/testMatrix.cpp ****         s->n=n;
+  54:test/testMatrix.cpp ****         s->id=i;
+  55:test/testMatrix.cpp ****         thread[i] = new Thread(&function, (void*)s);
+ 254              		.loc 1 55 19 discriminator 3
+ 255 01a4 93173900 		slli	a5,s2,3
+ 256 01a8 B387FB00 		add	a5,s7,a5
+ 257 01ac 23B03701 		sd	s3,0(a5)
+  56:test/testMatrix.cpp ****         thread[i]->start();
+ 258              		.loc 1 56 9 is_stmt 1 discriminator 3
+ 259              		.loc 1 56 25 is_stmt 0 discriminator 3
+ 260 01b0 13850900 		mv	a0,s3
+ 261 01b4 97000000 		call	_ZN6Thread5startEv@plt
+ 261      E7800000 
+ 262              	.LVL27:
+ 263              	.LBE7:
+  48:test/testMatrix.cpp ****     for(int i=0;i<m;i++){
+ 264              		.loc 1 48 5 is_stmt 1 discriminator 3
+GAS LISTING /tmp/ccxFcpe3.s 			page 7
+
+
+ 265 01bc 1B091900 		addiw	s2,s2,1
+ 266              	.LVL28:
+ 267              	.L11:
+  48:test/testMatrix.cpp ****     for(int i=0;i<m;i++){
+ 268              		.loc 1 48 18 discriminator 1
+ 269 01c0 63586905 		bge	s2,s6,.L15
+ 270              	.LBB8:
+  49:test/testMatrix.cpp ****         struktura* s = new struktura;
+ 271              		.loc 1 49 9
+  49:test/testMatrix.cpp ****         struktura* s = new struktura;
+ 272              		.loc 1 49 28 is_stmt 0
+ 273 01c4 13050002 		li	a0,32
+ 274 01c8 97000000 		call	_Znwm@plt
+ 274      E7800000 
+ 275              	.LVL29:
+ 276 01d0 93040500 		mv	s1,a0
+ 277              	.LVL30:
+  50:test/testMatrix.cpp ****         s->rez=rez;
+ 278              		.loc 1 50 9 is_stmt 1
+  50:test/testMatrix.cpp ****         s->rez=rez;
+ 279              		.loc 1 50 18 is_stmt 0
+ 280 01d4 23308501 		sd	s8,0(a0)
+  51:test/testMatrix.cpp ****         s->m=m;
+ 281              		.loc 1 51 9 is_stmt 1
+  51:test/testMatrix.cpp ****         s->m=m;
+ 282              		.loc 1 51 15 is_stmt 0
+ 283 01d8 23344501 		sd	s4,8(a0)
+  52:test/testMatrix.cpp ****         s->n=n;
+ 284              		.loc 1 52 9 is_stmt 1
+  52:test/testMatrix.cpp ****         s->n=n;
+ 285              		.loc 1 52 13 is_stmt 0
+ 286 01dc 232A6501 		sw	s6,20(a0)
+  53:test/testMatrix.cpp ****         s->id=i;
+ 287              		.loc 1 53 9 is_stmt 1
+  53:test/testMatrix.cpp ****         s->id=i;
+ 288              		.loc 1 53 13 is_stmt 0
+ 289 01e0 23285501 		sw	s5,16(a0)
+  54:test/testMatrix.cpp ****         thread[i] = new Thread(&function, (void*)s);
+ 290              		.loc 1 54 9 is_stmt 1
+  54:test/testMatrix.cpp ****         thread[i] = new Thread(&function, (void*)s);
+ 291              		.loc 1 54 14 is_stmt 0
+ 292 01e4 232C2501 		sw	s2,24(a0)
+  55:test/testMatrix.cpp ****         thread[i]->start();
+ 293              		.loc 1 55 9 is_stmt 1
+  55:test/testMatrix.cpp ****         thread[i]->start();
+ 294              		.loc 1 55 51 is_stmt 0
+ 295 01e8 13050002 		li	a0,32
+ 296 01ec 97000000 		call	_Znwm@plt
+ 296      E7800000 
+ 297              	.LVL31:
+ 298              	.LEHE0:
+ 299 01f4 93090500 		mv	s3,a0
+ 300 01f8 13860400 		mv	a2,s1
+ 301 01fc 97050000 		lla	a1,_Z8functionPv
+ 301      93850500 
+ 302              	.LEHB1:
+ 303 0204 97000000 		call	_ZN6ThreadC1EPFvPvES0_@plt
+GAS LISTING /tmp/ccxFcpe3.s 			page 8
+
+
+ 303      E7800000 
+ 304              	.LVL32:
+ 305              	.LEHE1:
+ 306 020c 6FF09FF9 		j	.L20
+ 307              	.LVL33:
+ 308              	.L15:
+ 309              	.LBE8:
+ 310              	.LBE6:
+ 311              	.LBB10:
+  57:test/testMatrix.cpp ****     }
+  58:test/testMatrix.cpp **** 
+  59:test/testMatrix.cpp ****     for(int i=0;i<m;i++){
+ 312              		.loc 1 59 13
+ 313 0210 93040000 		li	s1,0
+ 314              	.L10:
+ 315              	.LVL34:
+ 316              		.loc 1 59 18 is_stmt 1 discriminator 1
+ 317 0214 63D06403 		bge	s1,s6,.L16
+  60:test/testMatrix.cpp ****         thread[i]->join();
+ 318              		.loc 1 60 9
+ 319              		.loc 1 60 17 is_stmt 0
+ 320 0218 93973400 		slli	a5,s1,3
+ 321 021c B387FB00 		add	a5,s7,a5
+ 322              		.loc 1 60 24
+ 323 0220 03B50700 		ld	a0,0(a5)
+ 324              	.LEHB2:
+ 325 0224 97000000 		call	_ZN6Thread4joinEv@plt
+ 325      E7800000 
+ 326              	.LVL35:
+  59:test/testMatrix.cpp ****         thread[i]->join();
+ 327              		.loc 1 59 5 is_stmt 1
+ 328 022c 9B841400 		addiw	s1,s1,1
+ 329              	.LVL36:
+ 330 0230 6FF05FFE 		j	.L10
+ 331              	.LVL37:
+ 332              	.L16:
+ 333              	.LBE10:
+ 334              	.LBB11:
+  61:test/testMatrix.cpp ****     }
+  62:test/testMatrix.cpp ****     int sum=0;
+  63:test/testMatrix.cpp ****     for(int i=0;i<m;i++){
+ 335              		.loc 1 63 13 is_stmt 0
+ 336 0234 93070000 		li	a5,0
+ 337              	.LBE11:
+  62:test/testMatrix.cpp ****     for(int i=0;i<m;i++){
+ 338              		.loc 1 62 9
+ 339 0238 93040000 		li	s1,0
+ 340              	.LVL38:
+ 341              	.L12:
+ 342              	.LBB12:
+ 343              		.loc 1 63 18 is_stmt 1 discriminator 3
+ 344 023c 63DE6701 		bge	a5,s6,.L13
+  64:test/testMatrix.cpp ****         sum+=rez[i];
+ 345              		.loc 1 64 9 discriminator 2
+ 346              		.loc 1 64 19 is_stmt 0 discriminator 2
+ 347 0240 13972700 		slli	a4,a5,2
+ 348 0244 3307EA00 		add	a4,s4,a4
+GAS LISTING /tmp/ccxFcpe3.s 			page 9
+
+
+ 349 0248 03270700 		lw	a4,0(a4)
+ 350              		.loc 1 64 12 discriminator 2
+ 351 024c BB84E400 		addw	s1,s1,a4
+ 352              	.LVL39:
+  63:test/testMatrix.cpp ****         sum+=rez[i];
+ 353              		.loc 1 63 5 is_stmt 1 discriminator 2
+ 354 0250 9B871700 		addiw	a5,a5,1
+ 355              	.LVL40:
+ 356 0254 6FF09FFE 		j	.L12
+ 357              	.LVL41:
+ 358              	.L13:
+ 359              	.LBE12:
+  65:test/testMatrix.cpp ****     }
+  66:test/testMatrix.cpp **** 
+  67:test/testMatrix.cpp ****     printString("Suma matrice je: ");
+ 360              		.loc 1 67 5
+ 361              		.loc 1 67 16 is_stmt 0
+ 362 0258 17050000 		lla	a0,.LC1
+ 362      13050500 
+ 363 0260 97000000 		call	_Z11printStringPKc@plt
+ 363      E7800000 
+ 364              	.LVL42:
+  68:test/testMatrix.cpp ****     printInt(sum);
+ 365              		.loc 1 68 5 is_stmt 1
+ 366              		.loc 1 68 13 is_stmt 0
+ 367 0268 13060000 		li	a2,0
+ 368 026c 9305A000 		li	a1,10
+ 369 0270 13850400 		mv	a0,s1
+ 370 0274 97000000 		call	_Z8printIntiii@plt
+ 370      E7800000 
+ 371              	.LVL43:
+  69:test/testMatrix.cpp ****     printString("\n");
+ 372              		.loc 1 69 5 is_stmt 1
+ 373              		.loc 1 69 16 is_stmt 0
+ 374 027c 17050000 		lla	a0,.LC2
+ 374      13050500 
+ 375 0284 97000000 		call	_Z11printStringPKc@plt
+ 375      E7800000 
+ 376              	.LVL44:
+ 377              	.LEHE2:
+  70:test/testMatrix.cpp **** }...
+ 378              		.loc 1 70 1
+ 379 028c 130104F8 		addi	sp,s0,-128
+ 380              		.cfi_remember_state
+ 381              		.cfi_def_cfa 2, 128
+ 382              	.LVL45:
+ 383 0290 83308107 		ld	ra,120(sp)
+ 384              		.cfi_restore 1
+ 385 0294 03340107 		ld	s0,112(sp)
+ 386              		.cfi_restore 8
+ 387 0298 83348106 		ld	s1,104(sp)
+ 388              		.cfi_restore 9
+ 389              	.LVL46:
+ 390 029c 03390106 		ld	s2,96(sp)
+ 391              		.cfi_restore 18
+ 392              	.LVL47:
+ 393 02a0 83398105 		ld	s3,88(sp)
+GAS LISTING /tmp/ccxFcpe3.s 			page 10
+
+
+ 394              		.cfi_restore 19
+ 395 02a4 033A0105 		ld	s4,80(sp)
+ 396              		.cfi_restore 20
+ 397              	.LVL48:
+ 398 02a8 833A8104 		ld	s5,72(sp)
+ 399              		.cfi_restore 21
+ 400              	.LVL49:
+ 401 02ac 033B0104 		ld	s6,64(sp)
+ 402              		.cfi_restore 22
+ 403              	.LVL50:
+ 404 02b0 833B8103 		ld	s7,56(sp)
+ 405              		.cfi_restore 23
+ 406              	.LVL51:
+ 407 02b4 033C0103 		ld	s8,48(sp)
+ 408              		.cfi_restore 24
+ 409 02b8 833C8102 		ld	s9,40(sp)
+ 410              		.cfi_restore 25
+ 411              	.LVL52:
+ 412 02bc 13010108 		addi	sp,sp,128
+ 413              		.cfi_def_cfa_offset 0
+ 414 02c0 67800000 		jr	ra
+ 415              	.LVL53:
+ 416              	.L17:
+ 417              		.cfi_restore_state
+ 418 02c4 93040500 		mv	s1,a0
+ 419              	.LVL54:
+ 420              	.LBB13:
+ 421              	.LBB9:
+  55:test/testMatrix.cpp ****         thread[i] = new Thread(&function, (void*)s);
+ 422              		.loc 1 55 51
+ 423 02c8 13850900 		mv	a0,s3
+ 424 02cc 97000000 		call	_ZdlPv@plt
+ 424      E7800000 
+ 425              	.LVL55:
+ 426 02d4 13850400 		mv	a0,s1
+ 427              	.LEHB3:
+ 428 02d8 97000000 		call	_Unwind_Resume@plt
+ 428      E7800000 
+ 429              	.LVL56:
+ 430              	.LEHE3:
+ 431              	.LBE9:
+ 432              	.LBE13:
+ 433              		.cfi_endproc
+ 434              	.LFE3:
+ 435              		.globl	__gxx_personality_v0
+ 436              		.section	.gcc_except_table,"a",@progbits
+ 437              	.LLSDA3:
+ 438 0000 FF       		.byte	0xff
+ 439 0001 FF       		.byte	0xff
+ 440 0002 03       		.byte	0x3
+ 441 0003 34       		.byte	0x34
+ 442 0004 00000000 		.4byte	.LEHB0-.LFB3
+ 443 0008 00000000 		.4byte	.LEHE0-.LEHB0
+ 444 000c 00000000 		.4byte	0
+ 445 0010 00       		.byte	0
+ 446 0011 00000000 		.4byte	.LEHB1-.LFB3
+ 447 0015 00000000 		.4byte	.LEHE1-.LEHB1
+GAS LISTING /tmp/ccxFcpe3.s 			page 11
+
+
+ 448 0019 00000000 		.4byte	.L17-.LFB3
+ 449 001d 00       		.byte	0
+ 450 001e 00000000 		.4byte	.LEHB2-.LFB3
+ 451 0022 00000000 		.4byte	.LEHE2-.LEHB2
+ 452 0026 00000000 		.4byte	0
+ 453 002a 00       		.byte	0
+ 454 002b 00000000 		.4byte	.LEHB3-.LFB3
+ 455 002f 00000000 		.4byte	.LEHE3-.LEHB3
+ 456 0033 00000000 		.4byte	0
+ 457 0037 00       		.byte	0
+ 458              		.text
+ 460              	.Letext0:
+ 461              		.file 2 "test/../h/../lib/hw.h"
+ 462              		.file 3 "test/../h/syscall_c.h"
+ 463              		.file 4 "test/../h/syscall_cpp.h"
+ 464              		.file 5 "test/printing.hpp"
+ 2031              		.align	3
+ 2034              	DW.ref.__gxx_personality_v0:
+ 2035 0000 00000000 		.dword	__gxx_personality_v0
+ 2035      00000000 
+ 2036              		.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+ 2037              		.section	.note.GNU-stack,"",@progbits
+GAS LISTING /tmp/ccxFcpe3.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 testMatrix.cpp
+     /tmp/ccxFcpe3.s:9      .text:0000000000000000 _Z8functionPv
+     /tmp/ccxFcpe3.s:13     .text:0000000000000000 .L0 
+     /tmp/ccxFcpe3.s:15     .text:0000000000000000 .L0 
+     /tmp/ccxFcpe3.s:16     .text:0000000000000004 .L0 
+     /tmp/ccxFcpe3.s:18     .text:0000000000000008 .L0 
+     /tmp/ccxFcpe3.s:20     .text:000000000000000c .L0 
+     /tmp/ccxFcpe3.s:23     .text:000000000000000c .L0 
+     /tmp/ccxFcpe3.s:24     .text:000000000000000c .L0 
+     /tmp/ccxFcpe3.s:25     .text:000000000000000c .L0 
+     /tmp/ccxFcpe3.s:27     .text:0000000000000010 .L0 
+     /tmp/ccxFcpe3.s:29     .text:0000000000000014 .L0 
+     /tmp/ccxFcpe3.s:32     .text:000000000000001c .L0 
+     /tmp/ccxFcpe3.s:36     .text:0000000000000020 .L0 
+     /tmp/ccxFcpe3.s:37     .text:0000000000000020 .L0 
+     /tmp/ccxFcpe3.s:41     .text:0000000000000024 .L0 
+     /tmp/ccxFcpe3.s:42     .text:0000000000000024 .L0 
+     /tmp/ccxFcpe3.s:44     .text:0000000000000028 .L0 
+     /tmp/ccxFcpe3.s:46     .text:000000000000002c .L0 
+     /tmp/ccxFcpe3.s:47     .text:000000000000002c .L0 
+     /tmp/ccxFcpe3.s:49     .text:0000000000000030 .L0 
+     /tmp/ccxFcpe3.s:51     .text:0000000000000034 .L0 
+     /tmp/ccxFcpe3.s:54     .text:000000000000003c .L0 
+     /tmp/ccxFcpe3.s:56     .text:0000000000000040 .L0 
+     /tmp/ccxFcpe3.s:60     .text:000000000000004c .L0 
+     /tmp/ccxFcpe3.s:64     .text:0000000000000058 .L0 
+     /tmp/ccxFcpe3.s:68     .text:0000000000000064 .L0 
+     /tmp/ccxFcpe3.s:75     .text:000000000000006c .L0 
+     /tmp/ccxFcpe3.s:76     .text:0000000000000070 .L0 
+     /tmp/ccxFcpe3.s:77     .text:0000000000000070 .L0 
+     /tmp/ccxFcpe3.s:79     .text:0000000000000074 .L0 
+     /tmp/ccxFcpe3.s:81     .text:0000000000000078 .L0 
+     /tmp/ccxFcpe3.s:98     .text:0000000000000078 _Z13testMatrixSumv
+     /tmp/ccxFcpe3.s:101    .text:0000000000000078 .L0 
+     /tmp/ccxFcpe3.s:2034   .data.rel.local.DW.ref.__gxx_personality_v0:0000000000000000 DW.ref.__gxx_personality_v0
+     /tmp/ccxFcpe3.s:104    .text:0000000000000078 .L0 
+     /tmp/ccxFcpe3.s:105    .text:000000000000007c .L0 
+     /tmp/ccxFcpe3.s:117    .text:00000000000000a8 .L0 
+     /tmp/ccxFcpe3.s:118    .text:00000000000000a8 .L0 
+     /tmp/ccxFcpe3.s:119    .text:00000000000000a8 .L0 
+     /tmp/ccxFcpe3.s:120    .text:00000000000000a8 .L0 
+     /tmp/ccxFcpe3.s:121    .text:00000000000000a8 .L0 
+     /tmp/ccxFcpe3.s:122    .text:00000000000000a8 .L0 
+     /tmp/ccxFcpe3.s:123    .text:00000000000000a8 .L0 
+     /tmp/ccxFcpe3.s:124    .text:00000000000000a8 .L0 
+     /tmp/ccxFcpe3.s:125    .text:00000000000000a8 .L0 
+     /tmp/ccxFcpe3.s:126    .text:00000000000000a8 .L0 
+     /tmp/ccxFcpe3.s:127    .text:00000000000000a8 .L0 
+     /tmp/ccxFcpe3.s:129    .text:00000000000000ac .L0 
+     /tmp/ccxFcpe3.s:131    .text:00000000000000ac .L0 
+     /tmp/ccxFcpe3.s:132    .text:00000000000000ac .L0 
+     /tmp/ccxFcpe3.s:133    .text:00000000000000ac .L0 
+     /tmp/ccxFcpe3.s:134    .text:00000000000000ac .L0 
+     /tmp/ccxFcpe3.s:139    .text:00000000000000bc .L0 
+     /tmp/ccxFcpe3.s:140    .text:00000000000000bc .L0 
+     /tmp/ccxFcpe3.s:146    .text:00000000000000d0 .L0 
+GAS LISTING /tmp/ccxFcpe3.s 			page 13
+
+
+     /tmp/ccxFcpe3.s:147    .text:00000000000000d0 .L0 
+     /tmp/ccxFcpe3.s:153    .text:00000000000000e0 .L0 
+     /tmp/ccxFcpe3.s:154    .text:00000000000000e0 .L0 
+     /tmp/ccxFcpe3.s:159    .text:00000000000000f0 .L0 
+     /tmp/ccxFcpe3.s:160    .text:00000000000000f0 .L0 
+     /tmp/ccxFcpe3.s:166    .text:0000000000000100 .L0 
+     /tmp/ccxFcpe3.s:167    .text:0000000000000100 .L0 
+     /tmp/ccxFcpe3.s:175    .text:0000000000000114 .L0 
+     /tmp/ccxFcpe3.s:180    .text:000000000000011c .L0 
+     /tmp/ccxFcpe3.s:184    .text:0000000000000120 .L0 
+     /tmp/ccxFcpe3.s:187    .text:0000000000000124 .L0 
+     /tmp/ccxFcpe3.s:188    .text:0000000000000124 .L0 
+     /tmp/ccxFcpe3.s:191    .text:000000000000012c .L0 
+     /tmp/ccxFcpe3.s:195    .text:0000000000000138 .L0 
+     /tmp/ccxFcpe3.s:199    .text:000000000000013c .L0 
+     /tmp/ccxFcpe3.s:200    .text:000000000000013c .L0 
+     /tmp/ccxFcpe3.s:204    .text:0000000000000140 .L0 
+     /tmp/ccxFcpe3.s:206    .text:0000000000000144 .L0 
+     /tmp/ccxFcpe3.s:207    .text:0000000000000144 .L0 
+     /tmp/ccxFcpe3.s:213    .text:0000000000000158 .L0 
+     /tmp/ccxFcpe3.s:214    .text:0000000000000158 .L0 
+     /tmp/ccxFcpe3.s:216    .text:000000000000015c .L0 
+     /tmp/ccxFcpe3.s:219    .text:0000000000000164 .L0 
+     /tmp/ccxFcpe3.s:223    .text:0000000000000170 .L0 
+     /tmp/ccxFcpe3.s:225    .text:0000000000000174 .L0 
+     /tmp/ccxFcpe3.s:233    .text:000000000000017c .L0 
+     /tmp/ccxFcpe3.s:234    .text:000000000000017c .L0 
+     /tmp/ccxFcpe3.s:240    .text:000000000000018c .L0 
+     /tmp/ccxFcpe3.s:241    .text:000000000000018c .L0 
+     /tmp/ccxFcpe3.s:248    .text:000000000000019c .L0 
+     /tmp/ccxFcpe3.s:249    .text:000000000000019c .L0 
+     /tmp/ccxFcpe3.s:255    .text:00000000000001a4 .L0 
+     /tmp/ccxFcpe3.s:259    .text:00000000000001b0 .L0 
+     /tmp/ccxFcpe3.s:260    .text:00000000000001b0 .L0 
+     /tmp/ccxFcpe3.s:265    .text:00000000000001bc .L0 
+     /tmp/ccxFcpe3.s:269    .text:00000000000001c0 .L0 
+     /tmp/ccxFcpe3.s:272    .text:00000000000001c4 .L0 
+     /tmp/ccxFcpe3.s:273    .text:00000000000001c4 .L0 
+     /tmp/ccxFcpe3.s:279    .text:00000000000001d4 .L0 
+     /tmp/ccxFcpe3.s:280    .text:00000000000001d4 .L0 
+     /tmp/ccxFcpe3.s:282    .text:00000000000001d8 .L0 
+     /tmp/ccxFcpe3.s:283    .text:00000000000001d8 .L0 
+     /tmp/ccxFcpe3.s:285    .text:00000000000001dc .L0 
+     /tmp/ccxFcpe3.s:286    .text:00000000000001dc .L0 
+     /tmp/ccxFcpe3.s:288    .text:00000000000001e0 .L0 
+     /tmp/ccxFcpe3.s:289    .text:00000000000001e0 .L0 
+     /tmp/ccxFcpe3.s:291    .text:00000000000001e4 .L0 
+     /tmp/ccxFcpe3.s:292    .text:00000000000001e4 .L0 
+     /tmp/ccxFcpe3.s:294    .text:00000000000001e8 .L0 
+     /tmp/ccxFcpe3.s:295    .text:00000000000001e8 .L0 
+     /tmp/ccxFcpe3.s:313    .text:0000000000000210 .L0 
+     /tmp/ccxFcpe3.s:317    .text:0000000000000214 .L0 
+     /tmp/ccxFcpe3.s:319    .text:0000000000000218 .L0 
+     /tmp/ccxFcpe3.s:320    .text:0000000000000218 .L0 
+     /tmp/ccxFcpe3.s:323    .text:0000000000000220 .L0 
+     /tmp/ccxFcpe3.s:328    .text:000000000000022c .L0 
+     /tmp/ccxFcpe3.s:336    .text:0000000000000234 .L0 
+GAS LISTING /tmp/ccxFcpe3.s 			page 14
+
+
+     /tmp/ccxFcpe3.s:339    .text:0000000000000238 .L0 
+     /tmp/ccxFcpe3.s:344    .text:000000000000023c .L0 
+     /tmp/ccxFcpe3.s:346    .text:0000000000000240 .L0 
+     /tmp/ccxFcpe3.s:347    .text:0000000000000240 .L0 
+     /tmp/ccxFcpe3.s:351    .text:000000000000024c .L0 
+     /tmp/ccxFcpe3.s:354    .text:0000000000000250 .L0 
+     /tmp/ccxFcpe3.s:361    .text:0000000000000258 .L0 
+     /tmp/ccxFcpe3.s:362    .text:0000000000000258 .L0 
+     /tmp/ccxFcpe3.s:366    .text:0000000000000268 .L0 
+     /tmp/ccxFcpe3.s:367    .text:0000000000000268 .L0 
+     /tmp/ccxFcpe3.s:373    .text:000000000000027c .L0 
+     /tmp/ccxFcpe3.s:374    .text:000000000000027c .L0 
+     /tmp/ccxFcpe3.s:379    .text:000000000000028c .L0 
+     /tmp/ccxFcpe3.s:380    .text:0000000000000290 .L0 
+     /tmp/ccxFcpe3.s:381    .text:0000000000000290 .L0 
+     /tmp/ccxFcpe3.s:384    .text:0000000000000294 .L0 
+     /tmp/ccxFcpe3.s:386    .text:0000000000000298 .L0 
+     /tmp/ccxFcpe3.s:388    .text:000000000000029c .L0 
+     /tmp/ccxFcpe3.s:391    .text:00000000000002a0 .L0 
+     /tmp/ccxFcpe3.s:394    .text:00000000000002a4 .L0 
+     /tmp/ccxFcpe3.s:396    .text:00000000000002a8 .L0 
+     /tmp/ccxFcpe3.s:399    .text:00000000000002ac .L0 
+     /tmp/ccxFcpe3.s:402    .text:00000000000002b0 .L0 
+     /tmp/ccxFcpe3.s:405    .text:00000000000002b4 .L0 
+     /tmp/ccxFcpe3.s:408    .text:00000000000002b8 .L0 
+     /tmp/ccxFcpe3.s:410    .text:00000000000002bc .L0 
+     /tmp/ccxFcpe3.s:413    .text:00000000000002c0 .L0 
+     /tmp/ccxFcpe3.s:417    .text:00000000000002c4 .L0 
+     /tmp/ccxFcpe3.s:423    .text:00000000000002c8 .L0 
+     /tmp/ccxFcpe3.s:433    .text:00000000000002e0 .L0 
+     /tmp/ccxFcpe3.s:465    .text:00000000000002e0 .L0 
+     /tmp/ccxFcpe3.s:86     .rodata.str1.8:0000000000000000 .LC0
+     /tmp/ccxFcpe3.s:134    .text:00000000000000ac .L0 
+     /tmp/ccxFcpe3.s:301    .text:00000000000001fc .L0 
+     /tmp/ccxFcpe3.s:89     .rodata.str1.8:0000000000000028 .LC1
+     /tmp/ccxFcpe3.s:362    .text:0000000000000258 .L0 
+     /tmp/ccxFcpe3.s:92     .rodata.str1.8:0000000000000040 .LC2
+     /tmp/ccxFcpe3.s:374    .text:000000000000027c .L0 
+     /tmp/ccxFcpe3.s:72     .text:000000000000006c .L1
+     /tmp/ccxFcpe3.s:39     .text:0000000000000024 .L3
+     /tmp/ccxFcpe3.s:182    .text:0000000000000120 .L9
+     /tmp/ccxFcpe3.s:228    .text:000000000000017c .L6
+     /tmp/ccxFcpe3.s:178    .text:000000000000011c .L7
+     /tmp/ccxFcpe3.s:202    .text:0000000000000140 .L8
+     /tmp/ccxFcpe3.s:267    .text:00000000000001c0 .L11
+     /tmp/ccxFcpe3.s:308    .text:0000000000000210 .L15
+     /tmp/ccxFcpe3.s:252    .text:00000000000001a4 .L20
+     /tmp/ccxFcpe3.s:332    .text:0000000000000234 .L16
+     /tmp/ccxFcpe3.s:314    .text:0000000000000214 .L10
+     /tmp/ccxFcpe3.s:358    .text:0000000000000258 .L13
+     /tmp/ccxFcpe3.s:341    .text:000000000000023c .L12
+     /tmp/ccxFcpe3.s:135    .text:00000000000000b4 .LEHB0
+     /tmp/ccxFcpe3.s:99     .text:0000000000000078 .LFB3
+     /tmp/ccxFcpe3.s:298    .text:00000000000001f4 .LEHE0
+     /tmp/ccxFcpe3.s:302    .text:0000000000000204 .LEHB1
+     /tmp/ccxFcpe3.s:305    .text:000000000000020c .LEHE1
+     /tmp/ccxFcpe3.s:416    .text:00000000000002c4 .L17
+GAS LISTING /tmp/ccxFcpe3.s 			page 15
+
+
+     /tmp/ccxFcpe3.s:324    .text:0000000000000224 .LEHB2
+     /tmp/ccxFcpe3.s:377    .text:000000000000028c .LEHE2
+     /tmp/ccxFcpe3.s:427    .text:00000000000002d8 .LEHB3
+     /tmp/ccxFcpe3.s:430    .text:00000000000002e0 .LEHE3
+     /tmp/ccxFcpe3.s:1172   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccxFcpe3.s:1972   .debug_str:000000000000013b .LASF44
+     /tmp/ccxFcpe3.s:1944   .debug_str:0000000000000073 .LASF45
+     /tmp/ccxFcpe3.s:1970   .debug_str:0000000000000120 .LASF46
+     /tmp/ccxFcpe3.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccxFcpe3.s:460    .text:00000000000002e0 .Letext0
+     /tmp/ccxFcpe3.s:1926   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccxFcpe3.s:1980   .debug_str:0000000000000238 .LASF0
+     /tmp/ccxFcpe3.s:1964   .debug_str:00000000000000fa .LASF1
+     /tmp/ccxFcpe3.s:1958   .debug_str:00000000000000d4 .LASF2
+     /tmp/ccxFcpe3.s:1938   .debug_str:0000000000000049 .LASF4
+     /tmp/ccxFcpe3.s:1962   .debug_str:00000000000000e8 .LASF3
+     /tmp/ccxFcpe3.s:1932   .debug_str:0000000000000021 .LASF5
+     /tmp/ccxFcpe3.s:1930   .debug_str:000000000000000e .LASF6
+     /tmp/ccxFcpe3.s:1952   .debug_str:00000000000000ab .LASF7
+     /tmp/ccxFcpe3.s:1988   .debug_str:0000000000000260 .LASF8
+     /tmp/ccxFcpe3.s:1936   .debug_str:000000000000003b .LASF9
+     /tmp/ccxFcpe3.s:2026   .debug_str:0000000000000357 .LASF10
+     /tmp/ccxFcpe3.s:1954   .debug_str:00000000000000be .LASF11
+     /tmp/ccxFcpe3.s:2006   .debug_str:00000000000002e2 .LASF12
+     /tmp/ccxFcpe3.s:1994   .debug_str:0000000000000293 .LASF13
+     /tmp/ccxFcpe3.s:1968   .debug_str:0000000000000114 .LASF14
+     /tmp/ccxFcpe3.s:1948   .debug_str:0000000000000090 .LASF15
+     /tmp/ccxFcpe3.s:1990   .debug_str:0000000000000270 .LASF16
+     /tmp/ccxFcpe3.s:1986   .debug_str:000000000000025b .LASF17
+     /tmp/ccxFcpe3.s:2024   .debug_str:000000000000034d .LASF19
+     /tmp/ccxFcpe3.s:2000   .debug_str:00000000000002be .LASF18
+     /tmp/ccxFcpe3.s:1928   .debug_str:0000000000000000 .LASF26
+     /tmp/ccxFcpe3.s:1934   .debug_str:0000000000000028 .LASF28
+     /tmp/ccxFcpe3.s:434    .text:00000000000002e0 .LFE3
+     /tmp/ccxFcpe3.s:1960   .debug_str:00000000000000e2 .LASF20
+     /tmp/ccxFcpe3.s:1692   .debug_loc:0000000000000000 .LLST3
+     /tmp/ccxFcpe3.s:1703   .debug_loc:0000000000000036 .LLST4
+     /tmp/ccxFcpe3.s:1710   .debug_loc:0000000000000059 .LLST5
+     /tmp/ccxFcpe3.s:1966   .debug_str:000000000000010d .LASF21
+     /tmp/ccxFcpe3.s:1725   .debug_loc:00000000000000a2 .LLST6
+     /tmp/ccxFcpe3.s:1757   .debug_loc:000000000000010b .LLST7
+     /tmp/ccxFcpe3.s:173    .text:0000000000000114 .LBB3
+     /tmp/ccxFcpe3.s:231    .text:000000000000017c .LBE3
+     /tmp/ccxFcpe3.s:1768   .debug_loc:0000000000000141 .LLST8
+     /tmp/ccxFcpe3.s:198    .text:000000000000013c .LBB5
+     /tmp/ccxFcpe3.s:229    .text:000000000000017c .LBE5
+     /tmp/ccxFcpe3.s:1775   .debug_loc:0000000000000164 .LLST9
+     /tmp/ccxFcpe3.s:211    .text:0000000000000158 .LVL20
+     /tmp/ccxFcpe3.s:221    .text:0000000000000170 .LVL21
+     /tmp/ccxFcpe3.s:193    .text:0000000000000138 .LVL17
+     /tmp/ccxFcpe3.s:1904   .debug_ranges:0000000000000000 .Ldebug_ranges0
+     /tmp/ccxFcpe3.s:1791   .debug_loc:00000000000001ae .LLST10
+     /tmp/ccxFcpe3.s:1807   .debug_loc:00000000000001f8 .LLST11
+     /tmp/ccxFcpe3.s:262    .text:00000000000001bc .LVL27
+     /tmp/ccxFcpe3.s:275    .text:00000000000001d0 .LVL29
+     /tmp/ccxFcpe3.s:297    .text:00000000000001f4 .LVL31
+     /tmp/ccxFcpe3.s:304    .text:000000000000020c .LVL32
+GAS LISTING /tmp/ccxFcpe3.s 			page 16
+
+
+     /tmp/ccxFcpe3.s:425    .text:00000000000002d4 .LVL55
+     /tmp/ccxFcpe3.s:311    .text:0000000000000210 .LBB10
+     /tmp/ccxFcpe3.s:333    .text:0000000000000234 .LBE10
+     /tmp/ccxFcpe3.s:1822   .debug_loc:0000000000000241 .LLST12
+     /tmp/ccxFcpe3.s:326    .text:000000000000022c .LVL35
+     /tmp/ccxFcpe3.s:1833   .debug_loc:0000000000000277 .LLST13
+     /tmp/ccxFcpe3.s:1844   .debug_loc:00000000000002ad .LLST2
+     /tmp/ccxFcpe3.s:137    .text:00000000000000bc .LVL6
+     /tmp/ccxFcpe3.s:144    .text:00000000000000d0 .LVL7
+     /tmp/ccxFcpe3.s:149    .text:00000000000000dc .LVL8
+     /tmp/ccxFcpe3.s:157    .text:00000000000000f0 .LVL10
+     /tmp/ccxFcpe3.s:162    .text:00000000000000fc .LVL11
+     /tmp/ccxFcpe3.s:171    .text:0000000000000110 .LVL14
+     /tmp/ccxFcpe3.s:236    .text:0000000000000188 .LVL23
+     /tmp/ccxFcpe3.s:364    .text:0000000000000268 .LVL42
+     /tmp/ccxFcpe3.s:371    .text:000000000000027c .LVL43
+     /tmp/ccxFcpe3.s:376    .text:000000000000028c .LVL44
+     /tmp/ccxFcpe3.s:429    .text:00000000000002e0 .LVL56
+     /tmp/ccxFcpe3.s:1956   .debug_str:00000000000000cd .LASF47
+     /tmp/ccxFcpe3.s:1942   .debug_str:0000000000000060 .LASF22
+     /tmp/ccxFcpe3.s:1982   .debug_str:0000000000000245 .LASF24
+     /tmp/ccxFcpe3.s:2018   .debug_str:0000000000000326 .LASF23
+     /tmp/ccxFcpe3.s:1950   .debug_str:00000000000000a6 .LASF25
+     /tmp/ccxFcpe3.s:2020   .debug_str:0000000000000338 .LASF27
+     /tmp/ccxFcpe3.s:2010   .debug_str:00000000000002f9 .LASF29
+     /tmp/ccxFcpe3.s:10     .text:0000000000000000 .LFB2
+     /tmp/ccxFcpe3.s:82     .text:0000000000000078 .LFE2
+     /tmp/ccxFcpe3.s:35     .text:0000000000000020 .LBB2
+     /tmp/ccxFcpe3.s:73     .text:000000000000006c .LBE2
+     /tmp/ccxFcpe3.s:1875   .debug_loc:00000000000002f7 .LLST0
+     /tmp/ccxFcpe3.s:1940   .debug_str:0000000000000050 .LASF30
+     /tmp/ccxFcpe3.s:2004   .debug_str:00000000000002d8 .LASF31
+     /tmp/ccxFcpe3.s:2002   .debug_str:00000000000002c5 .LASF32
+     /tmp/ccxFcpe3.s:1996   .debug_str:00000000000002a3 .LASF33
+     /tmp/ccxFcpe3.s:1978   .debug_str:000000000000022a .LASF34
+     /tmp/ccxFcpe3.s:2012   .debug_str:0000000000000307 .LASF35
+     /tmp/ccxFcpe3.s:2014   .debug_str:0000000000000311 .LASF36
+     /tmp/ccxFcpe3.s:1992   .debug_str:0000000000000286 .LASF37
+     /tmp/ccxFcpe3.s:2008   .debug_str:00000000000002f2 .LASF38
+     /tmp/ccxFcpe3.s:1984   .debug_str:000000000000024b .LASF39
+     /tmp/ccxFcpe3.s:1976   .debug_str:0000000000000217 .LASF40
+     /tmp/ccxFcpe3.s:2022   .debug_str:0000000000000341 .LASF41
+     /tmp/ccxFcpe3.s:1998   .debug_str:00000000000002af .LASF42
+     /tmp/ccxFcpe3.s:1946   .debug_str:0000000000000087 .LASF43
+     /tmp/ccxFcpe3.s:2016   .debug_str:0000000000000317 .LASF48
+     /tmp/ccxFcpe3.s:1974   .debug_str:00000000000001ff .LASF49
+     /tmp/ccxFcpe3.s:151    .text:00000000000000e0 .LVL9
+     /tmp/ccxFcpe3.s:400    .text:00000000000002ac .LVL49
+     /tmp/ccxFcpe3.s:415    .text:00000000000002c4 .LVL53
+     /tmp/ccxFcpe3.s:164    .text:0000000000000100 .LVL12
+     /tmp/ccxFcpe3.s:169    .text:0000000000000108 .LVL13
+     /tmp/ccxFcpe3.s:238    .text:000000000000018c .LVL24
+     /tmp/ccxFcpe3.s:251    .text:00000000000001a4 .LVL26
+     /tmp/ccxFcpe3.s:397    .text:00000000000002a8 .LVL48
+     /tmp/ccxFcpe3.s:245    .text:000000000000019c .LVL25
+     /tmp/ccxFcpe3.s:382    .text:0000000000000290 .LVL45
+     /tmp/ccxFcpe3.s:406    .text:00000000000002b4 .LVL51
+GAS LISTING /tmp/ccxFcpe3.s 			page 17
+
+
+     /tmp/ccxFcpe3.s:411    .text:00000000000002bc .LVL52
+     /tmp/ccxFcpe3.s:340    .text:000000000000023c .LVL38
+     /tmp/ccxFcpe3.s:352    .text:0000000000000250 .LVL39
+     /tmp/ccxFcpe3.s:357    .text:0000000000000258 .LVL41
+     /tmp/ccxFcpe3.s:389    .text:000000000000029c .LVL46
+     /tmp/ccxFcpe3.s:177    .text:000000000000011c .LVL15
+     /tmp/ccxFcpe3.s:181    .text:0000000000000120 .LVL16
+     /tmp/ccxFcpe3.s:197    .text:000000000000013c .LVL18
+     /tmp/ccxFcpe3.s:201    .text:0000000000000140 .LVL19
+     /tmp/ccxFcpe3.s:226    .text:0000000000000178 .LVL22
+     /tmp/ccxFcpe3.s:392    .text:00000000000002a0 .LVL47
+     /tmp/ccxFcpe3.s:266    .text:00000000000001c0 .LVL28
+     /tmp/ccxFcpe3.s:277    .text:00000000000001d4 .LVL30
+     /tmp/ccxFcpe3.s:307    .text:0000000000000210 .LVL33
+     /tmp/ccxFcpe3.s:419    .text:00000000000002c8 .LVL54
+     /tmp/ccxFcpe3.s:315    .text:0000000000000214 .LVL34
+     /tmp/ccxFcpe3.s:329    .text:0000000000000230 .LVL36
+     /tmp/ccxFcpe3.s:331    .text:0000000000000234 .LVL37
+     /tmp/ccxFcpe3.s:355    .text:0000000000000254 .LVL40
+     /tmp/ccxFcpe3.s:403    .text:00000000000002b0 .LVL50
+     /tmp/ccxFcpe3.s:34     .text:0000000000000020 .LVL2
+     /tmp/ccxFcpe3.s:38     .text:0000000000000024 .LVL3
+     /tmp/ccxFcpe3.s:69     .text:0000000000000068 .LVL4
+     /tmp/ccxFcpe3.s:71     .text:000000000000006c .LVL5
+     /tmp/ccxFcpe3.s:466    .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/ccxFcpe3.s:247    .text:000000000000019c .LBB6
+     /tmp/ccxFcpe3.s:310    .text:0000000000000210 .LBE6
+     /tmp/ccxFcpe3.s:420    .text:00000000000002c8 .LBB13
+     /tmp/ccxFcpe3.s:432    .text:00000000000002e0 .LBE13
+     /tmp/ccxFcpe3.s:253    .text:00000000000001a4 .LBB7
+     /tmp/ccxFcpe3.s:263    .text:00000000000001bc .LBE7
+     /tmp/ccxFcpe3.s:270    .text:00000000000001c4 .LBB8
+     /tmp/ccxFcpe3.s:309    .text:0000000000000210 .LBE8
+     /tmp/ccxFcpe3.s:421    .text:00000000000002c8 .LBB9
+     /tmp/ccxFcpe3.s:431    .text:00000000000002e0 .LBE9
+     /tmp/ccxFcpe3.s:334    .text:0000000000000234 .LBB11
+     /tmp/ccxFcpe3.s:337    .text:0000000000000238 .LBE11
+     /tmp/ccxFcpe3.s:342    .text:000000000000023c .LBB12
+     /tmp/ccxFcpe3.s:359    .text:0000000000000258 .LBE12
+     /tmp/ccxFcpe3.s:437    .gcc_except_table:0000000000000000 .LLSDA3
+
+UNDEFINED SYMBOLS
+_Z11printStringPKc
+_Z9getStringPci
+_Z11stringToIntPKc
+_Z9mem_allocm
+_ZN6Thread5startEv
+_Znwm
+_ZN6ThreadC1EPFvPvES0_
+_ZN6Thread4joinEv
+_Z8printIntiii
+_ZdlPv
+_Unwind_Resume
+__gxx_personality_v0
